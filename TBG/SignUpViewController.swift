@@ -9,13 +9,26 @@
 import UIKit
 
 class SignUpViewController: UIViewController {
-
+    
+    @IBOutlet weak var tfPlayer: UITextField!
+    @IBOutlet weak var tfManager: UITextField!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
+    
+    
+    @IBAction func scTapped(_ sender: Any) {
+        if (segmentedControl.selectedSegmentIndex == 0) {
+            tfManager.isHidden = false
+        } else if (segmentedControl.selectedSegmentIndex == 1) {
+            tfManager.isHidden = true
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
