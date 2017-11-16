@@ -26,8 +26,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var tfFullName: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    var isManager = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,18 +64,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
     }
     
-    func random(_ n: Int) -> String {
-        let a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
-        var s = ""
-        
-        for _ in 0..<n
-        {
-            let r = Int(arc4random_uniform(UInt32(a.characters.count)))
-            s += String(a[a.index(a.startIndex, offsetBy: r)])
-        }
-        return s
-    }
-    
     @IBAction func btnSignup(_ sender: Any) {
         if let email = tfEmailAddress.text {
             if let password = tfPassword.text {
@@ -105,14 +91,14 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                                     })
                                                     
                                                     //Create a team and player in the DB and assign teamId to the player
-                                                    
-                                                    // Create a team dictionary
-                                                   let TeamDictionary : [String:Any] = ["Team Name": teamName, "Team Postcode":teamPostcode]
+
                                                     
                                                     // Create a team in firebase and store the autoId of firebase in a variable called key
                                                     let newRef = Database.database().reference().child("Teams").childByAutoId()
-                                                    newRef.setValue(TeamDictionary)
                                                     let key = newRef.key
+                                                    let TeamDictionary : [String:Any] = ["Team Name": teamName, "Team Postcode":teamPostcode, "id": key]
+                                                    newRef.setValue(TeamDictionary)
+                                                    
                                                     
                                                     // Create a player dictionary using the key to store against the Team ID
                                                     let playerDictionary : [String:Any] = ["Email": email, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": key, "Team Name": teamName, "Team Postcode":teamPostcode]
