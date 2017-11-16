@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		021BB1231FBA45E300AC52CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BB1221FBA45E300AC52CE /* SignUpViewController.swift */; };
+		029C3A9D1FBE050D004D0368 /* add-user (2).png in Resources */ = {isa = PBXBuildFile; fileRef = 029C3A9C1FBE0507004D0368 /* add-user (2).png */; };
 		029E17D31FBA307C00E5F8AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E17D21FBA307C00E5F8AB /* AppDelegate.swift */; };
 		029E17D51FBA307C00E5F8AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E17D41FBA307C00E5F8AB /* ViewController.swift */; };
 		029E17D81FBA307C00E5F8AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 029E17D61FBA307C00E5F8AB /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		021BB1221FBA45E300AC52CE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		029C3A9C1FBE0507004D0368 /* add-user (2).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add-user (2).png"; path = "Icons/add-user (2).png"; sourceTree = SOURCE_ROOT; };
 		029E17CF1FBA307C00E5F8AB /* TBG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TBG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		029E17D21FBA307C00E5F8AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		029E17D41FBA307C00E5F8AB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				029E17D41FBA307C00E5F8AB /* ViewController.swift */,
 				021BB1221FBA45E300AC52CE /* SignUpViewController.swift */,
 				029E17D61FBA307C00E5F8AB /* Main.storyboard */,
+				029C3A9C1FBE0507004D0368 /* add-user (2).png */,
 				029E17DC1FBA307C00E5F8AB /* Assets.xcassets */,
 				029E17DE1FBA307C00E5F8AB /* LaunchScreen.storyboard */,
 				029E17E11FBA307C00E5F8AB /* Info.plist */,
@@ -162,6 +165,7 @@
 				029E17E01FBA307C00E5F8AB /* LaunchScreen.storyboard in Resources */,
 				029E17EA1FBA31F400E5F8AB /* GoogleService-Info.plist in Resources */,
 				029E17DD1FBA307C00E5F8AB /* Assets.xcassets in Resources */,
+				029C3A9D1FBE050D004D0368 /* add-user (2).png in Resources */,
 				029E17D81FBA307C00E5F8AB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

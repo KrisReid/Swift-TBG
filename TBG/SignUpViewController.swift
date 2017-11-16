@@ -10,30 +10,59 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class SignUpViewController: UIViewController {
-    
+class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    @IBOutlet weak var tfAddressLine1: UITextField!
+    @IBOutlet weak var imgProfileImage: UIImageView!
+    @IBOutlet weak var tfTeamPostcode: UITextField!
+    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var tfTeamName: UITextField!
+    @IBOutlet weak var managerSwitch: UISwitch!
+    @IBOutlet weak var tfTeamId: UITextField!
+    @IBOutlet weak var tfPostcode: UITextField!
+    @IBOutlet weak var tfAddressLine2: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
     @IBOutlet weak var tfEmailAddress: UITextField!
     @IBOutlet weak var tfFullName: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var isManager = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imgProfileImage.layer.cornerRadius = imgProfileImage.frame.size.width / 2
+        imgProfileImage.layer.masksToBounds = true
 
-        // Do any additional setup after loading the view.
     }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imgProfileImage.image = image
+        } else {
+            print("There was an error picking the Image")
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
     
-    @IBAction func scTapped(_ sender: Any) {
-        if (segmentedControl.selectedSegmentIndex == 0) {
-            isManager = false
-            //set management hidden = false
-        } else if (segmentedControl.selectedSegmentIndex == 1) {
-            isManager = true
-            //set managment fields to hidden = true
+    @IBAction func btnPhotoTapped(_ sender: Any) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        imagePickerController.allowsEditing = false
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    @IBAction func managerSwitchTapped(_ sender: Any) {
+        if managerSwitch.isOn {
+            tfTeamName.isHidden = false
+            tfTeamPostcode.isHidden = false
+            tfTeamId.isHidden = true
+        } else {
+            tfTeamName.isHidden = true
+            tfTeamPostcode.isHidden = true
+            tfTeamId.isHidden = false
         }
     }
     
@@ -71,6 +100,17 @@ class SignUpViewController: UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    //closes the keyboard when you touch white space
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    //enter button will close the keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
 
