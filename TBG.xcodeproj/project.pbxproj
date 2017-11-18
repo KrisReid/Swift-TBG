@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		021BB1231FBA45E300AC52CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BB1221FBA45E300AC52CE /* SignUpViewController.swift */; };
 		029C3A9D1FBE050D004D0368 /* add-user (2).png in Resources */ = {isa = PBXBuildFile; fileRef = 029C3A9C1FBE0507004D0368 /* add-user (2).png */; };
+		029C3AA01FC04273004D0368 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C3A9F1FC04273004D0368 /* Teams.swift */; };
 		029E17D31FBA307C00E5F8AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E17D21FBA307C00E5F8AB /* AppDelegate.swift */; };
 		029E17D51FBA307C00E5F8AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E17D41FBA307C00E5F8AB /* ViewController.swift */; };
 		029E17D81FBA307C00E5F8AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 029E17D61FBA307C00E5F8AB /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		021BB1221FBA45E300AC52CE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		029C3A9C1FBE0507004D0368 /* add-user (2).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add-user (2).png"; path = "Icons/add-user (2).png"; sourceTree = SOURCE_ROOT; };
+		029C3A9F1FC04273004D0368 /* Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
 		029E17CF1FBA307C00E5F8AB /* TBG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TBG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		029E17D21FBA307C00E5F8AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		029E17D41FBA307C00E5F8AB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +50,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		029C3A9E1FC04219004D0368 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				029C3A9F1FC04273004D0368 /* Teams.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		029E17C61FBA307C00E5F8AB = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +79,7 @@
 		029E17D11FBA307C00E5F8AB /* TBG */ = {
 			isa = PBXGroup;
 			children = (
+				029C3A9E1FC04219004D0368 /* Model */,
 				029E17E91FBA31F400E5F8AB /* GoogleService-Info.plist */,
 				029E17D21FBA307C00E5F8AB /* AppDelegate.swift */,
 				029E17D41FBA307C00E5F8AB /* ViewController.swift */,
@@ -226,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				029E17DB1FBA307C00E5F8AB /* TBG.xcdatamodeld in Sources */,
+				029C3AA01FC04273004D0368 /* Teams.swift in Sources */,
 				029E17D51FBA307C00E5F8AB /* ViewController.swift in Sources */,
 				021BB1231FBA45E300AC52CE /* SignUpViewController.swift in Sources */,
 				029E17D31FBA307C00E5F8AB /* AppDelegate.swift in Sources */,
