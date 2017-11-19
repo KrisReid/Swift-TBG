@@ -28,6 +28,8 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     var teams : [DataSnapshot] = []
     var teamIdExistsInDB = false
+    var teamNameExistsInDB = false
+    var teamPostcodeExistsInDB = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +77,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             tfTeamId.isHidden = false
         }
     }
+
     
     @IBAction func btnSignup(_ sender: Any) {
         if let email = tfEmailAddress.text {
@@ -92,38 +95,68 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                                 if fullName == "" || password == "" || email == "" || address1 == "" || address2 == "" || postcode == "" || teamName == "" || teamPostcode == "" {
                                                     self.displayAlert(title: "Missing Information", message: "You must provide information in all of the fields provided.")
                                                 } else {
-                                                    //Create a user in Auth
-                                                    Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
-                                                        if error != nil {
-                                                            self.displayAlert(title: "Error", message: error!.localizedDescription)
-                                                        } else {
-                                                            let req = Auth.auth().currentUser?.createProfileChangeRequest()
-                                                            //req?.displayName = fullName
-                                                            req?.commitChanges(completion: nil)
+                                                    
+                                                    // Loop and check if TeamName and TeamPostcode exist
+                                                    for team in self.teams {
+                                                        
+                                                        if let teamDictionary = team.value as? [String:AnyObject] {
+                                                            if let tempName = teamDictionary["Team Name"] as? String {
+                                                                if (tfTeamName.text == tempName) {
+                                                                    print("Team Name found")
+                                                                    self.teamNameExistsInDB = true
+                                                                } else {
+                                                                    print("Team Name NOT found")
+                                                                    self.teamNameExistsInDB = false
+                                                                }
+                                                            }
+                                                            if let tempPostcode = teamDictionary["Team Postcode"] as? String {
+                                                                if (tfTeamPostcode.text == tempPostcode) {
+                                                                    print("Team Postcode found")
+                                                                    self.teamPostcodeExistsInDB = true
+                                                                } else {
+                                                                    print("Team Postcode NOT found")
+                                                                    self.teamPostcodeExistsInDB = false
+                                                                }
+                                                            }
                                                         }
-                                                    })
+                                                    }
                                                     
-                                                    //Create a team and player in the DB and assign teamId to the player
-                                                    
-                                                    
-                                                    // Create a team in firebase and store the autoId of firebase in a variable called key
-                                                    let newRef = Database.database().reference().child("Teams").childByAutoId()
-                                                    let key = newRef.key
-                                                    let TeamDictionary : [String:Any] = ["Team Name": teamName, "Team Postcode":teamPostcode, "id": key]
-                                                    newRef.setValue(TeamDictionary)
-                                                    
-                                                    
-                                                    // Create a player dictionary using the key to store against the Team ID
-                                                    let playerDictionary : [String:Any] = ["Email": email, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": key, "Team Name": teamName, "Team Postcode":teamPostcode]
-                                                    
-                                                    // Create the player in firebase
-                                                    Database.database().reference().child("Players").childByAutoId().setValue(playerDictionary)
-                                                    
-                                                    //Segue back to the login page
-                                                    self.performSegue(withIdentifier: "signupSubmitSegue", sender: nil)
+                                                    if teamNameExistsInDB && teamPostcodeExistsInDB {
+                                                        self.displayAlert(title: "Team already exists", message: "The team already exists. Please create a different team or contact your club to get the TeamID.")
+                                                    } else {
+                                                        //Create a user in Auth
+                                                        print("-------Auth Start-------")
+                                                        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+                                                            if error != nil {
+                                                                self.displayAlert(title: "Error", message: error!.localizedDescription)
+                                                            } else {
+                                                                let req = Auth.auth().currentUser?.createProfileChangeRequest()
+                                                                //req?.displayName = fullName
+                                                                req?.commitChanges(completion: nil)
+                                                            }
+                                                        })
+                                                        print("-------Auth End-------")
+                                                        
+                                                        // Create a team in firebase and store the autoId of firebase in a variable called key
+                                                        print("-------Team Creation Start-------")
+                                                        let newRef = Database.database().reference().child("Teams").childByAutoId()
+                                                        let newKey = newRef.key
+                                                        let TeamDictionary : [String:Any] = ["Team Name": teamName, "Team Postcode":teamPostcode, "id": newKey]
+                                                        newRef.setValue(TeamDictionary)
+                                                        print("-------Team Creation End-------")
+                                                        
+                                                        // Create a player dictionary using the key to store against the Team ID
+                                                        print("-------Player Creation Start-------")
+                                                        let playerDictionary : [String:Any] = ["Email": email, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": newKey, "Team Name": teamName, "Team Postcode":teamPostcode]
+                                                        Database.database().reference().child("Players").childByAutoId().setValue(playerDictionary)
+                                                        print("-------Player Creation End-------")
+                                                        
+                                                        //Segue back to the login page
+                                                        self.performSegue(withIdentifier: "signupSubmitSegue", sender: nil)
+                                                    }
                                                 }
                                             } else {
-                                                //manager switch is off
+                                                //manager switch is off (you are just a player)
                                                 if fullName == "" || password == "" || email == "" || address1 == "" || address2 == "" || postcode == "" || teamId == "" {
                                                     self.displayAlert(title: "Missing Information", message: "You must provide information in all of the fields provided.")
                                                 } else {
