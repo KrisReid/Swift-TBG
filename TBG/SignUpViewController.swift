@@ -27,9 +27,13 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var scrollView: UIScrollView!
     
     var teams : [DataSnapshot] = []
+    var players : [DataSnapshot] = []
+    
     var teamIdExistsInDB = false
     var teamNameExistsInDB = false
     var teamPostcodeExistsInDB = false
+    
+    var playerEmailExistsinDB = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,13 +42,20 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         imgProfileImage.layer.masksToBounds = true
         
         fetchTeams ()
+        fetchPlayers ()
         
     }
     
     func fetchTeams () {
         Database.database().reference().child("Teams").observe(.childAdded, with: { (snapshot) in
             self.teams.append(snapshot)
-            //turn snapshot to an object
+        })
+    }
+    
+    func fetchPlayers () {
+        Database.database().reference().child("Players").observe(.childAdded, with: { (snapshot) in
+            self.players.append(snapshot)
+            
         })
     }
     
@@ -77,6 +88,67 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             tfTeamId.isHidden = false
         }
     }
+    
+    func teamNameAndPostcodeDBCheck () {
+        // Loop and check if TeamName and TeamPostcode exist
+        for team in self.teams {
+            
+            if let teamDictionary = team.value as? [String:AnyObject] {
+                if let tempName = teamDictionary["Team Name"] as? String {
+                    if (tfTeamName.text == tempName) {
+                        print("Team Name found")
+                        self.teamNameExistsInDB = true
+                    } else {
+                        print("Team Name NOT found")
+                        self.teamNameExistsInDB = false
+                    }
+                }
+                if let tempPostcode = teamDictionary["Team Postcode"] as? String {
+                    if (tfTeamPostcode.text == tempPostcode) {
+                        print("Team Postcode found")
+                        self.teamPostcodeExistsInDB = true
+                    } else {
+                        print("Team Postcode NOT found")
+                        self.teamPostcodeExistsInDB = false
+                    }
+                }
+            }
+        }
+    }
+    
+    func teamIdDBCheck () {
+        for team in self.teams {
+            
+            if let teamDictionary = team.value as? [String:AnyObject] {
+                if let tempId = teamDictionary["id"] as? String {
+                    if (tfTeamId.text == tempId) {
+                        print("Team ID found")
+                        self.teamIdExistsInDB = true
+                    } else {
+                        print("Team ID NOT found")
+                        self.teamIdExistsInDB = false
+                    }
+                }
+            }
+        }
+    }
+    
+    func playerEmailDBCheck () {
+        for player in self.players {
+            
+            if let playerDictionary = player.value as? [String:AnyObject] {
+                if let tempEmail = playerDictionary["Email"] as? String {
+                    if (tfEmailAddress.text == tempEmail) {
+                        print("Player Email found")
+                        self.playerEmailExistsinDB = true
+                    } else {
+                        print("Player Email NOT found")
+                        self.playerEmailExistsinDB = false
+                    }
+                }
+            }
+        }
+    }
 
     
     @IBAction func btnSignup(_ sender: Any) {
@@ -91,118 +163,88 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                         if let teamPostcode = tfTeamPostcode.text {
                                                 
                                             if self.managerSwitch.isOn {
-                                                //manager switch is on
+                                                //MANAGER MODE
                                                 if fullName == "" || password == "" || email == "" || address1 == "" || address2 == "" || postcode == "" || teamName == "" || teamPostcode == "" {
                                                     self.displayAlert(title: "Missing Information", message: "You must provide information in all of the fields provided.")
                                                 } else {
                                                     
-                                                    // Loop and check if TeamName and TeamPostcode exist
-                                                    for team in self.teams {
-                                                        
-                                                        if let teamDictionary = team.value as? [String:AnyObject] {
-                                                            if let tempName = teamDictionary["Team Name"] as? String {
-                                                                if (tfTeamName.text == tempName) {
-                                                                    print("Team Name found")
-                                                                    self.teamNameExistsInDB = true
-                                                                } else {
-                                                                    print("Team Name NOT found")
-                                                                    self.teamNameExistsInDB = false
-                                                                }
-                                                            }
-                                                            if let tempPostcode = teamDictionary["Team Postcode"] as? String {
-                                                                if (tfTeamPostcode.text == tempPostcode) {
-                                                                    print("Team Postcode found")
-                                                                    self.teamPostcodeExistsInDB = true
-                                                                } else {
-                                                                    print("Team Postcode NOT found")
-                                                                    self.teamPostcodeExistsInDB = false
-                                                                }
-                                                            }
-                                                        }
-                                                    }
+                                                    teamNameAndPostcodeDBCheck()
+                                                    playerEmailDBCheck()
                                                     
-                                                    if teamNameExistsInDB && teamPostcodeExistsInDB {
-                                                        self.displayAlert(title: "Team already exists", message: "The team already exists. Please create a different team or contact your club to get the TeamID.")
+                                                    if playerEmailExistsinDB {
+                                                        self.displayAlert(title: "Email already registered", message: "This email address already exists.")
                                                     } else {
-                                                        //Create a user in Auth
-                                                        print("-------Auth Start-------")
-                                                        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
-                                                            if error != nil {
-                                                                self.displayAlert(title: "Error", message: error!.localizedDescription)
-                                                            } else {
-                                                                let req = Auth.auth().currentUser?.createProfileChangeRequest()
-                                                                //req?.displayName = fullName
-                                                                req?.commitChanges(completion: nil)
-                                                            }
-                                                        })
-                                                        print("-------Auth End-------")
-                                                        
-                                                        // Create a team in firebase and store the autoId of firebase in a variable called key
-                                                        print("-------Team Creation Start-------")
-                                                        let newRef = Database.database().reference().child("Teams").childByAutoId()
-                                                        let newKey = newRef.key
-                                                        let TeamDictionary : [String:Any] = ["Team Name": teamName, "Team Postcode":teamPostcode, "id": newKey]
-                                                        newRef.setValue(TeamDictionary)
-                                                        print("-------Team Creation End-------")
-                                                        
-                                                        // Create a player dictionary using the key to store against the Team ID
-                                                        print("-------Player Creation Start-------")
-                                                        let playerDictionary : [String:Any] = ["Email": email, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": newKey, "Team Name": teamName, "Team Postcode":teamPostcode]
-                                                        Database.database().reference().child("Players").childByAutoId().setValue(playerDictionary)
-                                                        print("-------Player Creation End-------")
-                                                        
-                                                        //Segue back to the login page
-                                                        self.performSegue(withIdentifier: "signupSubmitSegue", sender: nil)
+                                                        if teamNameExistsInDB && teamPostcodeExistsInDB {
+                                                            self.displayAlert(title: "Team already exists", message: "The team already exists. Please create a different team or contact your club to get the TeamID.")
+                                                        } else {
+                                                            //Create a user in Auth
+                                                            print("-------Auth Start-------")
+                                                            Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+                                                                if error != nil {
+                                                                    self.displayAlert(title: "Error", message: error!.localizedDescription)
+                                                                } else {
+                                                                    let req = Auth.auth().currentUser?.createProfileChangeRequest()
+                                                                    //req?.displayName = fullName
+                                                                    req?.commitChanges(completion: nil)
+                                                                }
+                                                            })
+                                                            print("-------Auth End-------")
+                                                            
+                                                            // Create a team in firebase and store the autoId of firebase in a variable called key
+                                                            print("-------Team Creation Start-------")
+                                                            let newRef = Database.database().reference().child("Teams").childByAutoId()
+                                                            let newKey = newRef.key
+                                                            let TeamDictionary : [String:Any] = ["Team Name": teamName, "Team Postcode":teamPostcode, "id": newKey]
+                                                            newRef.setValue(TeamDictionary)
+                                                            print("-------Team Creation End-------")
+                                                            
+                                                            // Create a player dictionary using the key to store against the Team ID
+                                                            print("-------Player Creation Start-------")
+                                                            let playerDictionary : [String:Any] = ["Email": email, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": newKey, "Team Name": teamName, "Team Postcode":teamPostcode]
+                                                            Database.database().reference().child("Players").childByAutoId().setValue(playerDictionary)
+                                                            print("-------Player Creation End-------")
+                                                            
+                                                            //Segue back to the login page
+                                                            self.performSegue(withIdentifier: "signupSubmitSegue", sender: nil)
+                                                        }
                                                     }
                                                 }
                                             } else {
-                                                //manager switch is off (you are just a player)
+                                                //PLAYER MODE
                                                 if fullName == "" || password == "" || email == "" || address1 == "" || address2 == "" || postcode == "" || teamId == "" {
                                                     self.displayAlert(title: "Missing Information", message: "You must provide information in all of the fields provided.")
                                                 } else {
                                                     
-                                                    // If The TeamID doesn't exist in the team db then throw an error
-                                                    for team in self.teams {
-                                                        
-                                                        if let teamDictionary = team.value as? [String:AnyObject] {
-                                                            if let tempId = teamDictionary["id"] as? String {
-                                                                if (tfTeamId.text == tempId) {
-                                                                    print("Team ID found")
-                                                                    self.teamIdExistsInDB = true
-                                                                } else {
-                                                                    print("Team ID NOT found")
-                                                                    self.teamIdExistsInDB = false
-                                                                }
-                                                            }
-                                                        }
-                                                    }
+                                                    teamIdDBCheck ()
+                                                    playerEmailDBCheck()
                                                     
-                                                    // If the teamIdExistsInDB value is true then allow the account to created.
-                                                    
-                                                    if teamIdExistsInDB {
-                                                        //Create a user in Auth
-                                                        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
-                                                            if error != nil {
-                                                                self.displayAlert(title: "Error", message: error!.localizedDescription)
-                                                            } else {
-                                                                let req = Auth.auth().currentUser?.createProfileChangeRequest()
-                                                                //req?.displayName = fullName
-                                                                req?.commitChanges(completion: nil)
-                                                            }
-                                                        })
-                                                        //Add the player to the DB
-                                                        let playerDictionary : [String:Any] = ["Email": email, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": teamId]
-                                                        
-                                                        Database.database().reference().child("Players").childByAutoId().setValue(playerDictionary)
-                                                        
-                                                        self.performSegue(withIdentifier: "signupSubmitSegue", sender: nil)
+                                                    if playerEmailExistsinDB {
+                                                        self.displayAlert(title: "Email already registered", message: "This email address already exists.")
                                                     } else {
-                                                        //Give error meaage
-                                                        self.displayAlert(title: "Invalid Team ID", message: "Please contact your manager to get a valid team ID")
+                                                        if teamIdExistsInDB {
+                                                            //Create a user in Auth
+                                                            Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+                                                                if error != nil {
+                                                                    self.displayAlert(title: "Error", message: error!.localizedDescription)
+                                                                } else {
+                                                                    let req = Auth.auth().currentUser?.createProfileChangeRequest()
+                                                                    //req?.displayName = fullName
+                                                                    req?.commitChanges(completion: nil)
+                                                                }
+                                                            })
+                                                            //Add the player to the DB
+                                                            let playerDictionary : [String:Any] = ["Email": email, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": teamId]
+                                                            
+                                                            Database.database().reference().child("Players").childByAutoId().setValue(playerDictionary)
+                                                            
+                                                            self.performSegue(withIdentifier: "signupSubmitSegue", sender: nil)
+                                                        } else {
+                                                            //Give error meaage
+                                                            self.displayAlert(title: "Invalid Team ID", message: "Please contact your manager to get a valid team ID")
+                                                        }
                                                     }
                                                 }
                                             }
-
                                         }
                                     }
                                 }
