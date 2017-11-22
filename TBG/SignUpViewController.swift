@@ -180,6 +180,13 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
     }
     
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"+"~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"+"x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-"+"z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5"+"]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-"+"9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"+"-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES[c] %@", emailRegEx)
+        return emailTest.evaluate(with: email)
+    }
+    
     
     @IBAction func btnSignup(_ sender: Any) {
         if let photo = imgProfileImage.image {
@@ -202,6 +209,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                                         teamNameDBCheck()
                                                         PostcodeDBCheck()
                                                         playerEmailDBCheck()
+                                                        let isemailValid = isValidEmail (email)
                                                         
                                                         if playerEmailExistsinDB {
                                                             self.displayAlert(title: "Email already registered", message: "This email address already exists.")
@@ -209,48 +217,54 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                                             if teamNameExistsInDB && teamPostcodeExistsInDB {
                                                                 self.displayAlert(title: "Team already exists", message: "The team already exists. Please create a different team or contact your club to get the TeamID.")
                                                             } else {
-                                                                //Create a user in Auth
-                                                                print("-------Auth Start-------")
-                                                                Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
-                                                                    if error != nil {
-                                                                        self.displayAlert(title: "Error", message: error!.localizedDescription)
-                                                                    } else {
-                                                                        let req = Auth.auth().currentUser?.createProfileChangeRequest()
-                                                                        //req?.displayName = fullName
-                                                                        req?.commitChanges(completion: nil)
-                                                                    }
-                                                                })
-                                                                print("-------Auth End-------")
-                                                                
-                                                                //STORING IMAGES AND CREATING DATABASE ENTRIES
-                                                                let imageName = NSUUID().uuidString
-                                                                
-                                                                let storageRef = Storage.storage().reference().child("\(imageName).png")
-                                                                
-                                                                if let uploadData = UIImagePNGRepresentation(photo) {
-                                                                    storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                                                                if isemailValid {
+                                                                    //Create a user in Auth
+                                                                    print("-------Auth Start-------")
+                                                                    Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
                                                                         if error != nil {
-                                                                            print(error)
-                                                                            return
-                                                                        }
-                                                                        if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
-                                                                            print("-------Team Creation Start-------")
-                                                                            let newRef = Database.database().reference().child("Teams").childByAutoId()
-                                                                            let newKey = newRef.key
-                                                                            let TeamDictionary : [String:Any] = ["Team Name": teamName, "Team Postcode":teamPostcode, "id": newKey]
-                                                                            newRef.setValue(TeamDictionary)
-                                                                            print("-------Team Creation End-------")
-                                                                            
-                                                                            // Create a player dictionary using the key to store against the Team ID
-                                                                            print("-------Player Creation Start-------")
-                                                                            let playerDictionary : [String:Any] = ["Email": email, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": newKey, "ProfileImage": profileImageUrl, "Manager": true]
-                                                                            Database.database().reference().child("Players").childByAutoId().setValue(playerDictionary)
-                                                                            print("-------Player Creation End-------")
+                                                                            self.displayAlert(title: "Error", message: error!.localizedDescription)
+                                                                        } else {
+                                                                            let req = Auth.auth().currentUser?.createProfileChangeRequest()
+                                                                            //req?.displayName = fullName
+                                                                            req?.commitChanges(completion: nil)
                                                                         }
                                                                     })
+                                                                    print("-------Auth End-------")
+                                                                    
+                                                                    //STORING IMAGES AND CREATING DATABASE ENTRIES
+                                                                    let imageName = NSUUID().uuidString
+                                                                    
+                                                                    let storageRef = Storage.storage().reference().child("\(imageName).png")
+                                                                    
+                                                                    if let uploadData = UIImagePNGRepresentation(photo) {
+                                                                        storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                                                                            if error != nil {
+                                                                                print(error)
+                                                                                return
+                                                                            }
+                                                                            if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
+                                                                                print("-------Team Creation Start-------")
+                                                                                let newRef = Database.database().reference().child("Teams").childByAutoId()
+                                                                                let newKey = newRef.key
+                                                                                let TeamDictionary : [String:Any] = ["Team Name": teamName, "Team Postcode":teamPostcode, "id": newKey]
+                                                                                newRef.setValue(TeamDictionary)
+                                                                                print("-------Team Creation End-------")
+                                                                                
+                                                                                // Create a player dictionary using the key to store against the Team ID
+                                                                                print("-------Player Creation Start-------")
+                                                                                let playerDictionary : [String:Any] = ["Email": email, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": newKey, "ProfileImage": profileImageUrl, "Manager": true]
+                                                                                Database.database().reference().child("Players").childByAutoId().setValue(playerDictionary)
+                                                                                print("-------Player Creation End-------")
+                                                                                
+                                                                                //Segue back to the login page
+                                                                                self.performSegue(withIdentifier: "signupSubmitSegue", sender: nil)
+                                                                            }
+                                                                        })
+                                                                    }
+
+                                                                } else {
+                                                                    self.displayAlert(title: "Invalid email", message: "This does not comply with a valid email address.")
                                                                 }
-                                                                //Segue back to the login page
-                                                                self.performSegue(withIdentifier: "signupSubmitSegue", sender: nil)
                                                             }
                                                         }
                                                     }
@@ -262,46 +276,51 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
 
                                                         self.playerEmailDBCheck()
                                                         self.teamIdDBCheck ()
+                                                        let isemailValid = isValidEmail (email)
                                                         
                                                         if playerEmailExistsinDB {
                                                             self.displayAlert(title: "Email already registered", message: "This email address already exists.")
                                                         } else {
                                                             if teamIdExistsInDB == false {
-                                                                //Give error meaage
                                                                 self.displayAlert(title: "Invalid Team ID", message: "Please contact your manager to get a valid team ID")
                                                             } else {
-                                                                //Create a user in Auth
-                                                                Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
-                                                                    if error != nil {
-                                                                        self.displayAlert(title: "Error", message: error!.localizedDescription)
-                                                                    } else {
-                                                                        let req = Auth.auth().currentUser?.createProfileChangeRequest()
-                                                                        //req?.displayName = fullName
-                                                                        req?.commitChanges(completion: nil)
-                                                                    }
-                                                                })
-                                                                
-                                                                //STORING IMAGES AND CREATING DATABASE ENTRIES
-                                                                let imageName = NSUUID().uuidString
-                                                                
-                                                                let storageRef = Storage.storage().reference().child("\(imageName).png")
-                                                                
-                                                                if let uploadData = UIImagePNGRepresentation(photo) {
-                                                                    storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                                                                if isemailValid {
+                                                                    //Create a user in Auth
+                                                                    Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
                                                                         if error != nil {
-                                                                            print(error)
-                                                                            return
-                                                                        }
-                                                                        if let profileImageUrl = metadata?.downloadURL()?.absoluteString  {
-                                                                            //Add the player to the DB
-                                                                            let playerDictionary : [String:Any] = ["Email": email, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": teamId, "ProfileImage": profileImageUrl, "Manager": false]
-                                                                            
-                                                                            Database.database().reference().child("Players").childByAutoId().setValue(playerDictionary)
+                                                                            self.displayAlert(title: "Error", message: error!.localizedDescription)
+                                                                        } else {
+                                                                            let req = Auth.auth().currentUser?.createProfileChangeRequest()
+                                                                            //req?.displayName = fullName
+                                                                            req?.commitChanges(completion: nil)
                                                                         }
                                                                     })
+                                                                    
+                                                                    //STORING IMAGES AND CREATING DATABASE ENTRIES
+                                                                    let imageName = NSUUID().uuidString
+                                                                    
+                                                                    let storageRef = Storage.storage().reference().child("\(imageName).png")
+                                                                    
+                                                                    if let uploadData = UIImagePNGRepresentation(photo) {
+                                                                        storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                                                                            if error != nil {
+                                                                                print(error)
+                                                                                return
+                                                                            }
+                                                                            if let profileImageUrl = metadata?.downloadURL()?.absoluteString  {
+                                                                                //Add the player to the DB
+                                                                                let playerDictionary : [String:Any] = ["Email": email, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": teamId, "ProfileImage": profileImageUrl, "Manager": false]
+                                                                                
+                                                                                Database.database().reference().child("Players").childByAutoId().setValue(playerDictionary)
+                                                                            }
+                                                                        })
+                                                                    }
+                                                                    //Segue back to the login page
+                                                                    self.performSegue(withIdentifier: "signupSubmitSegue", sender: nil)
+                                                                    
+                                                                } else {
+                                                                    self.displayAlert(title: "Invalid email", message: "This does not comply with a valid email address.")
                                                                 }
-                                                                //Segue back to the login page
-                                                                self.performSegue(withIdentifier: "signupSubmitSegue", sender: nil)
                                                             }
                                                         }
                                                     }
@@ -334,6 +353,5 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         textField.resignFirstResponder()
         return true
     }
-
-
+    
 }
