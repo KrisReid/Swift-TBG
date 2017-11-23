@@ -12,6 +12,7 @@
 		023FAF361FC75B7600AD6505 /* add-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 023FAF341FC75B7600AD6505 /* add-user.png */; };
 		023FAF371FC75B7600AD6505 /* team.png in Resources */ = {isa = PBXBuildFile; fileRef = 023FAF351FC75B7600AD6505 /* team.png */; };
 		023FAF391FC75BA000AD6505 /* PlayersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023FAF381FC75B9F00AD6505 /* PlayersTableViewController.swift */; };
+		023FAF3B1FC7837800AD6505 /* PlayersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023FAF3A1FC7837800AD6505 /* PlayersTableViewCell.swift */; };
 		029E17D31FBA307C00E5F8AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E17D21FBA307C00E5F8AB /* AppDelegate.swift */; };
 		029E17D51FBA307C00E5F8AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E17D41FBA307C00E5F8AB /* ViewController.swift */; };
 		029E17D81FBA307C00E5F8AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 029E17D61FBA307C00E5F8AB /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		023FAF341FC75B7600AD6505 /* add-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add-user.png"; path = "Icons/add-user.png"; sourceTree = SOURCE_ROOT; };
 		023FAF351FC75B7600AD6505 /* team.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = team.png; path = Icons/team.png; sourceTree = SOURCE_ROOT; };
 		023FAF381FC75B9F00AD6505 /* PlayersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayersTableViewController.swift; sourceTree = "<group>"; };
+		023FAF3A1FC7837800AD6505 /* PlayersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersTableViewCell.swift; sourceTree = "<group>"; };
 		029E17CF1FBA307C00E5F8AB /* TBG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TBG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		029E17D21FBA307C00E5F8AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		029E17D41FBA307C00E5F8AB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				029E17D41FBA307C00E5F8AB /* ViewController.swift */,
 				021BB1221FBA45E300AC52CE /* SignUpViewController.swift */,
 				023FAF381FC75B9F00AD6505 /* PlayersTableViewController.swift */,
+				023FAF3A1FC7837800AD6505 /* PlayersTableViewCell.swift */,
 				029E17D61FBA307C00E5F8AB /* Main.storyboard */,
 				029E17DC1FBA307C00E5F8AB /* Assets.xcassets */,
 				029E17DE1FBA307C00E5F8AB /* LaunchScreen.storyboard */,
@@ -242,6 +245,7 @@
 			files = (
 				029E17DB1FBA307C00E5F8AB /* TBG.xcdatamodeld in Sources */,
 				029E17D51FBA307C00E5F8AB /* ViewController.swift in Sources */,
+				023FAF3B1FC7837800AD6505 /* PlayersTableViewCell.swift in Sources */,
 				021BB1231FBA45E300AC52CE /* SignUpViewController.swift in Sources */,
 				029E17D31FBA307C00E5F8AB /* AppDelegate.swift in Sources */,
 				023FAF391FC75BA000AD6505 /* PlayersTableViewController.swift in Sources */,

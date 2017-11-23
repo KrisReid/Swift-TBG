@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -168,7 +169,7 @@
             </objects>
             <point key="canvasLocation" x="4002" y="477"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Team-->
         <scene sceneID="b6D-pD-icE">
             <objects>
                 <tableViewController id="p7f-gU-k2M" customClass="PlayersTableViewController" customModule="TBG" customModuleProvider="target" sceneMemberID="viewController">
@@ -177,23 +178,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="fOw-Qp-uhu">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="fOw-Qp-uhu" customClass="PlayersTableViewCell" customModule="TBG" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fOw-Qp-uhu" id="Wcb-yZ-DkE">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3J-Jx-Fwd">
-                                            <rect key="frame" x="290" y="6" width="46" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Button"/>
-                                            <connections>
-                                                <action selector="btnTest:" destination="p7f-gU-k2M" eventType="touchUpInside" id="Ywl-kb-xbz"/>
-                                            </connections>
-                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-user.png" translatesAutoresizingMaskIntoConstraints="NO" id="9a3-aN-6US">
+                                            <rect key="frame" x="16" y="0.0" width="100" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="1JT-A4-D3s"/>
+                                                <constraint firstAttribute="height" constant="100" id="xcn-WG-rCj"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Player Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Spt-1U-1zs">
+                                            <rect key="frame" x="124" y="40" width="235" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Spt-1U-1zs" firstAttribute="top" secondItem="Wcb-yZ-DkE" secondAttribute="topMargin" constant="29" id="Bin-Vf-v3e"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Spt-1U-1zs" secondAttribute="bottom" constant="28" id="Exh-ke-AT6"/>
+                                        <constraint firstItem="9a3-aN-6US" firstAttribute="top" secondItem="Wcb-yZ-DkE" secondAttribute="top" id="N6o-iC-Nt9"/>
+                                        <constraint firstAttribute="bottom" secondItem="9a3-aN-6US" secondAttribute="bottom" id="bZ7-2X-QHr"/>
+                                        <constraint firstItem="9a3-aN-6US" firstAttribute="leading" secondItem="Wcb-yZ-DkE" secondAttribute="leading" constant="16" id="ljW-PX-tlO"/>
+                                        <constraint firstItem="Spt-1U-1zs" firstAttribute="leading" secondItem="9a3-aN-6US" secondAttribute="trailing" constant="8" id="yln-jk-gSs"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="ivProfilePic" destination="9a3-aN-6US" id="5gJ-aG-ln6"/>
+                                    <outlet property="lblFullName" destination="Spt-1U-1zs" id="fza-r9-TbI"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -201,17 +219,17 @@
                             <outlet property="delegate" destination="p7f-gU-k2M" id="PJs-NX-G3m"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="I5y-EP-799"/>
+                    <navigationItem key="navigationItem" title="Team" id="I5y-EP-799"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xfV-Lf-7fA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2958" y="-630"/>
+            <point key="canvasLocation" x="2957.5999999999999" y="-630.29556650246309"/>
         </scene>
-        <!--Item-->
+        <!--Team-->
         <scene sceneID="8MR-PI-iH2">
             <objects>
                 <navigationController id="ImB-CD-5nh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="team.png" landscapeImage="team.png" largeContentSizeImage="team.png" selectedImage="team.png" id="zTH-eH-exw"/>
+                    <tabBarItem key="tabBarItem" title="Team" image="team.png" landscapeImage="team.png" largeContentSizeImage="team.png" selectedImage="team.png" id="zTH-eH-exw"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GPh-g2-PHW">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
