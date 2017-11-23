@@ -56,7 +56,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     func fetchPlayers () {
         Database.database().reference().child("Players").observe(.childAdded, with: { (snapshot) in
             self.players.append(snapshot)
-            
         })
     }
     
