@@ -7,19 +7,46 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var tfEmail: UITextField!
+    @IBOutlet weak var tfPassword: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    @IBAction func btnLogin(_ sender: Any) {
+        if let email = tfEmail.text {
+            if let password = tfPassword.text {
+                
+                Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+                    if error != nil {
+                        self.displayAlert(title: "Error", message: error!.localizedDescription)
+                    } else {
+                        print("Logging in was successful")
+                        if user?.displayName == "Manager" {
+                            //MANAGER
+                            self.performSegue(withIdentifier: "ManagerSegue", sender: nil)
+                        } else {
+                            //PLAYER
+                            self.performSegue(withIdentifier: "PlayerSegue", sender: nil)
+                        }
+                        
+                    }
+                })
+                
+            }
+        }
+    }
     
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func displayAlert(title:String, message:String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
     
     //closes the keyboard when you touch white space
@@ -32,6 +59,7 @@ class ViewController: UIViewController {
         textField.resignFirstResponder()
         return true
     }
+
 
 
 }

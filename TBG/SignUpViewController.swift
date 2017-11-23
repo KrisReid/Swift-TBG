@@ -12,7 +12,7 @@ import FirebaseDatabase
 import FirebaseStorage
 
 class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     @IBOutlet weak var tfAddressLine1: UITextField!
     @IBOutlet weak var imgProfileImage: UIImageView!
     @IBOutlet weak var tfTeamPostcode: UITextField!
@@ -225,7 +225,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                                                             self.displayAlert(title: "Error", message: error!.localizedDescription)
                                                                         } else {
                                                                             let req = Auth.auth().currentUser?.createProfileChangeRequest()
-                                                                            //req?.displayName = fullName
+                                                                            req?.displayName = "Manager"
                                                                             req?.commitChanges(completion: nil)
                                                                         }
                                                                     })
@@ -261,7 +261,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                                                             }
                                                                         })
                                                                     }
-
+                                                                    
                                                                 } else {
                                                                     self.displayAlert(title: "Invalid email", message: "This does not comply with a valid email address.")
                                                                 }
@@ -273,7 +273,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                                     if fullName == "" || password == "" || email == "" || address1 == "" || address2 == "" || postcode == "" || teamId == "" {
                                                         self.displayAlert(title: "Missing Information", message: "You must provide information in all of the fields provided.")
                                                     } else {
-
+                                                        
                                                         self.playerEmailDBCheck()
                                                         self.teamIdDBCheck ()
                                                         let isemailValid = isValidEmail (email)
@@ -291,7 +291,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                                                             self.displayAlert(title: "Error", message: error!.localizedDescription)
                                                                         } else {
                                                                             let req = Auth.auth().currentUser?.createProfileChangeRequest()
-                                                                            //req?.displayName = fullName
+                                                                            req?.displayName = "Player"
                                                                             req?.commitChanges(completion: nil)
                                                                         }
                                                                     })
@@ -355,3 +355,4 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
 }
+

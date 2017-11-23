@@ -8,22 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		021BB1231FBA45E300AC52CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BB1221FBA45E300AC52CE /* SignUpViewController.swift */; };
-		029C3A9D1FBE050D004D0368 /* add-user (2).png in Resources */ = {isa = PBXBuildFile; fileRef = 029C3A9C1FBE0507004D0368 /* add-user (2).png */; };
-		029C3AA01FC04273004D0368 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C3A9F1FC04273004D0368 /* Teams.swift */; };
+		023FAEE91FC7553700AD6505 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */; };
+		023FAF361FC75B7600AD6505 /* add-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 023FAF341FC75B7600AD6505 /* add-user.png */; };
+		023FAF371FC75B7600AD6505 /* team.png in Resources */ = {isa = PBXBuildFile; fileRef = 023FAF351FC75B7600AD6505 /* team.png */; };
+		023FAF391FC75BA000AD6505 /* PlayersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023FAF381FC75B9F00AD6505 /* PlayersTableViewController.swift */; };
 		029E17D31FBA307C00E5F8AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E17D21FBA307C00E5F8AB /* AppDelegate.swift */; };
 		029E17D51FBA307C00E5F8AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E17D41FBA307C00E5F8AB /* ViewController.swift */; };
 		029E17D81FBA307C00E5F8AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 029E17D61FBA307C00E5F8AB /* Main.storyboard */; };
 		029E17DB1FBA307C00E5F8AB /* TBG.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 029E17D91FBA307C00E5F8AB /* TBG.xcdatamodeld */; };
 		029E17DD1FBA307C00E5F8AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 029E17DC1FBA307C00E5F8AB /* Assets.xcassets */; };
 		029E17E01FBA307C00E5F8AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 029E17DE1FBA307C00E5F8AB /* LaunchScreen.storyboard */; };
-		029E17EA1FBA31F400E5F8AB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 029E17E91FBA31F400E5F8AB /* GoogleService-Info.plist */; };
 		21D8FE36B2E01535BB68E0D5 /* Pods_TBG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E738D854AE3B77EF8EAD9C /* Pods_TBG.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		021BB1221FBA45E300AC52CE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		029C3A9C1FBE0507004D0368 /* add-user (2).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add-user (2).png"; path = "Icons/add-user (2).png"; sourceTree = SOURCE_ROOT; };
-		029C3A9F1FC04273004D0368 /* Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
+		023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		023FAF341FC75B7600AD6505 /* add-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add-user.png"; path = "Icons/add-user.png"; sourceTree = SOURCE_ROOT; };
+		023FAF351FC75B7600AD6505 /* team.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = team.png; path = Icons/team.png; sourceTree = SOURCE_ROOT; };
+		023FAF381FC75B9F00AD6505 /* PlayersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayersTableViewController.swift; sourceTree = "<group>"; };
 		029E17CF1FBA307C00E5F8AB /* TBG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TBG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		029E17D21FBA307C00E5F8AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		029E17D41FBA307C00E5F8AB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -32,7 +35,6 @@
 		029E17DC1FBA307C00E5F8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		029E17DF1FBA307C00E5F8AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		029E17E11FBA307C00E5F8AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		029E17E91FBA31F400E5F8AB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		03C597F2654A7830B541D478 /* Pods-TBG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TBG.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TBG/Pods-TBG.debug.xcconfig"; sourceTree = "<group>"; };
 		49C8561EA02B5F2CD4A48983 /* Pods-TBG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TBG.release.xcconfig"; path = "Pods/Target Support Files/Pods-TBG/Pods-TBG.release.xcconfig"; sourceTree = "<group>"; };
 		80E738D854AE3B77EF8EAD9C /* Pods_TBG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TBG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,12 +52,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		029C3A9E1FC04219004D0368 /* Model */ = {
+		023FAEEF1FC75B2500AD6505 /* icons */ = {
 			isa = PBXGroup;
 			children = (
-				029C3A9F1FC04273004D0368 /* Teams.swift */,
+				023FAF341FC75B7600AD6505 /* add-user.png */,
+				023FAF351FC75B7600AD6505 /* team.png */,
 			);
-			path = Model;
+			path = icons;
 			sourceTree = "<group>";
 		};
 		029E17C61FBA307C00E5F8AB = {
@@ -79,13 +82,13 @@
 		029E17D11FBA307C00E5F8AB /* TBG */ = {
 			isa = PBXGroup;
 			children = (
-				029C3A9E1FC04219004D0368 /* Model */,
-				029E17E91FBA31F400E5F8AB /* GoogleService-Info.plist */,
+				023FAEEF1FC75B2500AD6505 /* icons */,
+				023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */,
 				029E17D21FBA307C00E5F8AB /* AppDelegate.swift */,
 				029E17D41FBA307C00E5F8AB /* ViewController.swift */,
 				021BB1221FBA45E300AC52CE /* SignUpViewController.swift */,
+				023FAF381FC75B9F00AD6505 /* PlayersTableViewController.swift */,
 				029E17D61FBA307C00E5F8AB /* Main.storyboard */,
-				029C3A9C1FBE0507004D0368 /* add-user (2).png */,
 				029E17DC1FBA307C00E5F8AB /* Assets.xcassets */,
 				029E17DE1FBA307C00E5F8AB /* LaunchScreen.storyboard */,
 				029E17E11FBA307C00E5F8AB /* Info.plist */,
@@ -173,10 +176,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				023FAF361FC75B7600AD6505 /* add-user.png in Resources */,
 				029E17E01FBA307C00E5F8AB /* LaunchScreen.storyboard in Resources */,
-				029E17EA1FBA31F400E5F8AB /* GoogleService-Info.plist in Resources */,
+				023FAF371FC75B7600AD6505 /* team.png in Resources */,
 				029E17DD1FBA307C00E5F8AB /* Assets.xcassets in Resources */,
-				029C3A9D1FBE050D004D0368 /* add-user (2).png in Resources */,
+				023FAEE91FC7553700AD6505 /* GoogleService-Info.plist in Resources */,
 				029E17D81FBA307C00E5F8AB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,10 +241,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				029E17DB1FBA307C00E5F8AB /* TBG.xcdatamodeld in Sources */,
-				029C3AA01FC04273004D0368 /* Teams.swift in Sources */,
 				029E17D51FBA307C00E5F8AB /* ViewController.swift in Sources */,
 				021BB1231FBA45E300AC52CE /* SignUpViewController.swift in Sources */,
 				029E17D31FBA307C00E5F8AB /* AppDelegate.swift in Sources */,
+				023FAF391FC75BA000AD6505 /* PlayersTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
