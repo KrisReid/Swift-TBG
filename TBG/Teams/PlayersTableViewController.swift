@@ -15,7 +15,7 @@ class PlayersTableViewController: UITableViewController {
     var rowNumber = 0
     var players : [String] = []
     var images: [String?] = []
-    // var profilePic: UIImage
+    var profilePic: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +83,7 @@ class PlayersTableViewController: UITableViewController {
                     if let data = data {
                         DispatchQueue.main.async {
                             if let image = UIImage(data: data) {
-                                //self.profilePic = image
+                                self.profilePic = image
                                 cell.ivProfilePic.image = image
                             }
                         }
@@ -106,10 +106,8 @@ class PlayersTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let acceptVC = segue.destination as? PlayerDetailViewController {
-            
             acceptVC.playerName = players[rowNumber]
-            // acceptVC.playerProfilePic = profilePic
-            
+            acceptVC.newImage = images[rowNumber]!
         }
     }
 
