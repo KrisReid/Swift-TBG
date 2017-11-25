@@ -247,7 +247,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                                                     if let uploadData = UIImagePNGRepresentation(compressedImage!) {
                                                                         storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                                                                             if error != nil {
-                                                                                print(error)
+                                                                                print(error ?? "Error")
                                                                                 return
                                                                             }
                                                                             if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
@@ -319,7 +319,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                                                     if let uploadData = UIImagePNGRepresentation(compressedImage!) {
                                                                         storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                                                                             if error != nil {
-                                                                                print(error)
+                                                                                print(error ?? "Error")
                                                                                 return
                                                                             }
                                                                             if let profileImageUrl = metadata?.downloadURL()?.absoluteString  {

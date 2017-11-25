@@ -28,7 +28,7 @@
                                 <color key="textColor" red="0.65490196078431373" green="0.82745098039215681" blue="0.65490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="p@p.com" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pnj-o7-L6x">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="d@d.com" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pnj-o7-L6x">
                                 <rect key="frame" x="16" y="223.66666666666666" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -153,21 +153,6 @@
             </objects>
             <point key="canvasLocation" x="1135" y="911"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="8xZ-ws-owS">
-            <objects>
-                <viewController id="Fjk-wy-x82" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="GQP-5d-cpn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="2cg-Q6-C1M"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GJD-OA-eN3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4002" y="477"/>
-        </scene>
         <!--Team-->
         <scene sceneID="b6D-pD-icE">
             <objects>
@@ -218,11 +203,64 @@
                             <outlet property="delegate" destination="p7f-gU-k2M" id="PJs-NX-G3m"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Team" id="I5y-EP-799"/>
+                    <navigationItem key="navigationItem" title="Team" id="I5y-EP-799">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="xAm-br-MOh">
+                            <connections>
+                                <action selector="btnLogOut:" destination="p7f-gU-k2M" id="267-Pa-3Es"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="tWZ-KP-Rc8" kind="show" identifier="playerDetailSegue" id="STV-bK-EwJ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xfV-Lf-7fA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2957.5999999999999" y="-630.29556650246309"/>
+            <point key="canvasLocation" x="3580" y="-542"/>
+        </scene>
+        <!--Player Detail-->
+        <scene sceneID="dUf-Pd-1jS">
+            <objects>
+                <viewController title="Player Detail" id="tWZ-KP-Rc8" customClass="PlayerDetailViewController" customModule="TBG" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6WY-xQ-uCe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RVU-ah-kw7">
+                                <rect key="frame" x="50" y="138" width="275" height="275"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="275" id="GiW-1a-Gs7"/>
+                                    <constraint firstAttribute="height" constant="275" id="eUY-iC-BK8"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IRH-zT-m4b">
+                                <rect key="frame" x="25" y="421" width="325" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="RVU-ah-kw7" firstAttribute="centerX" secondItem="6WY-xQ-uCe" secondAttribute="centerX" id="2Ok-nf-ZLO"/>
+                            <constraint firstItem="IRH-zT-m4b" firstAttribute="top" secondItem="RVU-ah-kw7" secondAttribute="bottom" constant="8" id="595-Kc-X8u"/>
+                            <constraint firstItem="IRH-zT-m4b" firstAttribute="centerX" secondItem="6WY-xQ-uCe" secondAttribute="centerX" id="GG3-Lq-FwL"/>
+                            <constraint firstItem="mIC-ik-egE" firstAttribute="trailing" secondItem="IRH-zT-m4b" secondAttribute="trailing" constant="25" id="LRh-1f-BZz"/>
+                            <constraint firstItem="IRH-zT-m4b" firstAttribute="leading" secondItem="mIC-ik-egE" secondAttribute="leading" constant="25" id="SRK-rC-qhj"/>
+                            <constraint firstItem="RVU-ah-kw7" firstAttribute="leading" secondItem="mIC-ik-egE" secondAttribute="leading" constant="50" id="eX4-MU-9bQ"/>
+                            <constraint firstItem="mIC-ik-egE" firstAttribute="trailing" secondItem="RVU-ah-kw7" secondAttribute="trailing" constant="50" id="hEh-IE-bWN"/>
+                            <constraint firstItem="RVU-ah-kw7" firstAttribute="top" secondItem="mIC-ik-egE" secondAttribute="top" constant="50" id="oGL-4C-umt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mIC-ik-egE"/>
+                    </view>
+                    <connections>
+                        <outlet property="ivPlayerProfilePicture" destination="RVU-ah-kw7" id="gta-Xc-oJi"/>
+                        <outlet property="lblPlayerName" destination="IRH-zT-m4b" id="Hye-TK-IB6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G1K-RZ-UwO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4522.3999999999996" y="-530.54187192118229"/>
         </scene>
         <!--Team-->
         <scene sceneID="8MR-PI-iH2">
@@ -239,7 +277,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a3K-Ty-NYH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2114" y="-630"/>
+            <point key="canvasLocation" x="2650" y="-542"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="03z-vk-xo7">
@@ -256,7 +294,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QTL-oa-D0H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1134" y="150"/>
+            <point key="canvasLocation" x="1817" y="-542"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="nPH-ui-iQE">
@@ -464,7 +502,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ykv-zk-SHz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1134" y="-638"/>
+            <point key="canvasLocation" x="983" y="-995"/>
         </scene>
     </scenes>
     <resources>

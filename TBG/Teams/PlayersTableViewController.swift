@@ -12,8 +12,10 @@ import FirebaseDatabase
 
 class PlayersTableViewController: UITableViewController {
     
+    var rowNumber = 0
     var players : [String] = []
     var images: [String?] = []
+    // var profilePic: UIImage
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +23,11 @@ class PlayersTableViewController: UITableViewController {
         getTeam ()
     }
     
-//    @IBAction func logoutTapped(_ sender: Any) {
-//        try? Auth.auth().signOut()
-//        navigationController?.dismiss(animated: true, completion: nil)
-//    }
+    
+    @IBAction func btnLogOut(_ sender: Any) {
+        try? Auth.auth().signOut()
+        navigationController?.dismiss(animated: true, completion: nil)
+    }
     
     
     func getTeam () {
@@ -58,24 +61,16 @@ class PlayersTableViewController: UITableViewController {
         }
     }
     
-
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return players.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PlayersTableViewCell {
             
             cell.lblFullName.text = players[indexPath.row]
     
-            
             let url = URL(string: images[indexPath.row]!)
             let request = NSMutableURLRequest(url: url!)
             
@@ -83,26 +78,14 @@ class PlayersTableViewController: UITableViewController {
                 data, response, error in
                 
                 if error != nil {
-                    print(error)
+                    print(error ?? "Error")
                 } else {
                     if let data = data {
-                        if let image = UIImage(data: data) {
-                            
-                            cell.ivProfilePic.image = image
-                            
-//                            let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-//
-//                            if documentsPath.count > 0 {
-//                                let documentsDirectory = documentsPath[0]
-//
-//                                let savePath = documentsDirectory + "A.jpg"
-//
-//                                do {
-//                                    try UIImageJPEGRepresentation(minionImage, 1)?.write(to: URL(fileURLWithPath: savePath))
-//                                } catch {
-//                                    print("Error")
-//                                }
-//                            }
+                        DispatchQueue.main.async {
+                            if let image = UIImage(data: data) {
+                                //self.profilePic = image
+                                cell.ivProfilePic.image = image
+                            }
                         }
                     }
                 }
@@ -113,7 +96,21 @@ class PlayersTableViewController: UITableViewController {
         }
         return UITableViewCell()
     }
-
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.rowNumber = indexPath.row
+        let snapshot = players[indexPath.row]
+        performSegue(withIdentifier: "playerDetailSegue", sender: snapshot)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let acceptVC = segue.destination as? PlayerDetailViewController {
+            
+            acceptVC.playerName = players[rowNumber]
+            // acceptVC.playerProfilePic = profilePic
+            
+        }
+    }
 
 }
