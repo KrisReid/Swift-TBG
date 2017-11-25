@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,7 +28,7 @@
                                 <color key="textColor" red="0.65490196078431373" green="0.82745098039215681" blue="0.65490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="david@hotmail.com" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pnj-o7-L6x">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="p@p.com" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pnj-o7-L6x">
                                 <rect key="frame" x="16" y="223.66666666666666" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -178,34 +177,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="fOw-Qp-uhu" customClass="PlayersTableViewCell" customModule="TBG" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="80" id="fOw-Qp-uhu" customClass="PlayersTableViewCell" customModule="TBG" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fOw-Qp-uhu" id="Wcb-yZ-DkE">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-user.png" translatesAutoresizingMaskIntoConstraints="NO" id="9a3-aN-6US">
-                                            <rect key="frame" x="16" y="0.0" width="100" height="100"/>
+                                            <rect key="frame" x="27" y="9" width="60" height="60"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="100" id="1JT-A4-D3s"/>
-                                                <constraint firstAttribute="height" constant="100" id="xcn-WG-rCj"/>
+                                                <constraint firstAttribute="height" constant="60" id="emG-YX-kwc"/>
+                                                <constraint firstAttribute="width" constant="60" id="rMq-ZJ-ie2"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Player Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Spt-1U-1zs">
-                                            <rect key="frame" x="124" y="40" width="235" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Spt-1U-1zs">
+                                            <rect key="frame" x="105" y="29" width="127.33333333333331" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Spt-1U-1zs" firstAttribute="top" secondItem="Wcb-yZ-DkE" secondAttribute="topMargin" constant="29" id="Bin-Vf-v3e"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Spt-1U-1zs" secondAttribute="bottom" constant="28" id="Exh-ke-AT6"/>
-                                        <constraint firstItem="9a3-aN-6US" firstAttribute="top" secondItem="Wcb-yZ-DkE" secondAttribute="top" id="N6o-iC-Nt9"/>
-                                        <constraint firstAttribute="bottom" secondItem="9a3-aN-6US" secondAttribute="bottom" id="bZ7-2X-QHr"/>
-                                        <constraint firstItem="9a3-aN-6US" firstAttribute="leading" secondItem="Wcb-yZ-DkE" secondAttribute="leading" constant="16" id="ljW-PX-tlO"/>
-                                        <constraint firstItem="Spt-1U-1zs" firstAttribute="leading" secondItem="9a3-aN-6US" secondAttribute="trailing" constant="8" id="yln-jk-gSs"/>
+                                        <constraint firstAttribute="bottom" secondItem="9a3-aN-6US" secondAttribute="bottom" constant="10.67" id="1kH-jO-IO1"/>
+                                        <constraint firstItem="Spt-1U-1zs" firstAttribute="leading" secondItem="9a3-aN-6US" secondAttribute="trailing" constant="18" id="5Nf-vX-VM4"/>
+                                        <constraint firstAttribute="bottom" secondItem="Spt-1U-1zs" secondAttribute="bottom" constant="29.670000000000002" id="IIY-rD-cTd"/>
+                                        <constraint firstItem="9a3-aN-6US" firstAttribute="leading" secondItem="Wcb-yZ-DkE" secondAttribute="leading" constant="27" id="gOA-gQ-c1R"/>
+                                        <constraint firstItem="9a3-aN-6US" firstAttribute="top" secondItem="Wcb-yZ-DkE" secondAttribute="top" constant="9" id="hcy-xG-fEm"/>
+                                        <constraint firstItem="Spt-1U-1zs" firstAttribute="top" secondItem="Wcb-yZ-DkE" secondAttribute="top" constant="29" id="pRI-8R-bOM"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -285,7 +284,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jKS-6k-yc7">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Test123" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jKS-6k-yc7">
                                                 <rect key="frame" x="20" y="101" width="335" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -316,7 +315,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-Kz_f6ZE9Zb1jBilmaqv" borderStyle="roundedRect" placeholder="Team ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IY7-gO-Vmy">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-KznFeovegTMbegqxC4E" borderStyle="roundedRect" placeholder="Team ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IY7-gO-Vmy">
                                                 <rect key="frame" x="20" y="253" width="335" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
-class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
     @IBOutlet weak var tfAddressLine1: UITextField!
     @IBOutlet weak var imgProfileImage: UIImageView!
@@ -187,6 +187,8 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     
+    
+    
     @IBAction func btnSignup(_ sender: Any) {
         if let photo = imgProfileImage.image {
             if let email = tfEmailAddress.text {
@@ -233,9 +235,16 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                                                     //STORING IMAGES AND CREATING DATABASE ENTRIES
                                                                     let imageName = NSUUID().uuidString
                                                                     
+                                                                    //let resizedImage = photo.resizedTo1MB()
+                                                                    // let resizedImage = photo.lowestQualityJPEGNSData
+                                                                    let resizedImage = photo.resizeWithWidth(width: 300)!
+                                                                    let compressData = UIImageJPEGRepresentation(resizedImage, 0.1)
+                                                                    let compressedImage = UIImage(data: compressData!)
+                                                                    
                                                                     let storageRef = Storage.storage().reference().child("\(imageName).png")
                                                                     
-                                                                    if let uploadData = UIImagePNGRepresentation(photo) {
+                                                                    // if let uploadData = UIImagePNGRepresentation(photo) {
+                                                                    if let uploadData = UIImagePNGRepresentation(compressedImage!) {
                                                                         storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                                                                             if error != nil {
                                                                                 print(error)
@@ -298,9 +307,16 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                                                     //STORING IMAGES AND CREATING DATABASE ENTRIES
                                                                     let imageName = NSUUID().uuidString
                                                                     
+                                                                    //let resizedImage = photo.resizedTo1MB()
+                                                                    //let resizedImage = photo.lowestQualityJPEGNSData
+                                                                    let resizedImage = photo.resizeWithWidth(width: 300)!
+                                                                    let compressData = UIImageJPEGRepresentation(resizedImage, 0.1)
+                                                                    let compressedImage = UIImage(data: compressData!)
+                                                                    
                                                                     let storageRef = Storage.storage().reference().child("\(imageName).png")
                                                                     
-                                                                    if let uploadData = UIImagePNGRepresentation(photo) {
+                                                                    // if let uploadData = UIImagePNGRepresentation(photo) {
+                                                                    if let uploadData = UIImagePNGRepresentation(compressedImage!) {
                                                                         storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                                                                             if error != nil {
                                                                                 print(error)
