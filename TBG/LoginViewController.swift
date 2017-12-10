@@ -1,22 +1,32 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  TBG
 //
-//  Created by Kris Reid on 13/11/2017.
+//  Created by Kris Reid on 05/12/2017.
 //  Copyright © 2017 Kris Reid. All rights reserved.
 //
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
-class ViewController: UIViewController {
-
+class LoginViewController: UIViewController {
+    
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
     
+    var signupMode = false
+    var playerEmail = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        print(playerEmail)
+        
+        if playerEmail != "" {
+            tfEmail.text = playerEmail
+        }
+        
     }
     
     @IBAction func btnLogin(_ sender: Any) {
@@ -59,8 +69,6 @@ class ViewController: UIViewController {
         textField.resignFirstResponder()
         return true
     }
-
-
-
+    
+    
 }
-

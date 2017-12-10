@@ -12,10 +12,8 @@ import FirebaseDatabase
 
 class PlayersTableViewController: UITableViewController {
     
-    var rowNumber = 0
     var players : [String] = []
-    var images: [String?] = []
-    var profilePic: UIImage!
+    var imageURL: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +47,7 @@ class PlayersTableViewController: UITableViewController {
                                 if let playerName = PlayerDictionary["Full Name"] as? String {
                                     if let image = PlayerDictionary["ProfileImage"] as? String {
                                         self.players.append(playerName)
-                                        self.images.append(image)
+                                        self.imageURL.append(image)
                                         self.tableView.reloadData()
                                     }
                                 }
@@ -71,7 +69,7 @@ class PlayersTableViewController: UITableViewController {
             
             cell.lblFullName.text = players[indexPath.row]
     
-            let url = URL(string: images[indexPath.row]!)
+            let url = URL(string: imageURL[indexPath.row])
             let request = NSMutableURLRequest(url: url!)
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {
@@ -83,7 +81,6 @@ class PlayersTableViewController: UITableViewController {
                     if let data = data {
                         DispatchQueue.main.async {
                             if let image = UIImage(data: data) {
-                                self.profilePic = image
                                 cell.ivProfilePic.image = image
                             }
                         }
@@ -98,7 +95,6 @@ class PlayersTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.rowNumber = indexPath.row
         let snapshot = players[indexPath.row]
         performSegue(withIdentifier: "playerDetailSegue", sender: snapshot)
     }
@@ -106,8 +102,15 @@ class PlayersTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let acceptVC = segue.destination as? PlayerDetailViewController {
-            acceptVC.playerName = players[rowNumber]
-            acceptVC.newImage = images[rowNumber]!
+            
+            let indexPath = tableView.indexPathForSelectedRow!
+            
+            // acceptVC.playerName = players[rowNumber]
+            // acceptVC.newImage = images[rowNumber]!
+            
+            acceptVC.playerName = players[indexPath.row]
+            acceptVC.newImage = imageURL[indexPath.row]
+
         }
     }
 

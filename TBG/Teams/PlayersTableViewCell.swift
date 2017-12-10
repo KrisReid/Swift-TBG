@@ -13,7 +13,6 @@ class PlayersTableViewCell: UITableViewCell {
     @IBOutlet weak var ivProfilePic: UIImageView!
     @IBOutlet weak var lblFullName: UILabel!
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

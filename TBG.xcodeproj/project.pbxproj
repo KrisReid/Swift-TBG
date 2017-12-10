@@ -13,10 +13,9 @@
 		023FAF371FC75B7600AD6505 /* team.png in Resources */ = {isa = PBXBuildFile; fileRef = 023FAF351FC75B7600AD6505 /* team.png */; };
 		023FAF391FC75BA000AD6505 /* PlayersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023FAF381FC75B9F00AD6505 /* PlayersTableViewController.swift */; };
 		023FAF3B1FC7837800AD6505 /* PlayersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023FAF3A1FC7837800AD6505 /* PlayersTableViewCell.swift */; };
-		023FAF3F1FC9747400AD6505 /* CompressImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023FAF3E1FC9747400AD6505 /* CompressImageExtension.swift */; };
 		023FAF421FC9EA6900AD6505 /* PlayerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023FAF411FC9EA6900AD6505 /* PlayerDetailViewController.swift */; };
+		02409EDA1FD7460900CE23BD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02409ED91FD7460900CE23BD /* LoginViewController.swift */; };
 		029E17D31FBA307C00E5F8AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E17D21FBA307C00E5F8AB /* AppDelegate.swift */; };
-		029E17D51FBA307C00E5F8AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E17D41FBA307C00E5F8AB /* ViewController.swift */; };
 		029E17D81FBA307C00E5F8AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 029E17D61FBA307C00E5F8AB /* Main.storyboard */; };
 		029E17DB1FBA307C00E5F8AB /* TBG.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 029E17D91FBA307C00E5F8AB /* TBG.xcdatamodeld */; };
 		029E17DD1FBA307C00E5F8AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 029E17DC1FBA307C00E5F8AB /* Assets.xcassets */; };
@@ -31,11 +30,10 @@
 		023FAF351FC75B7600AD6505 /* team.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = team.png; path = Icons/team.png; sourceTree = SOURCE_ROOT; };
 		023FAF381FC75B9F00AD6505 /* PlayersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayersTableViewController.swift; sourceTree = "<group>"; };
 		023FAF3A1FC7837800AD6505 /* PlayersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersTableViewCell.swift; sourceTree = "<group>"; };
-		023FAF3E1FC9747400AD6505 /* CompressImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressImageExtension.swift; sourceTree = "<group>"; };
 		023FAF411FC9EA6900AD6505 /* PlayerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailViewController.swift; sourceTree = "<group>"; };
+		02409ED91FD7460900CE23BD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		029E17CF1FBA307C00E5F8AB /* TBG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TBG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		029E17D21FBA307C00E5F8AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		029E17D41FBA307C00E5F8AB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		029E17D71FBA307C00E5F8AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		029E17DA1FBA307C00E5F8AB /* TBG.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TBG.xcdatamodel; sourceTree = "<group>"; };
 		029E17DC1FBA307C00E5F8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -98,18 +96,17 @@
 		029E17D11FBA307C00E5F8AB /* TBG */ = {
 			isa = PBXGroup;
 			children = (
-				023FAF401FC9E65100AD6505 /* Teams */,
-				023FAEEF1FC75B2500AD6505 /* icons */,
-				023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */,
 				029E17D21FBA307C00E5F8AB /* AppDelegate.swift */,
-				029E17D41FBA307C00E5F8AB /* ViewController.swift */,
-				021BB1221FBA45E300AC52CE /* SignUpViewController.swift */,
-				023FAF3E1FC9747400AD6505 /* CompressImageExtension.swift */,
 				029E17D61FBA307C00E5F8AB /* Main.storyboard */,
-				029E17DC1FBA307C00E5F8AB /* Assets.xcassets */,
 				029E17DE1FBA307C00E5F8AB /* LaunchScreen.storyboard */,
+				023FAEEF1FC75B2500AD6505 /* icons */,
+				023FAF401FC9E65100AD6505 /* Teams */,
+				021BB1221FBA45E300AC52CE /* SignUpViewController.swift */,
+				02409ED91FD7460900CE23BD /* LoginViewController.swift */,
 				029E17E11FBA307C00E5F8AB /* Info.plist */,
+				023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */,
 				029E17D91FBA307C00E5F8AB /* TBG.xcdatamodeld */,
+				029E17DC1FBA307C00E5F8AB /* Assets.xcassets */,
 			);
 			path = TBG;
 			sourceTree = "<group>";
@@ -257,9 +254,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02409EDA1FD7460900CE23BD /* LoginViewController.swift in Sources */,
 				029E17DB1FBA307C00E5F8AB /* TBG.xcdatamodeld in Sources */,
-				029E17D51FBA307C00E5F8AB /* ViewController.swift in Sources */,
-				023FAF3F1FC9747400AD6505 /* CompressImageExtension.swift in Sources */,
 				023FAF3B1FC7837800AD6505 /* PlayersTableViewCell.swift in Sources */,
 				023FAF421FC9EA6900AD6505 /* PlayerDetailViewController.swift in Sources */,
 				021BB1231FBA45E300AC52CE /* SignUpViewController.swift in Sources */,
