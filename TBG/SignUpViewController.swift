@@ -251,7 +251,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                                                                 if let profileImageUrl = metadata?.downloadURL()?.absoluteString  {
                                                                                     
                                                                                     //Add the player to the DB
-                                                                                    let playerDictionary : [String:Any] = ["Email": user.email, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": teamId, "ProfileImage": profileImageUrl, "Manager": false]
+                                                                                    let playerDictionary : [String:Any] = ["Email": user.email!, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": teamId, "ProfileImage": profileImageUrl, "Manager": false]
                                                                                     
                                                                                     Database.database().reference().child("Players").child(user.uid).setValue(playerDictionary)
                                                                                 }
@@ -288,6 +288,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             print("Email captured: \(email)")
             if let selectVC = segue.destination as? LoginViewController {
                 selectVC.playerEmail = email
+                selectVC.playerPassword = tfPassword.text!
             }
         }
     }

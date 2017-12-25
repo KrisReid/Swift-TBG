@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
     
     var signupMode = false
     var playerEmail = ""
+    var playerPassword = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,7 @@ class LoginViewController: UIViewController {
                         self.displayAlert(title: "Error", message: error!.localizedDescription)
                     } else {
                         print("Logging in was successful")
+                        // print(user?.uid)
                         if user?.displayName == "Manager" {
                             //MANAGER
                             self.performSegue(withIdentifier: "ManagerSegue", sender: nil)

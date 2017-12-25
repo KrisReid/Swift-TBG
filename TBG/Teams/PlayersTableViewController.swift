@@ -105,9 +105,6 @@ class PlayersTableViewController: UITableViewController {
             
             let indexPath = tableView.indexPathForSelectedRow!
             
-            // acceptVC.playerName = players[rowNumber]
-            // acceptVC.newImage = images[rowNumber]!
-            
             acceptVC.playerName = players[indexPath.row]
             acceptVC.newImage = imageURL[indexPath.row]
 
