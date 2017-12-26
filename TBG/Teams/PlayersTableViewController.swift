@@ -20,7 +20,12 @@ class PlayersTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getTeam ()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // Look for better way of reloading the data
+        allPlayers = []
         getTeam ()
     }
     
@@ -60,6 +65,7 @@ class PlayersTableViewController: UITableViewController {
     
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PlayersTableViewCell {
 
             let snapshot = allPlayers[indexPath.row]
@@ -113,7 +119,7 @@ class PlayersTableViewController: UITableViewController {
                         if let name = playerDictionary["Full Name"] as? String {
                             if let image = playerDictionary["ProfileImage"] as? String {
                                 if let position = playerDictionary["Position"] as? String {
-                                    if let positionSide = playerDictionary["Position"] as? String {
+                                    if let positionSide = playerDictionary["Position Side"] as? String {
                                         acceptVC.playerEmail = email
                                         acceptVC.playerName = name
                                         acceptVC.newImage = image

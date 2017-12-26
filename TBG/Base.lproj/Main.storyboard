@@ -379,6 +379,7 @@
                         <outlet property="lblSTR" destination="k8T-Ck-od7" id="vNP-44-6zX"/>
                         <outlet property="slrPlayerPosition" destination="jrX-xx-eyB" id="kcA-4t-mHT"/>
                         <outlet property="slrPlayerPositionSide" destination="LW8-C7-P6s" id="b33-dl-Gkg"/>
+                        <segue destination="p7f-gU-k2M" kind="show" identifier="updatePlayerPositionSegue" id="wmW-XO-67r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G1K-RZ-UwO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -633,6 +634,7 @@
         <image name="team.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="wmW-XO-67r"/>
         <segue reference="cwe-8E-ivL"/>
     </inferredMetricsTieBreakers>
 </document>

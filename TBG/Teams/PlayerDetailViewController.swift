@@ -58,47 +58,101 @@ class PlayerDetailViewController: UIViewController {
         ivPlayerProfilePicture.layer.cornerRadius = ivPlayerProfilePicture.frame.size.width / 2
         ivPlayerProfilePicture.layer.masksToBounds = true
         
-        // SET THE SLIDERS TO THE CORRECT POSITION
+        // SET THE SLIDERS TO THE CORRECT POSITION (POSITION SIDE)
+        if positionSide == "Left" {
+            slrPlayerPositionSide.value = 0
+            leftActive()
+        } else if positionSide == "Centre" {
+            slrPlayerPositionSide.value = 1
+            centreActive()
+        } else {
+            slrPlayerPositionSide.value = 2
+            rightActive ()
+        }
         
-//        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-//        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-//        print(self.positionSide)
-//        print(self.position)
+        // SET THE SLIDERS TO THE CORRECT POSITION (POSITION)
+        if position == "Goalkepper" {
+            slrPlayerPosition.value = 0
+            gkActive()
+        } else if position == "Defender" {
+            slrPlayerPosition.value = 1
+            defActive()
+        } else if position == "Midfielder" {
+            slrPlayerPosition.value = 2
+            midActive()
+        } else {
+            slrPlayerPosition.value = 3
+            strActive()
+        }
         
+    }
+    
+    func leftActive () {
+        lblLeft.textColor = UIColor.black
+        lblCentre.textColor = UIColor.gray
+        lblRight.textColor = UIColor.gray
+    }
+    
+    func centreActive () {
+        lblLeft.textColor = UIColor.gray
+        lblCentre.textColor = UIColor.black
+        lblRight.textColor = UIColor.gray
+    }
+    
+    func rightActive () {
+        lblLeft.textColor = UIColor.gray
+        lblCentre.textColor = UIColor.gray
+        lblRight.textColor = UIColor.black
+    }
+    
+    func gkActive () {
+        lblGK.textColor = UIColor.black
+        lblDEF.textColor = UIColor.gray
+        lblMID.textColor = UIColor.gray
+        lblSTR.textColor = UIColor.gray
+    }
+    
+    func defActive () {
+        lblGK.textColor = UIColor.gray
+        lblDEF.textColor = UIColor.black
+        lblMID.textColor = UIColor.gray
+        lblSTR.textColor = UIColor.gray
+    }
+    
+    func midActive () {
+        lblGK.textColor = UIColor.gray
+        lblDEF.textColor = UIColor.gray
+        lblMID.textColor = UIColor.black
+        lblSTR.textColor = UIColor.gray
+    }
+    
+    func strActive () {
+        lblGK.textColor = UIColor.gray
+        lblDEF.textColor = UIColor.gray
+        lblMID.textColor = UIColor.gray
+        lblSTR.textColor = UIColor.black
     }
     
     
     @IBAction func slrPlayerPositionMoved(_ sender: Any) {
         if slrPlayerPosition.value >= 0 && slrPlayerPosition.value < 0.5 {
             //GK
-            lblGK.textColor = UIColor.black
-            lblDEF.textColor = UIColor.gray
-            lblMID.textColor = UIColor.gray
-            lblSTR.textColor = UIColor.gray
+            gkActive()
             btnUpdate.isHidden = false
             self.position = "Goal Keeper"
         } else if slrPlayerPosition.value >= 0.5 && slrPlayerPosition.value < 1.5  {
             //DEF
-            lblGK.textColor = UIColor.gray
-            lblDEF.textColor = UIColor.black
-            lblMID.textColor = UIColor.gray
-            lblSTR.textColor = UIColor.gray
+            defActive()
             btnUpdate.isHidden = false
             self.position = "Defender"
         } else if slrPlayerPosition.value >= 1.5 && slrPlayerPosition.value < 2.5 {
             // MID
-            lblGK.textColor = UIColor.gray
-            lblDEF.textColor = UIColor.gray
-            lblMID.textColor = UIColor.black
-            lblSTR.textColor = UIColor.gray
+            midActive()
             btnUpdate.isHidden = false
             self.position = "Midfielder"
         } else {
             //STR
-            lblGK.textColor = UIColor.gray
-            lblDEF.textColor = UIColor.gray
-            lblMID.textColor = UIColor.gray
-            lblSTR.textColor = UIColor.black
+            strActive()
             btnUpdate.isHidden = false
             self.position = "Striker"
         }
@@ -107,37 +161,36 @@ class PlayerDetailViewController: UIViewController {
     @IBAction func slrPlayerPositionSideMoved(_ sender: Any) {
         if slrPlayerPositionSide.value >= 0 && slrPlayerPositionSide.value < 0.5 {
             //LEFT
-            lblLeft.textColor = UIColor.black
-            lblCentre.textColor = UIColor.gray
-            lblRight.textColor = UIColor.gray
+            leftActive()
             btnUpdate.isHidden = false
             self.positionSide = "Left"
         } else if slrPlayerPositionSide.value >= 0.5 && slrPlayerPositionSide.value < 1.5 {
             //CENTRE
-            lblLeft.textColor = UIColor.gray
-            lblCentre.textColor = UIColor.black
-            lblRight.textColor = UIColor.gray
+            centreActive()
             btnUpdate.isHidden = false
             self.positionSide = "Centre"
         } else {
             //RIGHT
-            lblLeft.textColor = UIColor.gray
-            lblCentre.textColor = UIColor.gray
-            lblRight.textColor = UIColor.black
+            rightActive()
             btnUpdate.isHidden = false
             self.positionSide = "Right"
         }
     }
     
+    
+    
     @IBAction func btnUpdateSelected(_ sender: Any) {
-        print("--------------------!!!!!!!!!!!!!!!!!!!!!!---------------------")
-        
         //Update the Player Position
         Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: playerEmail).observe(.childAdded) { (snapshot) in
             snapshot.ref.updateChildValues(["Position":self.position, "Position Side":self.positionSide])
             Database.database().reference().child("Players").removeAllObservers()
         }
+        
+        // performSegue(withIdentifier: "updatePlayerPositionSegue", sender: nil)
+        
+        self.btnUpdate.isHidden = true
        
     }
+
     
 }
