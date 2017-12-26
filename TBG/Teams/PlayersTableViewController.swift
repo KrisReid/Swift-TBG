@@ -104,6 +104,32 @@ class PlayersTableViewController: UITableViewController {
         return UITableViewCell()
     }
     
+    //CODE FOR DELETING PLAYERS FROM THE DATABASE AND REFESHING
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            
+            let snapshot = allPlayers[indexPath.row]
+            
+            if let PlayerDictionary = snapshot.value as? [String:Any] {
+                if let playerEmail = PlayerDictionary["Email"] as? String {
+                    
+                    Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: playerEmail).observe(.childAdded) { (snapshot) in
+                        snapshot.ref.updateChildValues(["Team ID": ""])
+                        Database.database().reference().child("Players").removeAllObservers()
+                    }
+                    
+                    //reloading of the table
+                    self.allPlayers = []
+                    getTeam ()
+                    
+                }
+                
+            }
+        
+
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let snapshot = allPlayers[indexPath.row]
         performSegue(withIdentifier: "playerDetailSegue", sender: snapshot)
