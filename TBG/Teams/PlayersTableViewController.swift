@@ -12,8 +12,11 @@ import FirebaseDatabase
 
 class PlayersTableViewController: UITableViewController {
     
-    var players : [String] = []
-    var imageURL: [String] = []
+    var allPlayers : [DataSnapshot] = []
+    
+    var email = ""
+    var name = ""
+    var imageURL = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,31 +30,22 @@ class PlayersTableViewController: UITableViewController {
         navigationController?.dismiss(animated: true, completion: nil)
     }
     
-    
     func getTeam () {
         if let email = Auth.auth().currentUser?.email {
             Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: email).observe(.childAdded, with: { (snapshot) in
                 Database.database().reference().child("Players").removeAllObservers()
-                
+
                 if let ManagerDictionary = snapshot.value as? [String:Any] {
                     if let teamID = ManagerDictionary["Team ID"] as? String {
                         // This will return the Logged In Managers Team ID
                         print(teamID)
                         self.tableView.reloadData()
-                        
+
                         Database.database().reference().child("Players").queryOrdered(byChild: "Team ID").queryEqual(toValue: teamID).observe(.childAdded, with: { (snapshot) in
                             Database.database().reference().child("Players").removeAllObservers()
-                            
-                            if let PlayerDictionary = snapshot.value as? [String:Any] {
-                                //print(PlayerDictionary)
-                                if let playerName = PlayerDictionary["Full Name"] as? String {
-                                    if let image = PlayerDictionary["ProfileImage"] as? String {
-                                        self.players.append(playerName)
-                                        self.imageURL.append(image)
-                                        self.tableView.reloadData()
-                                    }
-                                }
-                            }
+
+                            self.allPlayers.append(snapshot)
+                            self.tableView.reloadData()
                         })
                     }
                 }
@@ -61,52 +55,77 @@ class PlayersTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return players.count
+        return allPlayers.count
     }
+    
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PlayersTableViewCell {
-            
-            cell.lblFullName.text = players[indexPath.row]
-    
-            let url = URL(string: imageURL[indexPath.row])
-            let request = NSMutableURLRequest(url: url!)
-            
-            let task = URLSession.shared.dataTask(with: request as URLRequest) {
-                data, response, error in
+
+            let snapshot = allPlayers[indexPath.row]
+
+            if let PlayerDictionary = snapshot.value as? [String:Any] {
                 
-                if error != nil {
-                    print(error ?? "Error")
-                } else {
-                    if let data = data {
-                        DispatchQueue.main.async {
-                            if let image = UIImage(data: data) {
-                                cell.ivProfilePic.image = image
+                if let fullName = PlayerDictionary["Full Name"] as? String {
+                    if let imageURL = PlayerDictionary["ProfileImage"] as? String {
+                        
+                        cell.lblFullName.text = fullName
+
+                        let url = URL(string: imageURL)
+                        let request = NSMutableURLRequest(url: url!)
+
+                        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                            data, response, error in
+
+                            if error != nil {
+                                print(error ?? "Error")
+                            } else {
+                                if let data = data {
+                                    DispatchQueue.main.async {
+                                        if let image = UIImage(data: data) {
+                                            cell.ivProfilePic.image = image
+                                        }
+                                    }
+                                }
                             }
                         }
+                        task.resume()
+                        return cell
                     }
                 }
             }
-            task.resume()
-            return cell
-            
         }
         return UITableViewCell()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let snapshot = players[indexPath.row]
+        let snapshot = allPlayers[indexPath.row]
         performSegue(withIdentifier: "playerDetailSegue", sender: snapshot)
     }
-    
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let acceptVC = segue.destination as? PlayerDetailViewController {
             
-            let indexPath = tableView.indexPathForSelectedRow!
-            
-            acceptVC.playerName = players[indexPath.row]
-            acceptVC.newImage = imageURL[indexPath.row]
+            if let snapshot = sender as? DataSnapshot {
+                if let playerDictionary = snapshot.value as? [String:Any] {
+                    if let email = playerDictionary["Email"] as? String {
+                        if let name = playerDictionary["Full Name"] as? String {
+                            if let image = playerDictionary["ProfileImage"] as? String {
+                                if let position = playerDictionary["Position"] as? String {
+                                    if let positionSide = playerDictionary["Position"] as? String {
+                                        acceptVC.playerEmail = email
+                                        acceptVC.playerName = name
+                                        acceptVC.newImage = image
+                                        acceptVC.position = position
+                                        acceptVC.positionSide = positionSide
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
         }
     }

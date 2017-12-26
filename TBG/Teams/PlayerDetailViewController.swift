@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class PlayerDetailViewController: UIViewController {
     
@@ -23,15 +24,18 @@ class PlayerDetailViewController: UIViewController {
     @IBOutlet weak var lblRight: UILabel!
     @IBOutlet weak var btnUpdate: UIButton!
     
-    var playerName = ""
+    var playerEmail:String = ""
+    var playerName: String = ""
     var newImage: String = ""
+    var position: String = ""
+    var positionSide: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         lblPlayerName.text = playerName
         
-        // TRY AND CHANGE CODE TO PASS THE IMAGE RATHER THAN CALLING AGAIN !!!!!!!
+        // GET THE IMAGE FROM THE PASSED URL
         let url = URL(string: newImage)
         let request = NSMutableURLRequest(url: url!)
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
@@ -53,6 +57,14 @@ class PlayerDetailViewController: UIViewController {
         
         ivPlayerProfilePicture.layer.cornerRadius = ivPlayerProfilePicture.frame.size.width / 2
         ivPlayerProfilePicture.layer.masksToBounds = true
+        
+        // SET THE SLIDERS TO THE CORRECT POSITION
+        
+//        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+//        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+//        print(self.positionSide)
+//        print(self.position)
+        
     }
     
     
@@ -64,6 +76,7 @@ class PlayerDetailViewController: UIViewController {
             lblMID.textColor = UIColor.gray
             lblSTR.textColor = UIColor.gray
             btnUpdate.isHidden = false
+            self.position = "Goal Keeper"
         } else if slrPlayerPosition.value >= 0.5 && slrPlayerPosition.value < 1.5  {
             //DEF
             lblGK.textColor = UIColor.gray
@@ -71,6 +84,7 @@ class PlayerDetailViewController: UIViewController {
             lblMID.textColor = UIColor.gray
             lblSTR.textColor = UIColor.gray
             btnUpdate.isHidden = false
+            self.position = "Defender"
         } else if slrPlayerPosition.value >= 1.5 && slrPlayerPosition.value < 2.5 {
             // MID
             lblGK.textColor = UIColor.gray
@@ -78,6 +92,7 @@ class PlayerDetailViewController: UIViewController {
             lblMID.textColor = UIColor.black
             lblSTR.textColor = UIColor.gray
             btnUpdate.isHidden = false
+            self.position = "Midfielder"
         } else {
             //STR
             lblGK.textColor = UIColor.gray
@@ -85,6 +100,7 @@ class PlayerDetailViewController: UIViewController {
             lblMID.textColor = UIColor.gray
             lblSTR.textColor = UIColor.black
             btnUpdate.isHidden = false
+            self.position = "Striker"
         }
     }
     
@@ -95,23 +111,33 @@ class PlayerDetailViewController: UIViewController {
             lblCentre.textColor = UIColor.gray
             lblRight.textColor = UIColor.gray
             btnUpdate.isHidden = false
+            self.positionSide = "Left"
         } else if slrPlayerPositionSide.value >= 0.5 && slrPlayerPositionSide.value < 1.5 {
             //CENTRE
             lblLeft.textColor = UIColor.gray
             lblCentre.textColor = UIColor.black
             lblRight.textColor = UIColor.gray
             btnUpdate.isHidden = false
+            self.positionSide = "Centre"
         } else {
             //RIGHT
             lblLeft.textColor = UIColor.gray
             lblCentre.textColor = UIColor.gray
             lblRight.textColor = UIColor.black
             btnUpdate.isHidden = false
+            self.positionSide = "Right"
         }
     }
     
     @IBAction func btnUpdateSelected(_ sender: Any) {
+        print("--------------------!!!!!!!!!!!!!!!!!!!!!!---------------------")
         
+        //Update the Player Position
+        Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: playerEmail).observe(.childAdded) { (snapshot) in
+            snapshot.ref.updateChildValues(["Position":self.position, "Position Side":self.positionSide])
+            Database.database().reference().child("Players").removeAllObservers()
+        }
+       
     }
     
 }

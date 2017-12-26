@@ -210,7 +210,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                                                                     newRef.setValue(TeamDictionary)
                                                                                     
                                                                                     //Add the player to the DB
-                                                                                    let playerDictionary : [String:Any] = ["Email": email, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": newKey, "ProfileImage": profileImageUrl, "Manager": true]
+                                                                                    let playerDictionary : [String:Any] = ["Email": email, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": newKey, "ProfileImage": profileImageUrl, "Manager": true, "Position":"Defender", "Position Side": "Right"]
                                                                                     
                                                                                     Database.database().reference().child("Players").child(user.uid).setValue(playerDictionary)
                                                                                 }
@@ -251,7 +251,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                                                                 if let profileImageUrl = metadata?.downloadURL()?.absoluteString  {
                                                                                     
                                                                                     //Add the player to the DB
-                                                                                    let playerDictionary : [String:Any] = ["Email": user.email!, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": teamId, "ProfileImage": profileImageUrl, "Manager": false]
+                                                                                    let playerDictionary : [String:Any] = ["Email": user.email!, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": teamId, "ProfileImage": profileImageUrl, "Manager": false, "Position":"Defender", "Position Side": "Right"]
                                                                                     
                                                                                     Database.database().reference().child("Players").child(user.uid).setValue(playerDictionary)
                                                                                 }
