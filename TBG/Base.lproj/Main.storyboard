@@ -231,18 +231,47 @@
                                             <constraint firstAttribute="height" constant="10" id="jtP-aO-Ymk"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C8u-UG-zvw">
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E2Z-fQ-NaG">
                                         <rect key="frame" x="0.0" y="80" width="335" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Opposition Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C8u-UG-zvw">
+                                                <rect key="frame" x="0.0" y="0.0" width="260" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxl-9Q-uG7">
+                                                <rect key="frame" x="260" y="0.0" width="75" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="75" id="dmf-QX-ehm"/>
+                                                </constraints>
+                                                <state key="normal" title="Pick Team"/>
+                                                <connections>
+                                                    <action selector="btnOppositionClicked:" destination="SDz-WG-Yf0" eventType="touchUpInside" id="9E4-vK-wY0"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fks-Xf-W4M">
+                                        <rect key="frame" x="0.0" y="110" width="335" height="216"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="216" id="iAC-tN-GRJ"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="dataSource" destination="SDz-WG-Yf0" id="aNm-6i-HUq"/>
+                                            <outlet property="delegate" destination="SDz-WG-Yf0" id="btf-LH-az1"/>
+                                        </connections>
+                                    </pickerView>
                                 </subviews>
                             </stackView>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fks-Xf-W4M">
-                                <rect key="frame" x="0.0" y="353" width="375" height="162"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OaE-Hj-q2f">
+                                <rect key="frame" x="142" y="248" width="90" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Create Game"/>
+                                <connections>
+                                    <action selector="btnCreateGame:" destination="SDz-WG-Yf0" eventType="touchUpInside" id="Yc1-hL-RoM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -255,8 +284,11 @@
                     <navigationItem key="navigationItem" title="Create Game" id="3zM-n3-f14"/>
                     <connections>
                         <outlet property="btnDateOpenClose" destination="cVA-vb-uEq" id="dHN-B2-tjj"/>
+                        <outlet property="btnOpposition" destination="zxl-9Q-uG7" id="cXD-lF-jOb"/>
                         <outlet property="datePicker" destination="pwk-FI-lbO" id="j0w-K9-QJt"/>
+                        <outlet property="pickerView" destination="Fks-Xf-W4M" id="2g5-UU-eQS"/>
                         <outlet property="tfDate" destination="aL8-cq-es4" id="EXG-z3-Lgj"/>
+                        <outlet property="tfOpposition" destination="C8u-UG-zvw" id="ExN-dJ-30A"/>
                         <outlet property="tfVenue" destination="8Ic-pt-awu" id="cgE-95-rMr"/>
                     </connections>
                 </viewController>
