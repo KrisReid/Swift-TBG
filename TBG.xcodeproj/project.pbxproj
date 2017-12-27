@@ -20,6 +20,10 @@
 		029E17DB1FBA307C00E5F8AB /* TBG.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 029E17D91FBA307C00E5F8AB /* TBG.xcdatamodeld */; };
 		029E17DD1FBA307C00E5F8AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 029E17DC1FBA307C00E5F8AB /* Assets.xcassets */; };
 		029E17E01FBA307C00E5F8AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 029E17DE1FBA307C00E5F8AB /* LaunchScreen.storyboard */; };
+		02F607A61FF298090025D18F /* messaging.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F607A51FF298070025D18F /* messaging.png */; };
+		02F607A81FF2CE8A0025D18F /* fixture.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F607A71FF2CE880025D18F /* fixture.png */; };
+		02F607AA1FF2D8770025D18F /* game.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F607A91FF2D8750025D18F /* game.png */; };
+		02F607AC1FF2DBB10025D18F /* CreateGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F607AB1FF2DBB10025D18F /* CreateGameViewController.swift */; };
 		21D8FE36B2E01535BB68E0D5 /* Pods_TBG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E738D854AE3B77EF8EAD9C /* Pods_TBG.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +43,10 @@
 		029E17DC1FBA307C00E5F8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		029E17DF1FBA307C00E5F8AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		029E17E11FBA307C00E5F8AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02F607A51FF298070025D18F /* messaging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = messaging.png; path = Icons/messaging.png; sourceTree = SOURCE_ROOT; };
+		02F607A71FF2CE880025D18F /* fixture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fixture.png; path = Icons/fixture.png; sourceTree = SOURCE_ROOT; };
+		02F607A91FF2D8750025D18F /* game.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game.png; path = Icons/game.png; sourceTree = SOURCE_ROOT; };
+		02F607AB1FF2DBB10025D18F /* CreateGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameViewController.swift; sourceTree = "<group>"; };
 		03C597F2654A7830B541D478 /* Pods-TBG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TBG.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TBG/Pods-TBG.debug.xcconfig"; sourceTree = "<group>"; };
 		49C8561EA02B5F2CD4A48983 /* Pods-TBG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TBG.release.xcconfig"; path = "Pods/Target Support Files/Pods-TBG/Pods-TBG.release.xcconfig"; sourceTree = "<group>"; };
 		80E738D854AE3B77EF8EAD9C /* Pods_TBG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TBG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +67,9 @@
 		023FAEEF1FC75B2500AD6505 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				02F607A91FF2D8750025D18F /* game.png */,
+				02F607A71FF2CE880025D18F /* fixture.png */,
+				02F607A51FF298070025D18F /* messaging.png */,
 				023FAF341FC75B7600AD6505 /* add-user.png */,
 				023FAF351FC75B7600AD6505 /* team.png */,
 			);
@@ -103,6 +114,7 @@
 				023FAF401FC9E65100AD6505 /* Teams */,
 				021BB1221FBA45E300AC52CE /* SignUpViewController.swift */,
 				02409ED91FD7460900CE23BD /* LoginViewController.swift */,
+				02F607AB1FF2DBB10025D18F /* CreateGameViewController.swift */,
 				029E17E11FBA307C00E5F8AB /* Info.plist */,
 				023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */,
 				029E17D91FBA307C00E5F8AB /* TBG.xcdatamodeld */,
@@ -192,8 +204,11 @@
 			files = (
 				023FAF361FC75B7600AD6505 /* add-user.png in Resources */,
 				029E17E01FBA307C00E5F8AB /* LaunchScreen.storyboard in Resources */,
+				02F607AA1FF2D8770025D18F /* game.png in Resources */,
 				023FAF371FC75B7600AD6505 /* team.png in Resources */,
 				029E17DD1FBA307C00E5F8AB /* Assets.xcassets in Resources */,
+				02F607A61FF298090025D18F /* messaging.png in Resources */,
+				02F607A81FF2CE8A0025D18F /* fixture.png in Resources */,
 				023FAEE91FC7553700AD6505 /* GoogleService-Info.plist in Resources */,
 				029E17D81FBA307C00E5F8AB /* Main.storyboard in Resources */,
 			);
@@ -260,6 +275,7 @@
 				023FAF421FC9EA6900AD6505 /* PlayerDetailViewController.swift in Sources */,
 				021BB1231FBA45E300AC52CE /* SignUpViewController.swift in Sources */,
 				029E17D31FBA307C00E5F8AB /* AppDelegate.swift in Sources */,
+				02F607AC1FF2DBB10025D18F /* CreateGameViewController.swift in Sources */,
 				023FAF391FC75BA000AD6505 /* PlayersTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
