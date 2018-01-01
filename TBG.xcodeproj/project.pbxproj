@@ -86,6 +86,23 @@
 			path = Teams;
 			sourceTree = "<group>";
 		};
+		025251821FFAAED400A1C8D4 /* Create Game */ = {
+			isa = PBXGroup;
+			children = (
+				02F607AB1FF2DBB10025D18F /* CreateGameViewController.swift */,
+			);
+			path = "Create Game";
+			sourceTree = "<group>";
+		};
+		025251831FFAAEF300A1C8D4 /* Sign In */ = {
+			isa = PBXGroup;
+			children = (
+				021BB1221FBA45E300AC52CE /* SignUpViewController.swift */,
+				02409ED91FD7460900CE23BD /* LoginViewController.swift */,
+			);
+			path = "Sign In";
+			sourceTree = "<group>";
+		};
 		029E17C61FBA307C00E5F8AB = {
 			isa = PBXGroup;
 			children = (
@@ -111,10 +128,9 @@
 				029E17D61FBA307C00E5F8AB /* Main.storyboard */,
 				029E17DE1FBA307C00E5F8AB /* LaunchScreen.storyboard */,
 				023FAEEF1FC75B2500AD6505 /* icons */,
+				025251831FFAAEF300A1C8D4 /* Sign In */,
 				023FAF401FC9E65100AD6505 /* Teams */,
-				021BB1221FBA45E300AC52CE /* SignUpViewController.swift */,
-				02409ED91FD7460900CE23BD /* LoginViewController.swift */,
-				02F607AB1FF2DBB10025D18F /* CreateGameViewController.swift */,
+				025251821FFAAED400A1C8D4 /* Create Game */,
 				029E17E11FBA307C00E5F8AB /* Info.plist */,
 				023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */,
 				029E17D91FBA307C00E5F8AB /* TBG.xcdatamodeld */,
