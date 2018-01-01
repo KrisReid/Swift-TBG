@@ -18,14 +18,20 @@ class PlayersTableViewController: UITableViewController {
     var name = ""
     var imageURL = ""
     
+    var refresher: UIRefreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getTeam ()
+        
+        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresher.addTarget(self, action: #selector(PlayersTableViewController.getTeam), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refresher)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         // Look for better way of reloading the data
-        allPlayers = []
         getTeam ()
     }
     
@@ -35,7 +41,9 @@ class PlayersTableViewController: UITableViewController {
         navigationController?.dismiss(animated: true, completion: nil)
     }
     
-    func getTeam () {
+    @objc func getTeam () {
+        allPlayers = []
+        
         if let email = Auth.auth().currentUser?.email {
             Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: email).observe(.childAdded, with: { (snapshot) in
                 Database.database().reference().child("Players").removeAllObservers()
@@ -51,6 +59,7 @@ class PlayersTableViewController: UITableViewController {
 
                             self.allPlayers.append(snapshot)
                             self.tableView.reloadData()
+                            self.refresher.endRefreshing()
                         })
                     }
                 }

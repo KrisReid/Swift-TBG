@@ -19,6 +19,7 @@ class PlayersTableViewCell: UITableViewCell {
         
         ivProfilePic.layer.cornerRadius = ivProfilePic.frame.size.width / 2
         ivProfilePic.layer.masksToBounds = true
+    
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
