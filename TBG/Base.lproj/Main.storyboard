@@ -798,7 +798,6 @@
                                                 <state key="normal" title="Submit"/>
                                                 <connections>
                                                     <action selector="btnSignup:" destination="hix-D1-TG3" eventType="touchUpInside" id="aJB-LR-eY4"/>
-                                                    <segue destination="BYZ-38-t0r" kind="show" identifier="signupSubmitSegue" id="cwe-8E-ivL"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -908,6 +907,7 @@
                         <outlet property="tfTeamId" destination="IY7-gO-Vmy" id="b42-ie-PP1"/>
                         <outlet property="tfTeamName" destination="RRm-Ql-JWt" id="Gwn-uz-YQ5"/>
                         <outlet property="tfTeamPostcode" destination="RAT-KP-57d" id="jGS-AB-cR7"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="signupSubmitSegue" id="po0-Aj-5TJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ykv-zk-SHz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -926,6 +926,6 @@
         <segue reference="xqK-NT-edk"/>
         <segue reference="V6a-EE-Udj"/>
         <segue reference="xrC-1e-dWz"/>
-        <segue reference="cwe-8E-ivL"/>
+        <segue reference="po0-Aj-5TJ"/>
     </inferredMetricsTieBreakers>
 </document>
