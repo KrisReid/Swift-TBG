@@ -29,10 +29,12 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     var teams : [DataSnapshot] = []
     var players : [DataSnapshot] = []
+    var teamDictionary: [String:AnyObject] = [:]
     
     var teamIdExistsInDB = false
     var teamNameExistsInDB = false
     var teamPostcodeExistsInDB = false
+    var returns = false
     
     var playerEmailExistsinDB = false
     
@@ -97,6 +99,12 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
     }
     
+    func teamsDictionary() {
+        for team in self.teams{
+            teamDictionary = (team.value as? [String:AnyObject])!
+        }
+    }
+    
     func teamNameDBCheck () {
         for team in self.teams {
             if let teamDictionary = team.value as? [String:AnyObject] {
@@ -140,7 +148,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func teamIdDBCheck () {
         for team in self.teams {
-            
             if let teamDictionary = team.value as? [String:AnyObject] {
                 if let tempId = teamDictionary["id"] as? String {
                     if teamIdExistsInDB == false {
@@ -159,6 +166,8 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             }
         }
     }
+    
+    
     
     
     @IBAction func btnSignup(_ sender: Any) {

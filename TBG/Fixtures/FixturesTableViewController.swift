@@ -7,17 +7,43 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class FixturesTableViewController: UITableViewController {
     
-
+    var teamFixtures : [DataSnapshot] = []
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        getFixtures()
 
     }
+    
+    @objc func getFixtures () {
+        
+        if let email = Auth.auth().currentUser?.email {
+            Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: email).observe(.childAdded, with: { (snapshot) in
+                Database.database().reference().child("Players").removeAllObservers()
+                
+                if let ManagerDictionary = snapshot.value as? [String:Any] {
+                    if let teamID = ManagerDictionary["Team ID"] as? String {
+                        // This will return the Logged In Managers Team ID
+                        
+                        Database.database().reference().child("Teams/\(teamID)/Fixtures").queryOrderedByKey().observe(.childAdded, with: { (snapshot) in
+                            
+                            self.teamFixtures.append(snapshot)
+                            self.tableView.reloadData()
+                            
+                        })
+                    }
+                }
+            })
+        }
+    }
+
     
     @IBAction func btnAddFixture(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "addFixtureSegue", sender: nil)
@@ -25,27 +51,30 @@ class FixturesTableViewController: UITableViewController {
 
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 50
+        return teamFixtures.count
+
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-//        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PlayersTableViewCell {
-//
-//        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
-        cell.textLabel?.text = "BOB"
+        let snapshot = teamFixtures[indexPath.row]
+        if let TeamDictionary = snapshot.value as? [String:Any] {
+            if let venue = TeamDictionary["Venue"] as? String {
+                cell.textLabel?.text = venue
+                return cell
+            }
 
+        }
+        
         return cell
+        
     }
- 
 
 }
