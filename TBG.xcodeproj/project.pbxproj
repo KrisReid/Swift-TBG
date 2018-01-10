@@ -16,6 +16,9 @@
 		023FAF421FC9EA6900AD6505 /* PlayerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023FAF411FC9EA6900AD6505 /* PlayerDetailViewController.swift */; };
 		02409EDA1FD7460900CE23BD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02409ED91FD7460900CE23BD /* LoginViewController.swift */; };
 		025251861FFABDAD00A1C8D4 /* FixturesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025251851FFABDAD00A1C8D4 /* FixturesTableViewController.swift */; };
+		025251882006270A00A1C8D4 /* FixturesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025251872006270A00A1C8D4 /* FixturesTableViewCell.swift */; };
+		0252518B2006379A00A1C8D4 /* Away.png in Resources */ = {isa = PBXBuildFile; fileRef = 025251892006379A00A1C8D4 /* Away.png */; };
+		0252518C2006379A00A1C8D4 /* Home.png in Resources */ = {isa = PBXBuildFile; fileRef = 0252518A2006379A00A1C8D4 /* Home.png */; };
 		029E17D31FBA307C00E5F8AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029E17D21FBA307C00E5F8AB /* AppDelegate.swift */; };
 		029E17D81FBA307C00E5F8AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 029E17D61FBA307C00E5F8AB /* Main.storyboard */; };
 		029E17DB1FBA307C00E5F8AB /* TBG.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 029E17D91FBA307C00E5F8AB /* TBG.xcdatamodeld */; };
@@ -38,6 +41,9 @@
 		023FAF411FC9EA6900AD6505 /* PlayerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailViewController.swift; sourceTree = "<group>"; };
 		02409ED91FD7460900CE23BD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		025251851FFABDAD00A1C8D4 /* FixturesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesTableViewController.swift; sourceTree = "<group>"; };
+		025251872006270A00A1C8D4 /* FixturesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesTableViewCell.swift; sourceTree = "<group>"; };
+		025251892006379A00A1C8D4 /* Away.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Away.png; path = Icons/Away.png; sourceTree = SOURCE_ROOT; };
+		0252518A2006379A00A1C8D4 /* Home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Home.png; path = Icons/Home.png; sourceTree = SOURCE_ROOT; };
 		029E17CF1FBA307C00E5F8AB /* TBG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TBG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		029E17D21FBA307C00E5F8AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		029E17D71FBA307C00E5F8AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -69,6 +75,8 @@
 		023FAEEF1FC75B2500AD6505 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				025251892006379A00A1C8D4 /* Away.png */,
+				0252518A2006379A00A1C8D4 /* Home.png */,
 				02F607A91FF2D8750025D18F /* game.png */,
 				02F607A71FF2CE880025D18F /* fixture.png */,
 				02F607A51FF298070025D18F /* messaging.png */,
@@ -109,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				025251851FFABDAD00A1C8D4 /* FixturesTableViewController.swift */,
+				025251872006270A00A1C8D4 /* FixturesTableViewCell.swift */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -233,9 +242,11 @@
 				029E17E01FBA307C00E5F8AB /* LaunchScreen.storyboard in Resources */,
 				02F607AA1FF2D8770025D18F /* game.png in Resources */,
 				023FAF371FC75B7600AD6505 /* team.png in Resources */,
+				0252518C2006379A00A1C8D4 /* Home.png in Resources */,
 				029E17DD1FBA307C00E5F8AB /* Assets.xcassets in Resources */,
 				02F607A61FF298090025D18F /* messaging.png in Resources */,
 				02F607A81FF2CE8A0025D18F /* fixture.png in Resources */,
+				0252518B2006379A00A1C8D4 /* Away.png in Resources */,
 				023FAEE91FC7553700AD6505 /* GoogleService-Info.plist in Resources */,
 				029E17D81FBA307C00E5F8AB /* Main.storyboard in Resources */,
 			);
@@ -301,6 +312,7 @@
 				023FAF3B1FC7837800AD6505 /* PlayersTableViewCell.swift in Sources */,
 				023FAF421FC9EA6900AD6505 /* PlayerDetailViewController.swift in Sources */,
 				021BB1231FBA45E300AC52CE /* SignUpViewController.swift in Sources */,
+				025251882006270A00A1C8D4 /* FixturesTableViewCell.swift in Sources */,
 				029E17D31FBA307C00E5F8AB /* AppDelegate.swift in Sources */,
 				025251861FFABDAD00A1C8D4 /* FixturesTableViewController.swift in Sources */,
 				02F607AC1FF2DBB10025D18F /* CreateGameViewController.swift in Sources */,

@@ -22,7 +22,6 @@ class PlayersTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getTeam ()
         
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(PlayersTableViewController.getTeam), for: UIControlEvents.valueChanged)
@@ -128,7 +127,6 @@ class PlayersTableViewController: UITableViewController {
                     }
                     
                     //reloading of the table
-                    self.allPlayers = []
                     getTeam ()
                     
                 }
