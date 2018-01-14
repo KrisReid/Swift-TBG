@@ -28,6 +28,21 @@ class LoginViewController: UIViewController {
             tfEmail.text = playerEmail
         }
         
+        if let url = URL(string: "https://fcm.googleapis.com/fcm/send") {
+            var request = URLRequest(url: url)
+            request.allHTTPHeaderFields = ["Content-Type":"application/json","Authorization":"key=AAAA7rglZew:APA91bEj2s8uNgjlptrh8ULTuJzD9d5lxTElN7Jln_LLUWnng-5AUHO6087KwqQ7YMOLu0UcXV0Y44_Hd09KLc6ZD-I_iupcjIMoz37vbbyG79ibrd83NFTtfCLUmzN2DBI6XYv_d0sO"]
+            request.httpMethod = "POST"
+            request.httpBody = "{\"to\":\"chmjS7GeGZc:APA91bGmOHwDj-aqMg7-RNjckv1zAWxAL8i0jGv-7IED5xZvc8ds_4i8Y73fDZUld5KwjD3kBkw4plblzdCQH7NEo8Cf8-XcL6vpgzTp-wt_rWCOxLpjBrU194ZLY0GBk-zLtPNxTYqr\",\"notification\":{\"title\":\"THIS IS FROM HTTP!\"}}".data(using: .utf8)
+            
+            URLSession.shared.dataTask(with: request, completionHandler: { (data, urlresponse, error) in
+                if error != nil {
+                    print(error!)
+                } else {
+                    
+                }
+            }).resume()
+        }
+        
     }
     
     @IBAction func btnLogin(_ sender: Any) {

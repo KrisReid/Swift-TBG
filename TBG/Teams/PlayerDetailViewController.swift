@@ -71,7 +71,7 @@ class PlayerDetailViewController: UIViewController {
         }
         
         // SET THE SLIDERS TO THE CORRECT POSITION (POSITION)
-        if position == "Goalkepper" {
+        if position == "Goal Keeper" {
             slrPlayerPosition.value = 0
             gkActive()
         } else if position == "Defender" {

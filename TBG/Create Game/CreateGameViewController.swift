@@ -27,6 +27,7 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var homeTeamName = ""
     var homeOrAway = "Home"
     
+    
     let teams = ["Avonmouth", "Shirehampton", "Welwyn"]
     
     override func viewDidLoad() {

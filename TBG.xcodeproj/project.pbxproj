@@ -44,6 +44,7 @@
 		025251872006270A00A1C8D4 /* FixturesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesTableViewCell.swift; sourceTree = "<group>"; };
 		025251892006379A00A1C8D4 /* Away.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Away.png; path = Icons/Away.png; sourceTree = SOURCE_ROOT; };
 		0252518A2006379A00A1C8D4 /* Home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Home.png; path = Icons/Home.png; sourceTree = SOURCE_ROOT; };
+		0252518D20068F6200A1C8D4 /* TBG.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TBG.entitlements; sourceTree = "<group>"; };
 		029E17CF1FBA307C00E5F8AB /* TBG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TBG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		029E17D21FBA307C00E5F8AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		029E17D71FBA307C00E5F8AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -143,6 +144,7 @@
 		029E17D11FBA307C00E5F8AB /* TBG */ = {
 			isa = PBXGroup;
 			children = (
+				0252518D20068F6200A1C8D4 /* TBG.entitlements */,
 				029E17D21FBA307C00E5F8AB /* AppDelegate.swift */,
 				029E17D61FBA307C00E5F8AB /* Main.storyboard */,
 				029E17DE1FBA307C00E5F8AB /* LaunchScreen.storyboard */,
@@ -212,6 +214,11 @@
 					029E17CE1FBA307C00E5F8AB = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -454,6 +461,7 @@
 			baseConfigurationReference = 03C597F2654A7830B541D478 /* Pods-TBG.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TBG/TBG.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S9H4B38ZQN;
@@ -472,6 +480,7 @@
 			baseConfigurationReference = 49C8561EA02B5F2CD4A48983 /* Pods-TBG.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TBG/TBG.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S9H4B38ZQN;

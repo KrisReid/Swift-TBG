@@ -347,20 +347,6 @@
             </objects>
             <point key="canvasLocation" x="3624.8000000000002" y="1647.7832512315272"/>
         </scene>
-        <!--Create Game-->
-        <scene sceneID="bTx-b3-HbG">
-            <objects>
-                <navigationController id="7St-SP-Fut" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Create Game" image="game.png" landscapeImage="game.png" largeContentSizeImage="game.png" selectedImage="game.png" id="pDg-H3-WNb"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bxV-tc-OPT">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FNg-5K-lKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2622" y="-1264"/>
-        </scene>
         <!--Team-->
         <scene sceneID="b6D-pD-icE">
             <objects>
@@ -454,6 +440,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BBh-M6-rr7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3618" y="167"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="C8T-KO-Kar">
+            <objects>
+                <viewController id="Nzw-Ih-uI3" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1C2-AP-Mda">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="COMING" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iX5-on-m7C">
+                                <rect key="frame" x="62" y="318" width="250.00000000000003" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="61"/>
+                                <color key="textColor" red="0.65490196079999996" green="0.82745098039999998" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SOON" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5mR-GN-Bzh">
+                                <rect key="frame" x="62" y="397" width="250" height="71.000000000000057"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="61"/>
+                                <color key="textColor" red="0.65490196079999996" green="0.82745098039999998" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="I5w-dC-W2A"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="UIx-PC-IVy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pEc-K9-gCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4422" y="167"/>
         </scene>
         <!--Fixtures-->
         <scene sceneID="mK4-vQ-fam">
@@ -579,7 +597,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="gFw-6n-t6u" kind="relationship" relationship="rootViewController" id="fUk-tO-Oz7"/>
+                        <segue destination="Nzw-Ih-uI3" kind="relationship" relationship="rootViewController" id="3Zm-MC-Bkq"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fW1-Gq-Hws" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -768,7 +786,6 @@
                         <segue destination="ImB-CD-5nh" kind="relationship" relationship="viewControllers" id="Hy4-0N-ems"/>
                         <segue destination="6xg-sV-HpS" kind="relationship" relationship="viewControllers" id="Hzq-Rm-C48"/>
                         <segue destination="2fi-cd-Ydm" kind="relationship" relationship="viewControllers" id="U0b-Bw-tId"/>
-                        <segue destination="7St-SP-Fut" kind="relationship" relationship="viewControllers" id="dap-eL-J3f"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QTL-oa-D0H" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -989,7 +1006,6 @@
         <image name="Home.png" width="64" height="64"/>
         <image name="add-user.png" width="128" height="128"/>
         <image name="fixture.png" width="32" height="32"/>
-        <image name="game.png" width="32" height="32"/>
         <image name="messaging.png" width="32" height="32"/>
         <image name="team.png" width="32" height="32"/>
     </resources>
