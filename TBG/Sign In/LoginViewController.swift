@@ -10,12 +10,20 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
     
-    var signupMode = false
+    @IBOutlet weak var lblToken: UILabel!
+    
+    let delegate = UIApplication.shared.delegate as! AppDelegate
+    var pushToken = ""
+//    var tokens = ["chmjS7GeGZc:APA91bGmOHwDj-aqMg7-RNjckv1zAWxAL8i0jGv-7IED5xZvc8ds_4i8Y73fDZUld5KwjD3kBkw4plblzdCQH7NEo8Cf8-XcL6vpgzTp-wt_rWCOxLpjBrU194ZLY0GBk-zLtPNxTYqr", "fXLek8lDAR4:APA91bFHmjNhMi2WHlr6lTirk_a9YyPrHqNJ4sGrhwaDbfNj1isetjQ4P4c_JHfodCCzpuNtX654JU-r9nwvBD8FnhGHmR2SfyKLvtY2AOpmhxg20SUREoFr7FKuJEdYgXza87s_72in"]
+    
+        var tokens = [""]
+    
     var playerEmail = ""
     var playerPassword = ""
     
@@ -28,20 +36,44 @@ class LoginViewController: UIViewController {
             tfEmail.text = playerEmail
         }
         
-        if let url = URL(string: "https://fcm.googleapis.com/fcm/send") {
-            var request = URLRequest(url: url)
-            request.allHTTPHeaderFields = ["Content-Type":"application/json","Authorization":"key=AAAA7rglZew:APA91bEj2s8uNgjlptrh8ULTuJzD9d5lxTElN7Jln_LLUWnng-5AUHO6087KwqQ7YMOLu0UcXV0Y44_Hd09KLc6ZD-I_iupcjIMoz37vbbyG79ibrd83NFTtfCLUmzN2DBI6XYv_d0sO"]
-            request.httpMethod = "POST"
-            request.httpBody = "{\"to\":\"chmjS7GeGZc:APA91bGmOHwDj-aqMg7-RNjckv1zAWxAL8i0jGv-7IED5xZvc8ds_4i8Y73fDZUld5KwjD3kBkw4plblzdCQH7NEo8Cf8-XcL6vpgzTp-wt_rWCOxLpjBrU194ZLY0GBk-zLtPNxTYqr\",\"notification\":{\"title\":\"THIS IS FROM HTTP!\"}}".data(using: .utf8)
-            
-            URLSession.shared.dataTask(with: request, completionHandler: { (data, urlresponse, error) in
-                if error != nil {
-                    print(error!)
-                } else {
-                    
-                }
-            }).resume()
+        self.pushToken = self.delegate.token
+        lblToken.text = self.pushToken
+        
+        for token in tokens {
+            if let url = URL(string: "https://fcm.googleapis.com/fcm/send") {
+                var request = URLRequest(url: url)
+                request.allHTTPHeaderFields = ["Content-Type":"application/json","Authorization":"key=AAAA7rglZew:APA91bEj2s8uNgjlptrh8ULTuJzD9d5lxTElN7Jln_LLUWnng-5AUHO6087KwqQ7YMOLu0UcXV0Y44_Hd09KLc6ZD-I_iupcjIMoz37vbbyG79ibrd83NFTtfCLUmzN2DBI6XYv_d0sO"]
+                
+                request.httpMethod = "POST"
+                request.httpBody = "{\"to\":\"\(token)\",\"notification\":{\"title\":\"THIS IS FROM HTTP!\"}}".data(using: .utf8)
+                
+                URLSession.shared.dataTask(with: request, completionHandler: { (data, urlresponse, error) in
+                    if error != nil {
+                        print(error!)
+                    } else {
+                        
+                    }
+                }).resume()
+            }
         }
+        
+        
+//        if let url = URL(string: "https://fcm.googleapis.com/fcm/send") {
+//            var request = URLRequest(url: url)
+//            request.allHTTPHeaderFields = ["Content-Type":"application/json","Authorization":"key=AAAA7rglZew:APA91bEj2s8uNgjlptrh8ULTuJzD9d5lxTElN7Jln_LLUWnng-5AUHO6087KwqQ7YMOLu0UcXV0Y44_Hd09KLc6ZD-I_iupcjIMoz37vbbyG79ibrd83NFTtfCLUmzN2DBI6XYv_d0sO"]
+//
+//            request.httpMethod = "POST"
+//            request.httpBody = "{\"to\":\"chmjS7GeGZc:APA91bGmOHwDj-aqMg7-RNjckv1zAWxAL8i0jGv-7IED5xZvc8ds_4i8Y73fDZUld5KwjD3kBkw4plblzdCQH7NEo8Cf8-XcL6vpgzTp-wt_rWCOxLpjBrU194ZLY0GBk-zLtPNxTYqr\",\"notification\":{\"title\":\"THIS IS FROM HTTP!\"}}".data(using: .utf8)
+////            request.httpBody = "{\"to\":\"fXLek8lDAR4:APA91bFHmjNhMi2WHlr6lTirk_a9YyPrHqNJ4sGrhwaDbfNj1isetjQ4P4c_JHfodCCzpuNtX654JU-r9nwvBD8FnhGHmR2SfyKLvtY2AOpmhxg20SUREoFr7FKuJEdYgXza87s_72in\",\"notification\":{\"title\":\"THIS IS FROM HTTP!\"}}".data(using: .utf8)
+//
+//            URLSession.shared.dataTask(with: request, completionHandler: { (data, urlresponse, error) in
+//                if error != nil {
+//                    print(error!)
+//                } else {
+//
+//                }
+//            }).resume()
+//        }
         
     }
     
@@ -53,8 +85,6 @@ class LoginViewController: UIViewController {
                     if error != nil {
                         self.displayAlert(title: "Error", message: error!.localizedDescription)
                     } else {
-                        print("Logging in was successful")
-                        // print(user?.uid)
                         if user?.displayName == "Manager" {
                             //MANAGER
                             self.performSegue(withIdentifier: "ManagerSegue", sender: nil)

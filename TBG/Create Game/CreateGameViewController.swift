@@ -88,7 +88,7 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
                         newFixture.setValue(fixtureDictionary)
                         
                         //notify success
-                        self.displayAlert(title: "Game Create", message: "The game has been added to your teams fixture list")
+                        self.displayAlert(title: "Game Created", message: "The game has been added to your teams fixture list")
                         
                         //reset the page to empty
                         tfDate.text = ""

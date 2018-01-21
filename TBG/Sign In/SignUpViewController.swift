@@ -35,11 +35,14 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     var teamNameExistsInDB = false
     var teamPostcodeExistsInDB = false
     var returns = false
-    
     var playerEmailExistsinDB = false
+    let delegate = UIApplication.shared.delegate as! AppDelegate
+    var pushToken = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.pushToken = self.delegate.token
         
         imgProfileImage.layer.cornerRadius = imgProfileImage.frame.size.width / 2
         imgProfileImage.layer.masksToBounds = true
@@ -99,11 +102,11 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
     }
     
-    func teamsDictionary() {
-        for team in self.teams{
-            teamDictionary = (team.value as? [String:AnyObject])!
-        }
-    }
+//    func teamsDictionary() {
+//        for team in self.teams{
+//            teamDictionary = (team.value as? [String:AnyObject])!
+//        }
+//    }
     
     func teamNameDBCheck () {
         for team in self.teams {
@@ -212,7 +215,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                             newRef.setValue(TeamDictionary)
                                             
                                             //Add the player to the DB
-                                            let playerDictionary : [String:Any] = ["Email": email, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": newKey, "ProfileImage": profileImageUrl, "Manager": true, "Position":"Defender", "Position Side": "Right"]
+                                            let playerDictionary : [String:Any] = ["Email": email, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": newKey, "ProfileImage": profileImageUrl, "Manager": true, "Position":"Defender", "Position Side": "Right", "Active Token": self.pushToken]
                                             
                                             Database.database().reference().child("Players").child(user.uid).setValue(playerDictionary)
                                             
@@ -252,7 +255,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                         if let profileImageUrl = metadata?.downloadURL()?.absoluteString  {
                                             
                                             //Add the player to the DB
-                                            let playerDictionary : [String:Any] = ["Email": user.email!, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": teamId, "ProfileImage": profileImageUrl, "Manager": false, "Position":"Defender", "Position Side": "Right"]
+                                            let playerDictionary : [String:Any] = ["Email": user.email!, "Full Name": fullName, "Address Line 1": address1, "Address Line 2": address2, "Postcode": postcode, "Team ID": teamId, "ProfileImage": profileImageUrl, "Manager": false, "Position":"Defender", "Position Side": "Right", "Active Token": self.pushToken]
                                             
                                             Database.database().reference().child("Players").child(user.uid).setValue(playerDictionary)
                                             

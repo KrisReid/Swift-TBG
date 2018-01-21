@@ -15,6 +15,7 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    var token = ""
     var window: UIWindow?
     let gcmMessageIDKey = "gcm.message_id"
     
@@ -23,8 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        let token = InstanceID.instanceID().token()
-        print("Token: \(token)")
+        // let token = InstanceID.instanceID().token()
+        if let token = InstanceID.instanceID().token() {
+            self.token = token
+            
+        }
+        print("Token: \(self.token)")
         
         // [START set_messaging_delegate]
         Messaging.messaging().delegate = self
@@ -193,6 +198,8 @@ extension AppDelegate : MessagingDelegate {
     // [START refresh_token]
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
+        
+        self.token = fcmToken
         
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.

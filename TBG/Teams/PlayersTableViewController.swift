@@ -14,14 +14,34 @@ class PlayersTableViewController: UITableViewController {
     
     var allPlayers : [DataSnapshot] = []
     
-    var email = ""
-    var name = ""
-    var imageURL = ""
-    
+    let delegate = UIApplication.shared.delegate as! AppDelegate
     var refresher: UIRefreshControl = UIRefreshControl()
+    var email = ""
+    var teamId = ""
+    var pushToken = ""
+    var tokens : [String] = []
+    
+    
+    let getEmailHandlerBlock: (Bool) -> () = { (isSuccess: Bool) in
+        if isSuccess {
+            print("Get Email Function is completed")
+        }
+    }
+    
+    let getTeamTokensHandlerBlock: (Bool) -> () = { (isSuccess: Bool) in
+        if isSuccess {
+            print("Get Team Tokens Function is completed")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.pushToken = self.delegate.token
+        
+        getEmail(completionBlock: getEmailHandlerBlock)
+        setTokens()
+        
         
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(PlayersTableViewController.getTeam), for: UIControlEvents.valueChanged)
@@ -34,36 +54,110 @@ class PlayersTableViewController: UITableViewController {
         getTeam ()
     }
     
-    
     @IBAction func btnLogOut(_ sender: Any) {
         try? Auth.auth().signOut()
         navigationController?.dismiss(animated: true, completion: nil)
     }
     
+    func getTeamTokens() {
+        Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: self.email).observe(.childAdded) { (snapshot) in
+            
+            if let Playerdictionary = snapshot.value as? [String:Any] {
+                if let teamId = Playerdictionary["Team ID"] as? String {
+                    
+                    Database.database().reference().child("Teams/\(teamId)/Tokens").queryOrderedByKey().observe(.childAdded, with: { (snapshot) in
+                        
+                        if let TokenDictionary = snapshot.value as? [String:Any] {
+                            if let currentTokens = TokenDictionary["Token"] as? String {
+                                self.tokens.append(currentTokens)
+                                
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    }
+    
+    
+    func setTokens() {
+        
+        print(self.tokens)
+//        Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: self.email).observe(.childAdded) { (snapshot) in
+//
+//            if let Playerdictionary = snapshot.value as? [String:Any] {
+//                if let currentToken = Playerdictionary["Active Token"] as? String {
+//                    if let teamId = Playerdictionary["Team ID"] as? String {
+//
+//                        // Update the Players token if applicable
+//                        if self.pushToken == currentToken {
+//                            print("Token was not updated in the DB as it matches")
+//                        } else {
+//                            // Update the new token to replace the old for the Player
+//                            snapshot.ref.updateChildValues(["Active Token":self.pushToken])
+//                            Database.database().reference().child("Players").removeAllObservers()
+//                        }
+//
+//                        // Load data into array
+//                        Database.database().reference().child("Teams/\(teamId)/Tokens").queryOrderedByKey().observe(.childAdded, with: { (snapshot) in
+//
+//                            if let TokenDictionary = snapshot.value as? [String:Any] {
+//                                if let currentTokens = TokenDictionary["Token"] as? String {
+//                                    if self.pushToken == currentTokens {
+//                                        print("MATCH FOUND")
+//                                    } else {
+//                                        print("NO MATCH FOUND")
+//                                    }
+//                                }
+//                            }
+//                        })
+//                    }
+//                }
+//            }
+//        }
+    }
+    
+    
+    func setTeam() {
+        print("11111111   SET TEAM   1111111111 - \(self.tokens)")
+        
+//        let tokenDictionary : [String:Any] = ["Token": self.pushToken]
+//
+//        let newToken =  Database.database().reference().child("Teams").child(teamId).child("Tokens").childByAutoId()
+//        newToken.setValue(tokenDictionary)
+    }
+    
+    func getEmail(completionBlock: (Bool) -> Void) {
+        if let email = Auth.auth().currentUser?.email {
+            self.email = email
+        }
+        completionBlock(true)
+    }
+    
     @objc func getTeam () {
         allPlayers = []
         
-        if let email = Auth.auth().currentUser?.email {
-            Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: email).observe(.childAdded, with: { (snapshot) in
-                Database.database().reference().child("Players").removeAllObservers()
+        //if let email = Auth.auth().currentUser?.email {
+        Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: self.email).observe(.childAdded, with: { (snapshot) in
+            Database.database().reference().child("Players").removeAllObservers()
 
-                if let ManagerDictionary = snapshot.value as? [String:Any] {
-                    if let teamID = ManagerDictionary["Team ID"] as? String {
-                        // This will return the Logged In Managers Team ID
-                        print(teamID)
+            if let ManagerDictionary = snapshot.value as? [String:Any] {
+                if let teamID = ManagerDictionary["Team ID"] as? String {
+                    // This will return the Logged In Managers Team ID
+                    print(teamID)
+                    self.tableView.reloadData()
+
+                    Database.database().reference().child("Players").queryOrdered(byChild: "Team ID").queryEqual(toValue: teamID).observe(.childAdded, with: { (snapshot) in
+                        Database.database().reference().child("Players").removeAllObservers()
+
+                        self.allPlayers.append(snapshot)
                         self.tableView.reloadData()
-
-                        Database.database().reference().child("Players").queryOrdered(byChild: "Team ID").queryEqual(toValue: teamID).observe(.childAdded, with: { (snapshot) in
-                            Database.database().reference().child("Players").removeAllObservers()
-
-                            self.allPlayers.append(snapshot)
-                            self.tableView.reloadData()
-                            self.refresher.endRefreshing()
-                        })
-                    }
+                        self.refresher.endRefreshing()
+                    })
                 }
-            })
-        }
+            }
+        })
+        //}
     }
     
     
