@@ -20,7 +20,8 @@ class PlayersTableViewController: UITableViewController {
     var teamId = ""
     var pushToken = ""
     var tokens : [String] = []
-    
+    var match = false
+    var key = ""
     
     let getEmailHandlerBlock: (Bool) -> () = { (isSuccess: Bool) in
         if isSuccess {
@@ -28,11 +29,6 @@ class PlayersTableViewController: UITableViewController {
         }
     }
     
-    let getTeamTokensHandlerBlock: (Bool) -> () = { (isSuccess: Bool) in
-        if isSuccess {
-            print("Get Team Tokens Function is completed")
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,18 +36,16 @@ class PlayersTableViewController: UITableViewController {
         self.pushToken = self.delegate.token
         
         getEmail(completionBlock: getEmailHandlerBlock)
-        setTokens()
-        
         
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refresher.addTarget(self, action: #selector(PlayersTableViewController.getTeam), for: UIControlEvents.valueChanged)
+        refresher.addTarget(self, action: #selector(PlayersTableViewController.getPlayers), for: UIControlEvents.valueChanged)
         tableView.addSubview(refresher)
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         // Look for better way of reloading the data
-        getTeam ()
+        getPlayers ()
     }
     
     @IBAction func btnLogOut(_ sender: Any) {
@@ -59,82 +53,90 @@ class PlayersTableViewController: UITableViewController {
         navigationController?.dismiss(animated: true, completion: nil)
     }
     
-    func getTeamTokens() {
+    
+
+    func setPlayerToken() {
         Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: self.email).observe(.childAdded) { (snapshot) in
             
+            self.key = snapshot.key
+            print(self.key)
+
             if let Playerdictionary = snapshot.value as? [String:Any] {
-                if let teamId = Playerdictionary["Team ID"] as? String {
-                    
-                    Database.database().reference().child("Teams/\(teamId)/Tokens").queryOrderedByKey().observe(.childAdded, with: { (snapshot) in
+                if let currentToken = Playerdictionary["Active Token"] as? String {
+                    if let teamId = Playerdictionary["Team ID"] as? String {
                         
-                        if let TokenDictionary = snapshot.value as? [String:Any] {
-                            if let currentTokens = TokenDictionary["Token"] as? String {
-                                self.tokens.append(currentTokens)
-                                
-                            }
+                        self.teamId = teamId
+                    
+                        // Update the Players token if applicable
+                        if self.pushToken == currentToken {
+                            print("Token was not updated in the DB as it matches")
+                        } else {
+                            // Update the new token to replace the old for the Player
+                            snapshot.ref.updateChildValues(["Active Token":self.pushToken])
+                            Database.database().reference().child("Players").removeAllObservers()
                         }
-                    })
+                        
+//                        // WHAT TO DO IF FIRST TIME LOG ON AND PLAYER ID NOT IN TEAMS?
+//
+//
+//                        // UPDATE TOKEN IN TEAMS DB IF IT DOESN'T MATCH
+//                        Database.database().reference().child("Teams/\(self.teamId)/Tokens/\(self.key)").queryOrderedByKey().observe(.childAdded) { (snapshot) in
+//
+//                            if let token = snapshot.value as? String{
+//                                if self.pushToken == token {
+//                                    print("Token was not updated in the DB as it matches")
+//                                } else {
+//                                    Database.database().reference().child("Teams/\(self.teamId)/Tokens/\(self.key)").updateChildValues(["Token":self.pushToken])
+//                                }
+//                            }
+//                        }
+                    }
                 }
             }
         }
     }
     
-    
-    func setTokens() {
-        
-        print(self.tokens)
-//        Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: self.email).observe(.childAdded) { (snapshot) in
+//    func getListOfTokensInTeam () {
 //
-//            if let Playerdictionary = snapshot.value as? [String:Any] {
-//                if let currentToken = Playerdictionary["Active Token"] as? String {
-//                    if let teamId = Playerdictionary["Team ID"] as? String {
+//        Database.database().reference().child("Teams/\(self.teamId)/Tokens").queryOrderedByKey().observe(.childAdded) { (snapshot) in
 //
-//                        // Update the Players token if applicable
-//                        if self.pushToken == currentToken {
-//                            print("Token was not updated in the DB as it matches")
+//            if let dictionary = snapshot.value as? [String:Any] {
+//                if let value = dictionary["Token"] as? String {
+//
+//
+//                    if self.pushToken == value {
+//                        self.match = true
+//                        print("Setting TRUE - 333333333333")
+//                    } else {
+//                        if self.match == true {
+//                            print("LEAVING TRUE - 333333333333")
 //                        } else {
-//                            // Update the new token to replace the old for the Player
-//                            snapshot.ref.updateChildValues(["Active Token":self.pushToken])
-//                            Database.database().reference().child("Players").removeAllObservers()
+//                            print("REMAIN FALSE - 333333333333")
 //                        }
-//
-//                        // Load data into array
-//                        Database.database().reference().child("Teams/\(teamId)/Tokens").queryOrderedByKey().observe(.childAdded, with: { (snapshot) in
-//
-//                            if let TokenDictionary = snapshot.value as? [String:Any] {
-//                                if let currentTokens = TokenDictionary["Token"] as? String {
-//                                    if self.pushToken == currentTokens {
-//                                        print("MATCH FOUND")
-//                                    } else {
-//                                        print("NO MATCH FOUND")
-//                                    }
-//                                }
-//                            }
-//                        })
 //                    }
 //                }
 //            }
 //        }
-    }
+//    }
     
-    
-    func setTeam() {
-        print("11111111   SET TEAM   1111111111 - \(self.tokens)")
-        
+//    func setTeam() {
 //        let tokenDictionary : [String:Any] = ["Token": self.pushToken]
 //
-//        let newToken =  Database.database().reference().child("Teams").child(teamId).child("Tokens").childByAutoId()
+//        let newToken =  Database.database().reference().child("Teams").child(self.teamId).child("Tokens").child(self.key)
 //        newToken.setValue(tokenDictionary)
-    }
+//    }
+    
     
     func getEmail(completionBlock: (Bool) -> Void) {
         if let email = Auth.auth().currentUser?.email {
             self.email = email
         }
+
         completionBlock(true)
+        setPlayerToken()
     }
     
-    @objc func getTeam () {
+    @objc func getPlayers () {
         allPlayers = []
         
         //if let email = Auth.auth().currentUser?.email {
@@ -221,7 +223,7 @@ class PlayersTableViewController: UITableViewController {
                     }
                     
                     //reloading of the table
-                    getTeam ()
+                    getPlayers ()
                     
                 }
                 

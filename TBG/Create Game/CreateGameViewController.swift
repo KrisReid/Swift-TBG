@@ -27,16 +27,23 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var homeTeamName = ""
     var homeOrAway = "Home"
     
+    var tokens : [String] = []
     
     let teams = ["Avonmouth", "Shirehampton", "Welwyn"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getTeamName()
+        getPlayersTokens()
+        
+    }
+    
+    func getTeamName () {
         //Email of manager signed in
         let managerEmail = Auth.auth().currentUser?.email
         
-        //Get the record of themanager signed in
+        //Get the record of the manager signed in
         Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: managerEmail).observe(.childAdded) { (snapshot) in
             
             Database.database().reference().child("Players").removeAllObservers()
@@ -61,7 +68,52 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
                 }
             }
         }
+    }
+    
+    func getPlayersTokens () {
+        //Email of manager signed in
+        let managerEmail = Auth.auth().currentUser?.email
         
+        //Get the record of the manager signed in
+        Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: managerEmail).observe(.childAdded) { (snapshot) in
+            
+            Database.database().reference().child("Players").removeAllObservers()
+            
+            if let managerDictionary = snapshot.value as? [String:Any] {
+                if let teamID = managerDictionary["Team ID"] as? String  {
+                    Database.database().reference().child("Players").queryOrdered(byChild: "Team ID").queryEqual(toValue: teamID).observe(.childAdded, with: { (snapshot) in
+                        Database.database().reference().child("Players").removeAllObservers()
+                        if let playerDictionary = snapshot.value as? [String:Any] {
+                            if let token = playerDictionary["Active Token"] as? String {
+                                
+                                self.tokens.append(token)
+                            }
+                        }
+                    })
+                    
+                }
+            }
+        }
+    }
+    
+    func pushNotifiy() {
+        for token in tokens {
+            if let url = URL(string: "https://fcm.googleapis.com/fcm/send") {
+                var request = URLRequest(url: url)
+                request.allHTTPHeaderFields = ["Content-Type":"application/json","Authorization":"key=AAAA7rglZew:APA91bEj2s8uNgjlptrh8ULTuJzD9d5lxTElN7Jln_LLUWnng-5AUHO6087KwqQ7YMOLu0UcXV0Y44_Hd09KLc6ZD-I_iupcjIMoz37vbbyG79ibrd83NFTtfCLUmzN2DBI6XYv_d0sO"]
+                
+                request.httpMethod = "POST"
+                request.httpBody = "{\"to\":\"\(token)\",\"notification\":{\"title\":\"A new Game has been created. Can you play?\"}}".data(using: .utf8)
+                
+                URLSession.shared.dataTask(with: request, completionHandler: { (data, urlresponse, error) in
+                    if error != nil {
+                        print(error!)
+                    } else {
+                        
+                    }
+                }).resume()
+            }
+        }
     }
     
     
@@ -75,6 +127,7 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     
     @IBAction func btnCreateGame(_ sender: Any) {
+        
         if let date = tfDate.text {
             if let venue = tfVenue.text {
                 if let opposition = tfOpposition.text {
@@ -86,6 +139,9 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
                         
                         let newFixture =  Database.database().reference().child("Teams").child(self.homeTeamId).child("Fixtures").childByAutoId()
                         newFixture.setValue(fixtureDictionary)
+                        
+                        //Send Push Notification
+                        self.pushNotifiy()
                         
                         //notify success
                         self.displayAlert(title: "Game Created", message: "The game has been added to your teams fixture list")
