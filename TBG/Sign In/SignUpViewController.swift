@@ -102,12 +102,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
     }
     
-//    func teamsDictionary() {
-//        for team in self.teams{
-//            teamDictionary = (team.value as? [String:AnyObject])!
-//        }
-//    }
-    
     func teamNameDBCheck () {
         for team in self.teams {
             if let teamDictionary = team.value as? [String:AnyObject] {

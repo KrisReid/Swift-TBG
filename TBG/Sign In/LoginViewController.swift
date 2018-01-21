@@ -15,9 +15,6 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
-
-    
-    //let delegate = UIApplication.shared.delegate as! AppDelegate
     
     var playerEmail = ""
     var playerPassword = ""

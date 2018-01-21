@@ -87,14 +87,14 @@
 			path = icons;
 			sourceTree = "<group>";
 		};
-		023FAF401FC9E65100AD6505 /* Teams */ = {
+		023FAF401FC9E65100AD6505 /* Teams (ManagerView) */ = {
 			isa = PBXGroup;
 			children = (
 				023FAF381FC75B9F00AD6505 /* PlayersTableViewController.swift */,
 				023FAF3A1FC7837800AD6505 /* PlayersTableViewCell.swift */,
 				023FAF411FC9EA6900AD6505 /* PlayerDetailViewController.swift */,
 			);
-			path = Teams;
+			path = "Teams (ManagerView)";
 			sourceTree = "<group>";
 		};
 		025251821FFAAED400A1C8D4 /* Create Game */ = {
@@ -150,7 +150,7 @@
 				029E17DE1FBA307C00E5F8AB /* LaunchScreen.storyboard */,
 				023FAEEF1FC75B2500AD6505 /* icons */,
 				025251831FFAAEF300A1C8D4 /* Sign In */,
-				023FAF401FC9E65100AD6505 /* Teams */,
+				023FAF401FC9E65100AD6505 /* Teams (ManagerView) */,
 				025251841FFAB97F00A1C8D4 /* Fixtures */,
 				025251821FFAAED400A1C8D4 /* Create Game */,
 				029E17E11FBA307C00E5F8AB /* Info.plist */,

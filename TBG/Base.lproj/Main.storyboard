@@ -101,7 +101,7 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="102.70935960591133"/>
         </scene>
-        <!--Item 2-->
+        <!--Team-->
         <scene sceneID="jS0-9v-X8f">
             <objects>
                 <viewController id="tuC-xq-94V" sceneMemberID="viewController">
@@ -120,7 +120,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="2Ro-PT-JNa"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="QJk-hC-17h"/>
+                    <tabBarItem key="tabBarItem" title="Team" image="team.png" landscapeImage="team.png" largeContentSizeImage="team.png" selectedImage="team.png" id="QJk-hC-17h"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMJ-JV-Pab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -774,11 +774,11 @@
             </objects>
             <point key="canvasLocation" x="2650" y="-542"/>
         </scene>
-        <!--Item-->
+        <!--Team-->
         <scene sceneID="03z-vk-xo7">
             <objects>
                 <tabBarController id="3M6-xw-nul" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Qox-X6-z1w"/>
+                    <tabBarItem key="tabBarItem" title="Team" image="team.png" landscapeImage="team.png" largeContentSizeImage="team.png" selectedImage="team.png" id="Qox-X6-z1w"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cCi-dc-Zh1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

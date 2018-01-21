@@ -75,57 +75,11 @@ class PlayersTableViewController: UITableViewController {
                             snapshot.ref.updateChildValues(["Active Token":self.pushToken])
                             Database.database().reference().child("Players").removeAllObservers()
                         }
-                        
-//                        // WHAT TO DO IF FIRST TIME LOG ON AND PLAYER ID NOT IN TEAMS?
-//
-//
-//                        // UPDATE TOKEN IN TEAMS DB IF IT DOESN'T MATCH
-//                        Database.database().reference().child("Teams/\(self.teamId)/Tokens/\(self.key)").queryOrderedByKey().observe(.childAdded) { (snapshot) in
-//
-//                            if let token = snapshot.value as? String{
-//                                if self.pushToken == token {
-//                                    print("Token was not updated in the DB as it matches")
-//                                } else {
-//                                    Database.database().reference().child("Teams/\(self.teamId)/Tokens/\(self.key)").updateChildValues(["Token":self.pushToken])
-//                                }
-//                            }
-//                        }
                     }
                 }
             }
         }
     }
-    
-//    func getListOfTokensInTeam () {
-//
-//        Database.database().reference().child("Teams/\(self.teamId)/Tokens").queryOrderedByKey().observe(.childAdded) { (snapshot) in
-//
-//            if let dictionary = snapshot.value as? [String:Any] {
-//                if let value = dictionary["Token"] as? String {
-//
-//
-//                    if self.pushToken == value {
-//                        self.match = true
-//                        print("Setting TRUE - 333333333333")
-//                    } else {
-//                        if self.match == true {
-//                            print("LEAVING TRUE - 333333333333")
-//                        } else {
-//                            print("REMAIN FALSE - 333333333333")
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-    
-//    func setTeam() {
-//        let tokenDictionary : [String:Any] = ["Token": self.pushToken]
-//
-//        let newToken =  Database.database().reference().child("Teams").child(self.teamId).child("Tokens").child(self.key)
-//        newToken.setValue(tokenDictionary)
-//    }
-    
     
     func getEmail(completionBlock: (Bool) -> Void) {
         if let email = Auth.auth().currentUser?.email {
