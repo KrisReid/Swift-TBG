@@ -28,7 +28,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LeN-sa-fGn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-811" y="98"/>
+            <point key="canvasLocation" x="-954" y="103"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -101,10 +101,10 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="102.70935960591133"/>
         </scene>
-        <!--Team-->
+        <!--Me-->
         <scene sceneID="jS0-9v-X8f">
             <objects>
-                <viewController id="tuC-xq-94V" sceneMemberID="viewController">
+                <viewController id="tuC-xq-94V" customClass="PlayerViewController" customModule="TBG" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3ai-pB-HuL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -120,11 +120,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="2Ro-PT-JNa"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Team" image="team.png" landscapeImage="team.png" largeContentSizeImage="team.png" selectedImage="team.png" id="QJk-hC-17h"/>
+                    <tabBarItem key="tabBarItem" title="Me" image="team.png" landscapeImage="team.png" largeContentSizeImage="team.png" selectedImage="team.png" id="QJk-hC-17h"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMJ-JV-Pab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1817" y="1703"/>
+            <point key="canvasLocation" x="1134" y="1720"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Qlk-om-4D0">
@@ -139,7 +139,6 @@
                         <segue destination="tuC-xq-94V" kind="relationship" relationship="viewControllers" id="QhU-YQ-a0t"/>
                         <segue destination="6xg-sV-HpS" kind="relationship" relationship="viewControllers" id="xqK-NT-edk"/>
                         <segue destination="2fi-cd-Ydm" kind="relationship" relationship="viewControllers" id="V6a-EE-Udj"/>
-                        <segue destination="3M6-xw-nul" kind="relationship" relationship="viewControllers" id="Du9-nT-5Wp"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDT-jR-S2J" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -489,7 +488,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oEL-Vs-l50" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2667" y="881"/>
+            <point key="canvasLocation" x="2236" y="910"/>
         </scene>
         <!--Fixtures Table View Controller-->
         <scene sceneID="PQe-Df-zcB">
@@ -586,7 +585,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rr-GZ-j1k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3626.4000000000001" y="881.5270935960591"/>
+            <point key="canvasLocation" x="3150" y="910"/>
         </scene>
         <!--Messaging-->
         <scene sceneID="f64-ok-WZb">
@@ -1012,7 +1011,6 @@
         <image name="team.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Du9-nT-5Wp"/>
         <segue reference="Hzq-Rm-C48"/>
         <segue reference="U0b-Bw-tId"/>
         <segue reference="po0-Aj-5TJ"/>

@@ -24,6 +24,7 @@
 		029E17DB1FBA307C00E5F8AB /* TBG.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 029E17D91FBA307C00E5F8AB /* TBG.xcdatamodeld */; };
 		029E17DD1FBA307C00E5F8AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 029E17DC1FBA307C00E5F8AB /* Assets.xcassets */; };
 		029E17E01FBA307C00E5F8AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 029E17DE1FBA307C00E5F8AB /* LaunchScreen.storyboard */; };
+		02D091C72015D884003D3087 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D091C62015D884003D3087 /* PlayerViewController.swift */; };
 		02F607A61FF298090025D18F /* messaging.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F607A51FF298070025D18F /* messaging.png */; };
 		02F607A81FF2CE8A0025D18F /* fixture.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F607A71FF2CE880025D18F /* fixture.png */; };
 		02F607AA1FF2D8770025D18F /* game.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F607A91FF2D8750025D18F /* game.png */; };
@@ -52,6 +53,7 @@
 		029E17DC1FBA307C00E5F8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		029E17DF1FBA307C00E5F8AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		029E17E11FBA307C00E5F8AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02D091C62015D884003D3087 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		02F607A51FF298070025D18F /* messaging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = messaging.png; path = Icons/messaging.png; sourceTree = SOURCE_ROOT; };
 		02F607A71FF2CE880025D18F /* fixture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fixture.png; path = Icons/fixture.png; sourceTree = SOURCE_ROOT; };
 		02F607A91FF2D8750025D18F /* game.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game.png; path = Icons/game.png; sourceTree = SOURCE_ROOT; };
@@ -150,15 +152,32 @@
 				029E17DE1FBA307C00E5F8AB /* LaunchScreen.storyboard */,
 				023FAEEF1FC75B2500AD6505 /* icons */,
 				025251831FFAAEF300A1C8D4 /* Sign In */,
+				02D091C52015D859003D3087 /* Player */,
 				023FAF401FC9E65100AD6505 /* Teams (ManagerView) */,
 				025251841FFAB97F00A1C8D4 /* Fixtures */,
 				025251821FFAAED400A1C8D4 /* Create Game */,
+				02D091C82015DB31003D3087 /* Shared */,
 				029E17E11FBA307C00E5F8AB /* Info.plist */,
 				023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */,
 				029E17D91FBA307C00E5F8AB /* TBG.xcdatamodeld */,
 				029E17DC1FBA307C00E5F8AB /* Assets.xcassets */,
 			);
 			path = TBG;
+			sourceTree = "<group>";
+		};
+		02D091C52015D859003D3087 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				02D091C62015D884003D3087 /* PlayerViewController.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		02D091C82015DB31003D3087 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		1B2717BB178DC4D760675242 /* Pods */ = {
@@ -323,6 +342,7 @@
 				029E17D31FBA307C00E5F8AB /* AppDelegate.swift in Sources */,
 				025251861FFABDAD00A1C8D4 /* FixturesTableViewController.swift in Sources */,
 				02F607AC1FF2DBB10025D18F /* CreateGameViewController.swift in Sources */,
+				02D091C72015D884003D3087 /* PlayerViewController.swift in Sources */,
 				023FAF391FC75BA000AD6505 /* PlayersTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
