@@ -13,29 +13,12 @@ import FirebaseDatabase
 class PlayersTableViewController: UITableViewController {
     
     var allPlayers : [DataSnapshot] = []
-    
-    let delegate = UIApplication.shared.delegate as! AppDelegate
     var refresher: UIRefreshControl = UIRefreshControl()
-    var email = ""
-    var teamId = ""
-    var pushToken = ""
-    var tokens : [String] = []
-    var match = false
-    var key = ""
-    
-    let getEmailHandlerBlock: (Bool) -> () = { (isSuccess: Bool) in
-        if isSuccess {
-            print("Get Email Function is completed")
-        }
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.pushToken = self.delegate.token
-        
-        getEmail(completionBlock: getEmailHandlerBlock)
+        _ = TokenGenerationViewController().viewDidLoad()
         
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(PlayersTableViewController.getPlayers), for: UIControlEvents.valueChanged)
@@ -54,66 +37,30 @@ class PlayersTableViewController: UITableViewController {
     }
     
     
-
-    func setPlayerToken() {
-        Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: self.email).observe(.childAdded) { (snapshot) in
-            
-            self.key = snapshot.key
-            print(self.key)
-
-            if let Playerdictionary = snapshot.value as? [String:Any] {
-                if let currentToken = Playerdictionary["Active Token"] as? String {
-                    if let teamId = Playerdictionary["Team ID"] as? String {
-                        
-                        self.teamId = teamId
-                    
-                        // Update the Players token if applicable
-                        if self.pushToken == currentToken {
-                            print("Token was not updated in the DB as it matches")
-                        } else {
-                            // Update the new token to replace the old for the Player
-                            snapshot.ref.updateChildValues(["Active Token":self.pushToken])
-                            Database.database().reference().child("Players").removeAllObservers()
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    func getEmail(completionBlock: (Bool) -> Void) {
-        if let email = Auth.auth().currentUser?.email {
-            self.email = email
-        }
-
-        completionBlock(true)
-        setPlayerToken()
-    }
-    
     @objc func getPlayers () {
         allPlayers = []
         
-        //if let email = Auth.auth().currentUser?.email {
-        Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: self.email).observe(.childAdded, with: { (snapshot) in
-            Database.database().reference().child("Players").removeAllObservers()
+        if let email = Auth.auth().currentUser?.email {
+            Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: email).observe(.childAdded, with: { (snapshot) in
+                Database.database().reference().child("Players").removeAllObservers()
 
-            if let ManagerDictionary = snapshot.value as? [String:Any] {
-                if let teamID = ManagerDictionary["Team ID"] as? String {
-                    // This will return the Logged In Managers Team ID
-                    print(teamID)
-                    self.tableView.reloadData()
-
-                    Database.database().reference().child("Players").queryOrdered(byChild: "Team ID").queryEqual(toValue: teamID).observe(.childAdded, with: { (snapshot) in
-                        Database.database().reference().child("Players").removeAllObservers()
-
-                        self.allPlayers.append(snapshot)
+                if let ManagerDictionary = snapshot.value as? [String:Any] {
+                    if let teamID = ManagerDictionary["Team ID"] as? String {
+                        // This will return the Logged In Managers Team ID
+                        print(teamID)
                         self.tableView.reloadData()
-                        self.refresher.endRefreshing()
-                    })
+
+                        Database.database().reference().child("Players").queryOrdered(byChild: "Team ID").queryEqual(toValue: teamID).observe(.childAdded, with: { (snapshot) in
+                            Database.database().reference().child("Players").removeAllObservers()
+
+                            self.allPlayers.append(snapshot)
+                            self.tableView.reloadData()
+                            self.refresher.endRefreshing()
+                        })
+                    }
                 }
-            }
-        })
-        //}
+            })
+        }
     }
     
     
@@ -178,12 +125,8 @@ class PlayersTableViewController: UITableViewController {
                     
                     //reloading of the table
                     getPlayers ()
-                    
                 }
-                
             }
-        
-
         }
     }
     
