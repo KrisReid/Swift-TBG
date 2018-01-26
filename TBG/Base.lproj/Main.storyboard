@@ -109,8 +109,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCW-ni-knB">
-                                <rect key="frame" x="156" y="396" width="62" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Coming Soon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCW-ni-knB">
+                                <rect key="frame" x="136" y="396" width="103" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -138,12 +138,41 @@
                     <connections>
                         <segue destination="tuC-xq-94V" kind="relationship" relationship="viewControllers" id="QhU-YQ-a0t"/>
                         <segue destination="6xg-sV-HpS" kind="relationship" relationship="viewControllers" id="xqK-NT-edk"/>
-                        <segue destination="2fi-cd-Ydm" kind="relationship" relationship="viewControllers" id="V6a-EE-Udj"/>
+                        <segue destination="xyf-q0-MGR" kind="relationship" relationship="viewControllers" id="QB2-zM-ycV"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDT-jR-S2J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1135" y="911"/>
+            <point key="canvasLocation" x="1817" y="701"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="3Cm-b4-JZU">
+            <objects>
+                <tableViewController id="xyf-q0-MGR" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rv3-MO-rUV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ol5-Y3-hfR">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ol5-Y3-hfR" id="fLp-c4-nyp">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xyf-q0-MGR" id="SWr-ps-gfg"/>
+                            <outlet property="delegate" destination="xyf-q0-MGR" id="4FH-l0-yH0"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="tiD-zG-KOF"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yFr-3Q-h5O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2248" y="1678"/>
         </scene>
         <!--Create Game-->
         <scene sceneID="VkZ-2t-Arf">
@@ -345,7 +374,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVn-KT-41y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3624.8000000000002" y="1647.7832512315272"/>
+            <point key="canvasLocation" x="4422" y="-2274"/>
         </scene>
         <!--Team-->
         <scene sceneID="b6D-pD-icE">
@@ -439,7 +468,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BBh-M6-rr7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3618" y="167"/>
+            <point key="canvasLocation" x="3580" y="304"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="C8T-KO-Kar">
@@ -471,7 +500,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pEc-K9-gCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4422" y="167"/>
+            <point key="canvasLocation" x="4422" y="304"/>
         </scene>
         <!--Fixtures-->
         <scene sceneID="mK4-vQ-fam">
@@ -488,7 +517,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oEL-Vs-l50" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2236" y="910"/>
+            <point key="canvasLocation" x="2665" y="-1395"/>
         </scene>
         <!--Fixtures Table View Controller-->
         <scene sceneID="PQe-Df-zcB">
@@ -581,11 +610,39 @@
                     </navigationItem>
                     <connections>
                         <segue destination="SDz-WG-Yf0" kind="show" identifier="addFixtureSegue" id="xrC-1e-dWz"/>
+                        <segue destination="YZC-e5-OFJ" kind="show" identifier="FixtureDetailSegue" id="r1e-Wa-5NH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rr-GZ-j1k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3150" y="910"/>
+            <point key="canvasLocation" x="3580" y="-1395"/>
+        </scene>
+        <!--Fixture Detail View Controller-->
+        <scene sceneID="7Ku-C3-Ygd">
+            <objects>
+                <viewController id="YZC-e5-OFJ" customClass="FixtureDetailViewController" customModule="TBG" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9FI-Jj-xC9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVB-4p-rin">
+                                <rect key="frame" x="16" y="223" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="CtS-Tl-vRD"/>
+                    </view>
+                    <connections>
+                        <outlet property="lblOpposition" destination="nVB-4p-rin" id="csA-JM-Deb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LI4-Nb-CSj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4421.6000000000004" y="-1395.0738916256157"/>
         </scene>
         <!--Messaging-->
         <scene sceneID="f64-ok-WZb">
@@ -602,7 +659,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fW1-Gq-Hws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2665" y="167"/>
+            <point key="canvasLocation" x="2665" y="304"/>
         </scene>
         <!--Player Detail-->
         <scene sceneID="dUf-Pd-1jS">
@@ -1011,8 +1068,7 @@
         <image name="team.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Hzq-Rm-C48"/>
-        <segue reference="U0b-Bw-tId"/>
+        <segue reference="xqK-NT-edk"/>
         <segue reference="po0-Aj-5TJ"/>
     </inferredMetricsTieBreakers>
 </document>

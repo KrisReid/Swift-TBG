@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		021BB1231FBA45E300AC52CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BB1221FBA45E300AC52CE /* SignUpViewController.swift */; };
+		023A3548201B725700894651 /* FixtureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A3547201B725700894651 /* FixtureDetailViewController.swift */; };
 		023FAEE91FC7553700AD6505 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */; };
 		023FAF361FC75B7600AD6505 /* add-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 023FAF341FC75B7600AD6505 /* add-user.png */; };
 		023FAF371FC75B7600AD6505 /* team.png in Resources */ = {isa = PBXBuildFile; fileRef = 023FAF351FC75B7600AD6505 /* team.png */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		021BB1221FBA45E300AC52CE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		023A3547201B725700894651 /* FixtureDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureDetailViewController.swift; sourceTree = "<group>"; };
 		023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		023FAF341FC75B7600AD6505 /* add-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add-user.png"; path = "Icons/add-user.png"; sourceTree = SOURCE_ROOT; };
 		023FAF351FC75B7600AD6505 /* team.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = team.png; path = Icons/team.png; sourceTree = SOURCE_ROOT; };
@@ -123,6 +125,7 @@
 			children = (
 				025251851FFABDAD00A1C8D4 /* FixturesTableViewController.swift */,
 				025251872006270A00A1C8D4 /* FixturesTableViewCell.swift */,
+				023A3547201B725700894651 /* FixtureDetailViewController.swift */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -290,13 +293,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TBG-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		80E811AEA865FCC0FC00AB09 /* [CP] Embed Pods Frameworks */ = {
@@ -305,9 +311,20 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TBG/Pods-TBG-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -339,6 +356,7 @@
 				02409EDA1FD7460900CE23BD /* LoginViewController.swift in Sources */,
 				029E17DB1FBA307C00E5F8AB /* TBG.xcdatamodeld in Sources */,
 				023FAF3B1FC7837800AD6505 /* PlayersTableViewCell.swift in Sources */,
+				023A3548201B725700894651 /* FixtureDetailViewController.swift in Sources */,
 				023FAF421FC9EA6900AD6505 /* PlayerDetailViewController.swift in Sources */,
 				021BB1231FBA45E300AC52CE /* SignUpViewController.swift in Sources */,
 				025251882006270A00A1C8D4 /* FixturesTableViewCell.swift in Sources */,

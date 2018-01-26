@@ -112,5 +112,29 @@ class FixturesTableViewController: UITableViewController {
         return UITableViewCell()
 
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let snapshot = teamFixtures[indexPath.row]
+        performSegue(withIdentifier: "FixtureDetailSegue", sender: snapshot)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let acceptVC = segue.destination as? FixtureDetailViewController {
+            
+            if let snapshot = sender as? DataSnapshot {
+                if let FixtureDictionary = snapshot.value as? [String:Any] {
+                    if let opposition = FixtureDictionary["Away Team Name"] as? String {
+                        
+                        acceptVC.opposition = opposition
+                        
+                        // Add Player arrays in here
+                        
+                    }
+                }
+            }
+            
+        }
+    }
 
 }

@@ -13,5 +13,7 @@ target 'TBG' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
+pod 'Fabric', '~> 1.7.2'
+pod 'Crashlytics', '~> 3.9.3'
 
 end

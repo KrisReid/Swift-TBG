@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class PlayersTableViewController: UITableViewController {
-    
+
     var allPlayers : [DataSnapshot] = []
     var refresher: UIRefreshControl = UIRefreshControl()
     
@@ -20,20 +20,73 @@ class PlayersTableViewController: UITableViewController {
         
         _ = TokenGenerationViewController().viewDidLoad()
         
+        // getPlayers ()
+        updatePlayers()
+        
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refresher.addTarget(self, action: #selector(PlayersTableViewController.getPlayers), for: UIControlEvents.valueChanged)
+        refresher.addTarget(self, action: #selector(PlayersTableViewController.updatePlayers), for: UIControlEvents.valueChanged)
         tableView.addSubview(refresher)
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        // Look for better way of reloading the data
         getPlayers ()
+        // updatePlayers()
     }
+    
+
     
     @IBAction func btnLogOut(_ sender: Any) {
         try? Auth.auth().signOut()
         navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @objc func updatePlayers () {
+
+        if let email = Auth.auth().currentUser?.email {
+            Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: email).observe(.childAdded, with: { (snapshot) in
+                Database.database().reference().child("Players").removeAllObservers()
+                
+                if let ManagerDictionary = snapshot.value as? [String:Any] {
+                    if let teamID = ManagerDictionary["Team ID"] as? String {
+                        
+                        Database.database().reference().child("Players").queryOrdered(byChild: "Team ID").queryEqual(toValue: teamID).observe(.childAdded, with: { (snapshot) in
+                            Database.database().reference().child("Players").removeAllObservers()
+                            
+                            let count = self.allPlayers.count
+                            print("All Players count: \(self.allPlayers.count)")
+                            var counting = 0
+                            
+                            if let key = snapshot.key as? String {
+                                // 3 lines of new code for Trial
+                                if count == 0 {
+                                    self.allPlayers.append(snapshot)
+                                }
+                                for player in self.allPlayers {
+                                    if player.key == key {
+                                        print("It was found at least once")
+                                    } else {
+                                        counting += 1
+                                        if counting == count {
+                                            print("It never existed and therefore needs adding")
+                                            self.allPlayers.append(snapshot)
+                                        } else {
+                                            print(counting)
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            self.tableView.reloadData()
+                            self.refresher.endRefreshing()
+                        })
+                    }
+                }
+            })
+        }
+        
+        
     }
     
     
@@ -47,8 +100,6 @@ class PlayersTableViewController: UITableViewController {
                 if let ManagerDictionary = snapshot.value as? [String:Any] {
                     if let teamID = ManagerDictionary["Team ID"] as? String {
                         // This will return the Logged In Managers Team ID
-                        print(teamID)
-                        self.tableView.reloadData()
 
                         Database.database().reference().child("Players").queryOrdered(byChild: "Team ID").queryEqual(toValue: teamID).observe(.childAdded, with: { (snapshot) in
                             Database.database().reference().child("Players").removeAllObservers()

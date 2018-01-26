@@ -27,6 +27,10 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var homeTeamName = ""
     var homeOrAway = "Home"
     
+    var managerName : String = ""
+    var managerId : String = ""
+    
+    
     var tokens : [String] = []
     
     let teams = ["Avonmouth", "Shirehampton", "Welwyn"]
@@ -50,21 +54,24 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
             
             if let managerDictionary = snapshot.value as? [String:Any] {
                 if let teamID = managerDictionary["Team ID"] as? String  {
-                    
-                    self.homeTeamId = teamID
-                    
-                    Database.database().reference().child("Teams").queryOrdered(byChild: "id").queryEqual(toValue: teamID).observe(.childAdded, with: { (snapshot) in
+                    if let managerName = managerDictionary["Full Name"] as? String {
                         
-                        Database.database().reference().child("Teams").removeAllObservers()
+                        self.managerName = managerName
+                        self.managerId = snapshot.key
+                        self.homeTeamId = teamID
                         
-                        if let teamDictionary = snapshot.value as? [String:Any] {
-                            if let teamName = teamDictionary["Team Name"] as? String {
-                                
-                                self.homeTeamName = teamName
+                        Database.database().reference().child("Teams").queryOrdered(byChild: "id").queryEqual(toValue: teamID).observe(.childAdded, with: { (snapshot) in
+                            
+                            Database.database().reference().child("Teams").removeAllObservers()
+                            
+                            if let teamDictionary = snapshot.value as? [String:Any] {
+                                if let teamName = teamDictionary["Team Name"] as? String {
+                                    
+                                    self.homeTeamName = teamName
+                                }
                             }
-                        }
-                    })
-                    
+                        })
+                    }
                 }
             }
         }
@@ -135,10 +142,18 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
                         self.displayAlert(title: "Missing Information", message: "You must provide information in all of the fields provided.")
                     } else {
                         
+                        //Add the basic fixture structure
                         let fixtureDictionary : [String:Any] = ["Date and Time": date, "Home Team Name": self.homeTeamName, "Away Team Name": opposition, "Home or Away": self.homeOrAway, "Venue": venue]
-                        
                         let newFixture =  Database.database().reference().child("Teams").child(self.homeTeamId).child("Fixtures").childByAutoId()
                         newFixture.setValue(fixtureDictionary)
+                        
+                        //Capture the key
+                        let newFixtureId = newFixture.key
+
+                        //Add the manager as the first player
+                        let manager : [String:Any] = [self.managerName:self.managerId]
+                        let newPlayerFixture = Database.database().reference().child("Teams").child(self.homeTeamId).child("Fixtures").child(newFixtureId).child("Available Players")
+                        newPlayerFixture.setValue(manager)
                         
                         //Send Push Notification
                         self.pushNotifiy()
