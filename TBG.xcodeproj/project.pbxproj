@@ -11,6 +11,7 @@
 		023A3548201B725700894651 /* FixtureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A3547201B725700894651 /* FixtureDetailViewController.swift */; };
 		023A354A201C6B3D00894651 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 023A3549201C6B3A00894651 /* edit.png */; };
 		023A354C201C6BFB00894651 /* upload.png in Resources */ = {isa = PBXBuildFile; fileRef = 023A354B201C6BF900894651 /* upload.png */; };
+		023A354E201C7A7400894651 /* Profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 023A354D201C7A7100894651 /* Profile.png */; };
 		023FAEE91FC7553700AD6505 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */; };
 		023FAF361FC75B7600AD6505 /* add-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 023FAF341FC75B7600AD6505 /* add-user.png */; };
 		023FAF371FC75B7600AD6505 /* team.png in Resources */ = {isa = PBXBuildFile; fileRef = 023FAF351FC75B7600AD6505 /* team.png */; };
@@ -41,6 +42,7 @@
 		023A3547201B725700894651 /* FixtureDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureDetailViewController.swift; sourceTree = "<group>"; };
 		023A3549201C6B3A00894651 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit.png; path = Icons/edit.png; sourceTree = SOURCE_ROOT; };
 		023A354B201C6BF900894651 /* upload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upload.png; path = Icons/upload.png; sourceTree = SOURCE_ROOT; };
+		023A354D201C7A7100894651 /* Profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Profile.png; path = Icons/Profile.png; sourceTree = SOURCE_ROOT; };
 		023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		023FAF341FC75B7600AD6505 /* add-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add-user.png"; path = "Icons/add-user.png"; sourceTree = SOURCE_ROOT; };
 		023FAF351FC75B7600AD6505 /* team.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = team.png; path = Icons/team.png; sourceTree = SOURCE_ROOT; };
@@ -86,6 +88,7 @@
 		023FAEEF1FC75B2500AD6505 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				023A354D201C7A7100894651 /* Profile.png */,
 				023A354B201C6BF900894651 /* upload.png */,
 				023A3549201C6B3A00894651 /* edit.png */,
 				025251892006379A00A1C8D4 /* Away.png */,
@@ -279,6 +282,7 @@
 				023FAF361FC75B7600AD6505 /* add-user.png in Resources */,
 				029E17E01FBA307C00E5F8AB /* LaunchScreen.storyboard in Resources */,
 				02F607AA1FF2D8770025D18F /* game.png in Resources */,
+				023A354E201C7A7400894651 /* Profile.png in Resources */,
 				023FAF371FC75B7600AD6505 /* team.png in Resources */,
 				0252518C2006379A00A1C8D4 /* Home.png in Resources */,
 				023A354A201C6B3D00894651 /* edit.png in Resources */,
