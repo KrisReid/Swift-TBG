@@ -125,11 +125,12 @@ class FixturesTableViewController: UITableViewController {
             if let snapshot = sender as? DataSnapshot {
                 if let FixtureDictionary = snapshot.value as? [String:Any] {
                     if let opposition = FixtureDictionary["Away Team Name"] as? String {
-                        
-                        acceptVC.opposition = opposition
-                        
-                        // Add Player arrays in here
-                        
+                        if let players = FixtureDictionary["Available Players"] as? [String:Any] {
+                            
+                            acceptVC.opposition = opposition
+                            acceptVC.players = players
+                            
+                        }
                     }
                 }
             }

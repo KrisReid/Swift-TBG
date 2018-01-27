@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		021BB1231FBA45E300AC52CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BB1221FBA45E300AC52CE /* SignUpViewController.swift */; };
 		023A3548201B725700894651 /* FixtureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A3547201B725700894651 /* FixtureDetailViewController.swift */; };
+		023A354A201C6B3D00894651 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 023A3549201C6B3A00894651 /* edit.png */; };
+		023A354C201C6BFB00894651 /* upload.png in Resources */ = {isa = PBXBuildFile; fileRef = 023A354B201C6BF900894651 /* upload.png */; };
 		023FAEE91FC7553700AD6505 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */; };
 		023FAF361FC75B7600AD6505 /* add-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 023FAF341FC75B7600AD6505 /* add-user.png */; };
 		023FAF371FC75B7600AD6505 /* team.png in Resources */ = {isa = PBXBuildFile; fileRef = 023FAF351FC75B7600AD6505 /* team.png */; };
@@ -37,6 +39,8 @@
 /* Begin PBXFileReference section */
 		021BB1221FBA45E300AC52CE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		023A3547201B725700894651 /* FixtureDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureDetailViewController.swift; sourceTree = "<group>"; };
+		023A3549201C6B3A00894651 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit.png; path = Icons/edit.png; sourceTree = SOURCE_ROOT; };
+		023A354B201C6BF900894651 /* upload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upload.png; path = Icons/upload.png; sourceTree = SOURCE_ROOT; };
 		023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		023FAF341FC75B7600AD6505 /* add-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add-user.png"; path = "Icons/add-user.png"; sourceTree = SOURCE_ROOT; };
 		023FAF351FC75B7600AD6505 /* team.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = team.png; path = Icons/team.png; sourceTree = SOURCE_ROOT; };
@@ -82,6 +86,8 @@
 		023FAEEF1FC75B2500AD6505 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				023A354B201C6BF900894651 /* upload.png */,
+				023A3549201C6B3A00894651 /* edit.png */,
 				025251892006379A00A1C8D4 /* Away.png */,
 				0252518A2006379A00A1C8D4 /* Home.png */,
 				02F607A91FF2D8750025D18F /* game.png */,
@@ -275,9 +281,11 @@
 				02F607AA1FF2D8770025D18F /* game.png in Resources */,
 				023FAF371FC75B7600AD6505 /* team.png in Resources */,
 				0252518C2006379A00A1C8D4 /* Home.png in Resources */,
+				023A354A201C6B3D00894651 /* edit.png in Resources */,
 				029E17DD1FBA307C00E5F8AB /* Assets.xcassets in Resources */,
 				02F607A61FF298090025D18F /* messaging.png in Resources */,
 				02F607A81FF2CE8A0025D18F /* fixture.png in Resources */,
+				023A354C201C6BFB00894651 /* upload.png in Resources */,
 				0252518B2006379A00A1C8D4 /* Away.png in Resources */,
 				023FAEE91FC7553700AD6505 /* GoogleService-Info.plist in Resources */,
 				029E17D81FBA307C00E5F8AB /* Main.storyboard in Resources */,

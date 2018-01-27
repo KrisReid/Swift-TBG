@@ -13,11 +13,13 @@ class FixtureDetailViewController: UIViewController {
     @IBOutlet weak var lblOpposition: UILabel!
     
     var opposition: String = ""
+    var players : [String:Any] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         lblOpposition.text = self.opposition
+        print(players)
 
         // Do any additional setup after loading the view.
     }
