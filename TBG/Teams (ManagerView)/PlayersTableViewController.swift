@@ -89,7 +89,6 @@ class PlayersTableViewController: UITableViewController {
         
     }
     
-    
     @objc func getPlayers () {
         allPlayers = []
         

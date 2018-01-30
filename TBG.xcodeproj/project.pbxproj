@@ -12,6 +12,7 @@
 		023A354A201C6B3D00894651 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 023A3549201C6B3A00894651 /* edit.png */; };
 		023A354C201C6BFB00894651 /* upload.png in Resources */ = {isa = PBXBuildFile; fileRef = 023A354B201C6BF900894651 /* upload.png */; };
 		023A354E201C7A7400894651 /* Profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 023A354D201C7A7100894651 /* Profile.png */; };
+		023A35502020E2E000894651 /* PlayerFixturesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A354F2020E2E000894651 /* PlayerFixturesTableViewController.swift */; };
 		023FAEE91FC7553700AD6505 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */; };
 		023FAF361FC75B7600AD6505 /* add-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 023FAF341FC75B7600AD6505 /* add-user.png */; };
 		023FAF371FC75B7600AD6505 /* team.png in Resources */ = {isa = PBXBuildFile; fileRef = 023FAF351FC75B7600AD6505 /* team.png */; };
@@ -43,6 +44,7 @@
 		023A3549201C6B3A00894651 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit.png; path = Icons/edit.png; sourceTree = SOURCE_ROOT; };
 		023A354B201C6BF900894651 /* upload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upload.png; path = Icons/upload.png; sourceTree = SOURCE_ROOT; };
 		023A354D201C7A7100894651 /* Profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Profile.png; path = Icons/Profile.png; sourceTree = SOURCE_ROOT; };
+		023A354F2020E2E000894651 /* PlayerFixturesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFixturesTableViewController.swift; sourceTree = "<group>"; };
 		023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		023FAF341FC75B7600AD6505 /* add-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add-user.png"; path = "Icons/add-user.png"; sourceTree = SOURCE_ROOT; };
 		023FAF351FC75B7600AD6505 /* team.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = team.png; path = Icons/team.png; sourceTree = SOURCE_ROOT; };
@@ -112,12 +114,12 @@
 			path = "Teams (ManagerView)";
 			sourceTree = "<group>";
 		};
-		025251821FFAAED400A1C8D4 /* Create Game */ = {
+		025251821FFAAED400A1C8D4 /* Fixtures (PlayerView) */ = {
 			isa = PBXGroup;
 			children = (
-				02F607AB1FF2DBB10025D18F /* CreateGameViewController.swift */,
+				023A354F2020E2E000894651 /* PlayerFixturesTableViewController.swift */,
 			);
-			path = "Create Game";
+			path = "Fixtures (PlayerView)";
 			sourceTree = "<group>";
 		};
 		025251831FFAAEF300A1C8D4 /* Sign In */ = {
@@ -129,14 +131,15 @@
 			path = "Sign In";
 			sourceTree = "<group>";
 		};
-		025251841FFAB97F00A1C8D4 /* Fixtures */ = {
+		025251841FFAB97F00A1C8D4 /* Fixtures (ManagerView) */ = {
 			isa = PBXGroup;
 			children = (
 				025251851FFABDAD00A1C8D4 /* FixturesTableViewController.swift */,
 				025251872006270A00A1C8D4 /* FixturesTableViewCell.swift */,
 				023A3547201B725700894651 /* FixtureDetailViewController.swift */,
+				02F607AB1FF2DBB10025D18F /* CreateGameViewController.swift */,
 			);
-			path = Fixtures;
+			path = "Fixtures (ManagerView)";
 			sourceTree = "<group>";
 		};
 		029E17C61FBA307C00E5F8AB = {
@@ -168,8 +171,8 @@
 				025251831FFAAEF300A1C8D4 /* Sign In */,
 				02D091C52015D859003D3087 /* Player */,
 				023FAF401FC9E65100AD6505 /* Teams (ManagerView) */,
-				025251841FFAB97F00A1C8D4 /* Fixtures */,
-				025251821FFAAED400A1C8D4 /* Create Game */,
+				025251841FFAB97F00A1C8D4 /* Fixtures (ManagerView) */,
+				025251821FFAAED400A1C8D4 /* Fixtures (PlayerView) */,
 				02D091C82015DB31003D3087 /* Shared */,
 				029E17E11FBA307C00E5F8AB /* Info.plist */,
 				023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */,
@@ -377,6 +380,7 @@
 				02F607AC1FF2DBB10025D18F /* CreateGameViewController.swift in Sources */,
 				02D091C72015D884003D3087 /* PlayerViewController.swift in Sources */,
 				02D091D020172728003D3087 /* TokenGenerationViewController.swift in Sources */,
+				023A35502020E2E000894651 /* PlayerFixturesTableViewController.swift in Sources */,
 				023FAF391FC75BA000AD6505 /* PlayersTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
