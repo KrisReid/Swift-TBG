@@ -13,6 +13,10 @@
 		023A354C201C6BFB00894651 /* upload.png in Resources */ = {isa = PBXBuildFile; fileRef = 023A354B201C6BF900894651 /* upload.png */; };
 		023A354E201C7A7400894651 /* Profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 023A354D201C7A7100894651 /* Profile.png */; };
 		023A35502020E2E000894651 /* PlayerFixturesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A354F2020E2E000894651 /* PlayerFixturesTableViewController.swift */; };
+		023A35542021B52200894651 /* Reject.png in Resources */ = {isa = PBXBuildFile; fileRef = 023A35512021B51A00894651 /* Reject.png */; };
+		023A35552021B52200894651 /* maybe.png in Resources */ = {isa = PBXBuildFile; fileRef = 023A35522021B51A00894651 /* maybe.png */; };
+		023A35562021B52200894651 /* Accept.png in Resources */ = {isa = PBXBuildFile; fileRef = 023A35532021B52100894651 /* Accept.png */; };
+		023A355820224F0100894651 /* PlayerFixturesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A355720224F0100894651 /* PlayerFixturesTableViewCell.swift */; };
 		023FAEE91FC7553700AD6505 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */; };
 		023FAF361FC75B7600AD6505 /* add-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 023FAF341FC75B7600AD6505 /* add-user.png */; };
 		023FAF371FC75B7600AD6505 /* team.png in Resources */ = {isa = PBXBuildFile; fileRef = 023FAF351FC75B7600AD6505 /* team.png */; };
@@ -45,6 +49,10 @@
 		023A354B201C6BF900894651 /* upload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upload.png; path = Icons/upload.png; sourceTree = SOURCE_ROOT; };
 		023A354D201C7A7100894651 /* Profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Profile.png; path = Icons/Profile.png; sourceTree = SOURCE_ROOT; };
 		023A354F2020E2E000894651 /* PlayerFixturesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFixturesTableViewController.swift; sourceTree = "<group>"; };
+		023A35512021B51A00894651 /* Reject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Reject.png; path = Icons/Reject.png; sourceTree = SOURCE_ROOT; };
+		023A35522021B51A00894651 /* maybe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = maybe.png; path = Icons/maybe.png; sourceTree = SOURCE_ROOT; };
+		023A35532021B52100894651 /* Accept.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Accept.png; path = Icons/Accept.png; sourceTree = SOURCE_ROOT; };
+		023A355720224F0100894651 /* PlayerFixturesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFixturesTableViewCell.swift; sourceTree = "<group>"; };
 		023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		023FAF341FC75B7600AD6505 /* add-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add-user.png"; path = "Icons/add-user.png"; sourceTree = SOURCE_ROOT; };
 		023FAF351FC75B7600AD6505 /* team.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = team.png; path = Icons/team.png; sourceTree = SOURCE_ROOT; };
@@ -90,6 +98,9 @@
 		023FAEEF1FC75B2500AD6505 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				023A35532021B52100894651 /* Accept.png */,
+				023A35522021B51A00894651 /* maybe.png */,
+				023A35512021B51A00894651 /* Reject.png */,
 				023A354D201C7A7100894651 /* Profile.png */,
 				023A354B201C6BF900894651 /* upload.png */,
 				023A3549201C6B3A00894651 /* edit.png */,
@@ -118,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				023A354F2020E2E000894651 /* PlayerFixturesTableViewController.swift */,
+				023A355720224F0100894651 /* PlayerFixturesTableViewCell.swift */,
 			);
 			path = "Fixtures (PlayerView)";
 			sourceTree = "<group>";
@@ -285,12 +297,15 @@
 				023FAF361FC75B7600AD6505 /* add-user.png in Resources */,
 				029E17E01FBA307C00E5F8AB /* LaunchScreen.storyboard in Resources */,
 				02F607AA1FF2D8770025D18F /* game.png in Resources */,
+				023A35542021B52200894651 /* Reject.png in Resources */,
 				023A354E201C7A7400894651 /* Profile.png in Resources */,
 				023FAF371FC75B7600AD6505 /* team.png in Resources */,
 				0252518C2006379A00A1C8D4 /* Home.png in Resources */,
 				023A354A201C6B3D00894651 /* edit.png in Resources */,
+				023A35562021B52200894651 /* Accept.png in Resources */,
 				029E17DD1FBA307C00E5F8AB /* Assets.xcassets in Resources */,
 				02F607A61FF298090025D18F /* messaging.png in Resources */,
+				023A35552021B52200894651 /* maybe.png in Resources */,
 				02F607A81FF2CE8A0025D18F /* fixture.png in Resources */,
 				023A354C201C6BFB00894651 /* upload.png in Resources */,
 				0252518B2006379A00A1C8D4 /* Away.png in Resources */,
@@ -376,6 +391,7 @@
 				021BB1231FBA45E300AC52CE /* SignUpViewController.swift in Sources */,
 				025251882006270A00A1C8D4 /* FixturesTableViewCell.swift in Sources */,
 				029E17D31FBA307C00E5F8AB /* AppDelegate.swift in Sources */,
+				023A355820224F0100894651 /* PlayerFixturesTableViewCell.swift in Sources */,
 				025251861FFABDAD00A1C8D4 /* FixturesTableViewController.swift in Sources */,
 				02F607AC1FF2DBB10025D18F /* CreateGameViewController.swift in Sources */,
 				02D091C72015D884003D3087 /* PlayerViewController.swift in Sources */,
