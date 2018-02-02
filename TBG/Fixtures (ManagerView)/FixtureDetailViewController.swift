@@ -19,10 +19,25 @@ class FixtureDetailViewController: UIViewController {
         super.viewDidLoad()
         
         lblOpposition.text = self.opposition
-        print(players)
-
-        // Do any additional setup after loading the view.
+        
+        setNavTitle(completionBlock: setNavTitleHandlerBlock)
     }
+    
+    let setNavTitleHandlerBlock: (Bool) -> () = { (isSuccess: Bool) in
+        if isSuccess {
+            print("Function is completed")
+        }
+    }
+    
+    func setNavTitle(completionBlock: (Bool) -> Void) {
+        if self.opposition == "" {
+            completionBlock(false)
+        } else {
+            completionBlock(true)
+            self.navigationItem.title = self.opposition
+        }
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

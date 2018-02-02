@@ -15,9 +15,16 @@ class PlayerFixturesTableViewController: UITableViewController {
     var teamFixtures : [DataSnapshot] = []
     var teamIdentity = ""
     var playerName = ""
+    var playerId = ""
+    
+    var refresher: UIRefreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresher.addTarget(self, action: #selector(FixturesTableViewController.getFixtures), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refresher)
 
     }
     
@@ -31,6 +38,8 @@ class PlayerFixturesTableViewController: UITableViewController {
         
         if let email = Auth.auth().currentUser?.email {
             Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: email).observe(.childAdded, with: { (snapshot) in
+                
+                self.playerId = snapshot.key
                 
                 if let PlayerDictionary = snapshot.value as? [String:Any] {
                     if let name = PlayerDictionary["Full Name"] as? String  {
@@ -47,7 +56,7 @@ class PlayerFixturesTableViewController: UITableViewController {
                             
                             self.teamFixtures.append(snapshot)
                             self.tableView.reloadData()
-                            // self.refresher.endRefreshing()
+                            self.refresher.endRefreshing()
                             
                         })
                     }
@@ -56,20 +65,11 @@ class PlayerFixturesTableViewController: UITableViewController {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return teamFixtures.count
     }
 
@@ -90,22 +90,20 @@ class PlayerFixturesTableViewController: UITableViewController {
                         cell.ivHomeAway.image = #imageLiteral(resourceName: "Away.png")
                     }
                     
-                    if let availablePlayers = TeamDictionary["Available Players"] as? [String:Any] {
-                        if let player = availablePlayers[self.playerName] as? String {
-                            cell.ivPlayingStatus.image = #imageLiteral(resourceName: "Accept.png")
+                    if let players = TeamDictionary["Players"] as? [String:Any] {
+                        for player in players {
+                            if player.key == playerId {
+                                var value = player.value as? String
+                                if value == "Available" {
+                                    cell.ivPlayingStatus.image = #imageLiteral(resourceName: "Accept.png")
+                                } else if value == "Unavailable" {
+                                    cell.ivPlayingStatus.image = #imageLiteral(resourceName: "Reject.png")
+                                } else {
+                                    cell.ivPlayingStatus.image = #imageLiteral(resourceName: "maybe.png")
+                                }
+                            }
                         }
                     }
-                    if let unavailablePlayers = TeamDictionary["Unavailable Players"] as? [String:Any] {
-                        if let player = unavailablePlayers[self.playerName] as? String {
-                            cell.ivPlayingStatus.image = #imageLiteral(resourceName: "Reject.png")
-                        }
-                    }
-                    if let maybePlayers = TeamDictionary["Maybe Players"] as? [String:Any] {
-                        if let player = maybePlayers[self.playerName] as? String {
-                            cell.ivPlayingStatus.image = #imageLiteral(resourceName: "maybe.png")
-                        }
-                    }
-                    
                     return cell
                 }
             }
@@ -114,36 +112,86 @@ class PlayerFixturesTableViewController: UITableViewController {
     }
     
     
-    override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
-        
-        let accept = UITableViewRowAction(style: .normal, title: "Accept") { action, index in
-            print("Accept button tapped")
-            // Add function here
+    
+    func updatePlayerAvailability(fixtureId: String, availability: String, playerFixtureCount: Int) {
+        Database.database().reference().child("Teams").child(self.teamIdentity).child("Fixtures").child(fixtureId).child("Players").observe(.childAdded) { (snapshot) in
+            
+            var count = 1
+            
+            let id = snapshot.key
+            let player : [String:String] = [id: availability]
+            let playerUpdate = Database.database().reference().child("Teams").child(self.teamIdentity).child("Fixtures").child(fixtureId).child("Players")
+            
+            if id == self.playerId {
+                playerUpdate.updateChildValues(player)
+                count += 1
+            } else {
+                print(count)
+                print(playerFixtureCount)
+                if count == playerFixtureCount {
+                    // Match not found ... just add
+                Database.database().reference().child("Teams").child(self.teamIdentity).child("Fixtures").child(fixtureId).child("Players").child(self.playerId).setValue(player)
+                } else {
+                    //ERROR - THERE WILL ALWAYS BE THE CREATOR THERE
+                }
+            }
         }
-        accept.backgroundColor = UIColor(red: 54/255, green: 217/255, blue: 122/255, alpha: 1.0)
+
+    }
+    
+    
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let maybe = UITableViewRowAction(style: .normal, title: "Maybe") { action, index in
-            print("Maybe button tapped")
-            // Add function here
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PlayerFixturesTableViewCell {
+            
+            let snapshot = self.teamFixtures[indexPath.row]
+            
+            var playerFixtureCount = 0
+            
+            if let TeamDictionary = snapshot.value as? [String:Any] {
+                if let player = TeamDictionary["Players"] as? [String:Any] {
+                    playerFixtureCount = player.count
+                }
+            }
+            
+            let fixtureId = snapshot.key
+            
+            let accept = UITableViewRowAction(style: .normal, title: "Accept") { action, index in
+                print("Accept button tapped")
+                self.updatePlayerAvailability(fixtureId: fixtureId, availability: "Available", playerFixtureCount: playerFixtureCount)
+                
+                self.getFixtures()
+
+            }
+            accept.backgroundColor = UIColor(red: 54/255, green: 217/255, blue: 122/255, alpha: 1.0)
+            
+            let maybe = UITableViewRowAction(style: .normal, title: "Maybe") { action, index in
+                print("Maybe button tapped")
+                self.updatePlayerAvailability(fixtureId: fixtureId, availability: "Maybe", playerFixtureCount: playerFixtureCount)
+                
+                self.getFixtures()
+                
+            }
+            maybe.backgroundColor = UIColor(red: 219/255, green: 135/255, blue: 66/255, alpha: 1.0)
+            
+            let reject = UITableViewRowAction(style: .normal, title: "Reject") { action, index in
+                print("Reject button tapped")
+                self.updatePlayerAvailability(fixtureId: fixtureId, availability: "Unavailable", playerFixtureCount: playerFixtureCount)
+                
+                self.getFixtures()
+                
+            }
+            reject.backgroundColor = UIColor(red: 145/255, green: 20/255, blue: 20/255, alpha: 1.0)
+            
+            return [reject, maybe, accept]
         }
-        maybe.backgroundColor = UIColor(red: 219/255, green: 135/255, blue: 66/255, alpha: 1.0)
-        
-        let reject = UITableViewRowAction(style: .normal, title: "Reject") { action, index in
-            print("Reject button tapped")
-            // Add function here
-        }
-        reject.backgroundColor = UIColor(red: 145/255, green: 20/255, blue: 20/255, alpha: 1.0)
-        
-        return [reject, maybe, accept]
+        return [UITableViewRowAction]()
     }
     
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-
-
-
-
 
 }

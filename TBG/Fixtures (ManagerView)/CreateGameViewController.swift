@@ -21,6 +21,10 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var tfVenue: UITextField!
     @IBOutlet weak var tfOpposition: UITextField!
     
+    var allPlayers = [Dictionary<String, Any>]()
+    var playerKeys: [String] = []
+//    var playerIdDictionary = [String:Any]()
+    
     var dateMode = true
     var oppositionMode = true
     var homeTeamId = ""
@@ -29,7 +33,6 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     var managerName : String = ""
     var managerId : String = ""
-    
     
     var tokens : [String] = []
     
@@ -61,7 +64,6 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
                         self.homeTeamId = teamID
                         
                         Database.database().reference().child("Teams").queryOrdered(byChild: "id").queryEqual(toValue: teamID).observe(.childAdded, with: { (snapshot) in
-                            
                             Database.database().reference().child("Teams").removeAllObservers()
                             
                             if let teamDictionary = snapshot.value as? [String:Any] {
@@ -89,6 +91,9 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
             if let managerDictionary = snapshot.value as? [String:Any] {
                 if let teamID = managerDictionary["Team ID"] as? String  {
                     Database.database().reference().child("Players").queryOrdered(byChild: "Team ID").queryEqual(toValue: teamID).observe(.childAdded, with: { (snapshot) in
+                        
+                        self.playerKeys.append(snapshot.key)
+                        
                         Database.database().reference().child("Players").removeAllObservers()
                         if let playerDictionary = snapshot.value as? [String:Any] {
                             if let token = playerDictionary["Active Token"] as? String {
@@ -149,10 +154,22 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
                         
                         //Capture the key
                         let newFixtureId = newFixture.key
+                        
+                        //Loop through Players, set and add to dictionary
+//                        for player in playerKeys {
+//                            let newPlayer : [String:Any] = [player:"Maybe"]
+//                            self.allPlayers.append(newPlayer)
+//                        }
+//                        print("ALL PLAYERS: \(self.allPlayers)")
+//                        
+//                        let PlayerFixture = Database.database().reference().child("Teams").child(self.homeTeamId).child("Fixtures").child(newFixtureId).child("Players")
+//                        
+//                        PlayerFixture.setValue(self.allPlayers)
+                        
 
-                        //Add the manager as the first player
-                        let manager : [String:Any] = [self.managerName:self.managerId]
-                        let newPlayerFixture = Database.database().reference().child("Teams").child(self.homeTeamId).child("Fixtures").child(newFixtureId).child("Available Players")
+                        //Manager added as available
+                        let manager : [String:Any] = [self.managerId:"Available"]
+                        let newPlayerFixture = Database.database().reference().child("Teams").child(self.homeTeamId).child("Fixtures").child(newFixtureId).child("Players")
                         newPlayerFixture.setValue(manager)
                         
                         //Send Push Notification
