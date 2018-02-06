@@ -118,24 +118,40 @@ class FixturesTableViewController: UITableViewController {
         performSegue(withIdentifier: "FixtureDetailSegue", sender: snapshot)
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let acceptVC = segue.destination as? FixtureDetailViewController {
             
             if let snapshot = sender as? DataSnapshot {
                 if let FixtureDictionary = snapshot.value as? [String:Any] {
                     if let opposition = FixtureDictionary["Away Team Name"] as? String {
-                        if let players = FixtureDictionary["Available Players"] as? [String:Any] {
+                        if let players = FixtureDictionary["Players"] as? [String:Any] {
                             
                             acceptVC.opposition = opposition
-                            acceptVC.players = players
+                            acceptVC.playerKeys = players
                             
+                            let playerKeys = players.keys
+                            for id in playerKeys {
+                            Database.database().reference().child("Players").queryOrderedByKey().queryEqual(toValue: id ).observe(.childAdded) {(snapshot) in
+                                
+                                    if let PlayerDictionary = snapshot.value as? [String:Any] {
+                                        if PlayerDictionary["Position"] as? String == "Striker" {
+                                            acceptVC.strikers.append(snapshot)
+                                        } else if PlayerDictionary["Position"] as? String == "Midfielder" {
+                                            acceptVC.midfielders.append(snapshot)
+                                        } else if PlayerDictionary["Position"] as? String == "Defender" {
+                                            acceptVC.defenders.append(snapshot)
+                                        } else {
+                                            acceptVC.goalkeepers.append(snapshot)
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
-            
         }
     }
+
 
 }
