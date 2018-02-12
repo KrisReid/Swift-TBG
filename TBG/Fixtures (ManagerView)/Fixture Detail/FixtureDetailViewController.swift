@@ -14,7 +14,6 @@ class FixtureDetailViewController: UIViewController, UICollectionViewDelegate, U
     @IBOutlet weak var cvGoalkeeper: UICollectionView!
     @IBOutlet weak var cvDefender: UICollectionView!
     @IBOutlet weak var cvMid: UICollectionView!
-    
     @IBOutlet weak var cvStriker: UICollectionView!
     
     var opposition: String = ""

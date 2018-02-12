@@ -13,10 +13,14 @@ import FirebaseStorage
 
 class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
+    
+    
+    @IBOutlet weak var btnPhoto: UIButton!
+    @IBOutlet weak var btnSubmit: UIButton!
+    @IBOutlet weak var btnCancel: UIButton!
     @IBOutlet weak var tfAddressLine1: UITextField!
     @IBOutlet weak var imgProfileImage: UIImageView!
     @IBOutlet weak var tfTeamPostcode: UITextField!
-    @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var tfTeamName: UITextField!
     @IBOutlet weak var managerSwitch: UISwitch!
     @IBOutlet weak var tfTeamId: UITextField!
@@ -25,7 +29,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var tfPassword: UITextField!
     @IBOutlet weak var tfEmailAddress: UITextField!
     @IBOutlet weak var tfFullName: UITextField!
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var lblSwitchText: UILabel!
     
     var teams : [DataSnapshot] = []
     var players : [DataSnapshot] = []
@@ -44,12 +48,63 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         self.pushToken = self.delegate.token
         
-        imgProfileImage.layer.cornerRadius = imgProfileImage.frame.size.width / 2
-        imgProfileImage.layer.masksToBounds = true
+        setImage()
+        
+        setTextFields(textfieldName: tfFullName)
+        setTextFields(textfieldName: tfEmailAddress)
+        setTextFields(textfieldName: tfPassword)
+        setTextFields(textfieldName: tfAddressLine1)
+        setTextFields(textfieldName: tfAddressLine2)
+        setTextFields(textfieldName: tfPostcode)
+        setTextFields(textfieldName: tfTeamId)
+        setTextFields(textfieldName: tfTeamName)
+        setTextFields(textfieldName: tfTeamPostcode)
+        
+        btnCancel.layer.cornerRadius = 5.0
+        btnSubmit.layer.cornerRadius = 5.0
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         fetchTeams ()
         fetchPlayers ()
         
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                // self.view.frame.origin.y -= keyboardSize.height
+                self.view.frame.origin.y -= 40
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                // self.view.frame.origin.y += keyboardSize.height
+                self.view.frame.origin.y += 40
+            }
+        }
+    }
+    
+    func setImage () {
+        imgProfileImage.layer.cornerRadius = imgProfileImage.frame.size.width / 2
+        imgProfileImage.layer.masksToBounds = true
+        
+        btnPhoto.layer.cornerRadius = btnPhoto.frame.size.width / 2
+        btnPhoto.layer.masksToBounds = true
+        let myColor = UIColor.gray
+        btnPhoto.layer.borderColor = myColor.cgColor
+        btnPhoto.layer.borderWidth = 1.0
+    }
+    
+    func setTextFields (textfieldName : UITextField) {
+        let myColor = UIColor.gray
+        textfieldName.layer.borderColor = myColor.cgColor
+        textfieldName.layer.borderWidth = 1.0
+        textfieldName.layer.cornerRadius = 10.0
     }
     
     func fetchTeams () {
@@ -78,6 +133,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         if let selectedImage = selectedImageFromPicker {
             imgProfileImage.image = selectedImage
+            btnPhoto.setTitle("",for: .normal)
         }
         self.dismiss(animated: true, completion: nil)
     }
@@ -95,12 +151,22 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             tfTeamName.isHidden = false
             tfTeamPostcode.isHidden = false
             tfTeamId.isHidden = true
+            lblSwitchText.text = "I'm creating a team"
+            //buttonsSlidedown ()
+            submitConstraint.constant = 60
         } else {
             tfTeamName.isHidden = true
             tfTeamPostcode.isHidden = true
             tfTeamId.isHidden = false
+            lblSwitchText.text = "I'm joining a team"
+            //buttonsSlideUp ()
+            print("SLIDE UP")
+            submitConstraint.constant = 20
         }
     }
+    
+    @IBOutlet weak var submitConstraint: NSLayoutConstraint!
+    
     
     func teamNameDBCheck () {
         for team in self.teams {
@@ -165,9 +231,14 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     
+    @IBAction func btnCancelClicked(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+
+    }
     
     
-    @IBAction func btnSignup(_ sender: Any) {
+    @IBAction func btnSubmitClicked(_ sender: Any) {
         guard let photo = imgProfileImage.image, let email = tfEmailAddress.text, let password = tfPassword.text, let fullName = tfFullName.text, let address1 = tfAddressLine1.text, let address2 = tfAddressLine2.text, let postcode = tfPostcode.text, let teamId = tfTeamId.text, let teamName = tfTeamName.text, let teamPostcode = tfTeamPostcode.text else {
             print("Something is missing?")
             return
@@ -205,7 +276,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                             //Add the Team to the DB
                                             let newRef = Database.database().reference().child("Teams").childByAutoId()
                                             let newKey = newRef.key
-                                            let TeamDictionary : [String:Any] = ["Team Name": teamName, "Team Postcode":teamPostcode, "id": newKey]
+                                            let TeamDictionary : [String:Any] = ["Team Name": teamName, "PIN": 1234, "Team Postcode":teamPostcode, "id": newKey]
                                             newRef.setValue(TeamDictionary)
                                             
                                             //Add the player to the DB

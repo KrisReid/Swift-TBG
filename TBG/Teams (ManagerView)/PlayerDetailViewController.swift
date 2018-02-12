@@ -24,6 +24,9 @@ class PlayerDetailViewController: UIViewController {
     @IBOutlet weak var lblRight: UILabel!
     @IBOutlet weak var btnUpdate: UIButton!
     
+    
+    @IBOutlet weak var updateConstraint: NSLayoutConstraint!
+    
     var playerEmail:String = ""
     var playerName: String = ""
     var newImage: String = ""
@@ -135,6 +138,7 @@ class PlayerDetailViewController: UIViewController {
     
     
     @IBAction func slrPlayerPositionMoved(_ sender: Any) {
+        updateConstraint.constant = 78
         if slrPlayerPosition.value >= 0 && slrPlayerPosition.value < 0.5 {
             //GK
             gkActive()
@@ -159,6 +163,7 @@ class PlayerDetailViewController: UIViewController {
     }
     
     @IBAction func slrPlayerPositionSideMoved(_ sender: Any) {
+        updateConstraint.constant = 78
         if slrPlayerPositionSide.value >= 0 && slrPlayerPositionSide.value < 0.5 {
             //LEFT
             leftActive()
@@ -178,6 +183,35 @@ class PlayerDetailViewController: UIViewController {
     }
     
     
+    @IBAction func btnRemovePlayerSelected(_ sender: Any) {
+        self.displayAlert(title: "Confirmation", message: "Are you sure you want to remove this player from the team?")
+    }
+    
+    
+    func displayAlert(title:String, message:String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+            
+            self.removeTeamId(playerEmail: self.playerEmail)
+            self.dismissVC()
+            
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func removeTeamId(playerEmail : String) {
+        Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: playerEmail).observe(.childAdded) { (snapshot) in
+            snapshot.ref.updateChildValues(["Team ID": ""])
+            Database.database().reference().child("Players").removeAllObservers()
+        }
+    }
+    
+    func dismissVC() {
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     @IBAction func btnUpdateSelected(_ sender: Any) {
         //Update the Player Position
@@ -186,7 +220,7 @@ class PlayerDetailViewController: UIViewController {
             Database.database().reference().child("Players").removeAllObservers()
         }
         
-        // performSegue(withIdentifier: "updatePlayerPositionSegue", sender: nil)
+        self.dismissVC()
         
         self.btnUpdate.isHidden = true
        

@@ -12,6 +12,8 @@ class PlayersTableViewCell: UITableViewCell {
     
     @IBOutlet weak var ivProfilePic: UIImageView!
     @IBOutlet weak var lblFullName: UILabel!
+    @IBOutlet weak var lblPosition: UILabel!
+    @IBOutlet weak var lblSide: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

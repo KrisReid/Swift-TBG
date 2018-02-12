@@ -10,24 +10,74 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var imgBackgroundGIF: UIImageView!
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signupButton: UIButton!
     
     var playerEmail = ""
     var playerPassword = ""
     
+    var counter = 1
+    var timer = Timer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(playerEmail)
         
         if playerEmail != "" {
             tfEmail.text = playerEmail
         }
         
+        let myColor = UIColor.white
+        tfEmail.layer.borderColor = myColor.cgColor
+        tfEmail.layer.borderWidth = 1.0
+        tfEmail.layer.cornerRadius = 10.0
+        
+        tfPassword.layer.borderColor = myColor.cgColor
+        tfPassword.layer.borderWidth = 1.0
+        tfPassword.layer.cornerRadius = 10.0
+        
+        loginButton.layer.cornerRadius = 5.0
+        signupButton.layer.cornerRadius = 5.0
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+//                self.view.frame.origin.y -= keyboardSize.height
+                self.view.frame.origin.y -= 40
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+//                self.view.frame.origin.y += keyboardSize.height
+                self.view.frame.origin.y += 40
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        timer = Timer.scheduledTimer(timeInterval: 0.16, target: self, selector: #selector(LoginViewController.animate), userInfo: nil, repeats: true)
+    }
+    
+    @objc func animate() {
+        
+        imgBackgroundGIF.image = UIImage(named: "frame_\(counter)_delay-0.16s.gif")
+        
+        counter += 1
+        
+        if counter == 81 {
+            counter = 0
+        }
     }
     
     @IBAction func btnLogin(_ sender: Any) {
