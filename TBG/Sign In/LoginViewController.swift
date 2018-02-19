@@ -31,20 +31,21 @@ class LoginViewController: UIViewController {
             tfEmail.text = playerEmail
         }
         
-        let myColor = UIColor.white
-        tfEmail.layer.borderColor = myColor.cgColor
-        tfEmail.layer.borderWidth = 1.0
-        tfEmail.layer.cornerRadius = 10.0
-        
-        tfPassword.layer.borderColor = myColor.cgColor
-        tfPassword.layer.borderWidth = 1.0
-        tfPassword.layer.cornerRadius = 10.0
+        setTextFields(textfieldName: tfEmail)
+        setTextFields(textfieldName: tfPassword)
         
         loginButton.layer.cornerRadius = 5.0
         signupButton.layer.cornerRadius = 5.0
         
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func setTextFields (textfieldName : UITextField) {
+        let myColor = UIColor.white
+        textfieldName.layer.borderColor = myColor.cgColor
+        textfieldName.layer.borderWidth = 1.0
+        textfieldName.layer.cornerRadius = 10.0
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -70,7 +71,6 @@ class LoginViewController: UIViewController {
     }
     
     @objc func animate() {
-        
         imgBackgroundGIF.image = UIImage(named: "frame_\(counter)_delay-0.16s.gif")
         
         counter += 1

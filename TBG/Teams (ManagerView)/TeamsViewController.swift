@@ -54,22 +54,6 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         getPlayers ()
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        //Make sure you add the text field to the delegate
-        
-        // limit to 4 characters
-        let characterCountLimit = 4
-        
-        // We need to figure out how many characters would be in the string after the change happens
-        let startingLength = tfPIN.text?.characters.count ?? 0
-        let lengthToAdd = string.characters.count
-        let lengthToReplace = range.length
-        
-        let newLength = startingLength + lengthToAdd - lengthToReplace
-        
-        return newLength <= characterCountLimit
-    }
-    
     //SMS CODE
     @IBAction func btnShareClicked(_ sender: Any) {
         print("SHARE")
@@ -96,47 +80,29 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func btnUpdatePINClicked(_ sender: Any) {
-        
-        if tfPIN.text?.characters.count == 4 {
-            print("OK")
+        if PINEditMode {
+            tfPIN.isHidden = false
+            lblTeamPIN.isHidden = true
+            btnUpdatePIN.setImage(#imageLiteral(resourceName: "upload.png"), for: .normal)
+            self.PINEditMode = false
         } else {
-            displayAlert(title: "Re-enter your PIN", message: "Please use a 4 digit PIN")
+            if tfPIN.text?.characters.count == 6 {
+                tfPIN.isHidden = true
+                lblTeamPIN.isHidden = false
+                lblTeamPIN.text = tfPIN.text
+                
+                btnUpdatePIN.setImage(#imageLiteral(resourceName: "edit.png"), for: .normal)
+                self.PINEditMode = true
+                
+                Database.database().reference().child("Teams").queryOrdered(byChild: "id").queryEqual(toValue: teamId).observe(.childAdded, with: { (snapshot) in
+
+                    print(Int(self.teamPIN))
+                    snapshot.ref.updateChildValues(["PIN": Int(self.tfPIN.text!)!])
+                    Database.database().reference().child("Teams").removeAllObservers()
+                })
+                
+            }
         }
-        
-        
-//        if PINEditMode {
-//            tfPIN.isHidden = false
-//            lblTeamPIN.isHidden = true
-//            btnUpdatePIN.setImage(#imageLiteral(resourceName: "upload.png"), for: .normal)
-//            self.PINEditMode = false
-//        } else {
-//            tfPIN.isHidden = true
-//            lblTeamPIN.isHidden = false
-//            lblTeamPIN.text = tfPIN.text
-//
-//            btnUpdatePIN.setImage(#imageLiteral(resourceName: "edit.png"), for: .normal)
-//            self.PINEditMode = true
-//
-//            if tfPIN.text?.characters.count == 4 {
-//                Database.database().reference().child("Teams").queryOrdered(byChild: "id").queryEqual(toValue: teamId).observe(.childAdded, with: { (snapshot) in
-//
-//                    snapshot.ref.updateChildValues(["PIN": self.lblTeamPIN])
-//                    Database.database().reference().child("Teams").removeAllObservers()
-//                })
-//
-//            } else {
-//
-//                displayAlert(title: "Re-enter your PIN", message: "Please use a 4 digit PIN")
-//
-//            }
-//        }
-    }
-    
-    func displayAlert(title:String, message:String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-            print("Do Nothing")
-        }))
     }
     
     func setTextFields (textfieldName : UITextField) {
@@ -228,7 +194,6 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 if let teamName = TeamDictionary["Team Name"] as? String, let PIN = TeamDictionary["PIN"] as? Int {
                     
                     self.lblTeamName.text = teamName
-                    print("77777777777777777777\(PIN)")
                     self.lblTeamPIN.text = String(PIN)
                     self.teamPIN = PIN
                 }
