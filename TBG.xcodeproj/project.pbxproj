@@ -116,6 +116,8 @@
 		029E17DB1FBA307C00E5F8AB /* TBG.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 029E17D91FBA307C00E5F8AB /* TBG.xcdatamodeld */; };
 		029E17DD1FBA307C00E5F8AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 029E17DC1FBA307C00E5F8AB /* Assets.xcassets */; };
 		029E17E01FBA307C00E5F8AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 029E17DE1FBA307C00E5F8AB /* LaunchScreen.storyboard */; };
+		02AF597E203D65E700232C32 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AF597D203D65E700232C32 /* DataStore.swift */; };
+		02AF5980203D965C00232C32 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AF597F203D965C00232C32 /* Spinner.swift */; };
 		02B1ABFC2028F79200A24C56 /* MidCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B1ABFB2028F79200A24C56 /* MidCollectionViewCell.swift */; };
 		02B1AC05202A40D200A24C56 /* midfielder.png in Resources */ = {isa = PBXBuildFile; fileRef = 02B1AC03202A40CD00A24C56 /* midfielder.png */; };
 		02B1AC06202A40D200A24C56 /* defender.png in Resources */ = {isa = PBXBuildFile; fileRef = 02B1AC04202A40D000A24C56 /* defender.png */; };
@@ -245,6 +247,8 @@
 		029E17DC1FBA307C00E5F8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		029E17DF1FBA307C00E5F8AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		029E17E11FBA307C00E5F8AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02AF597D203D65E700232C32 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		02AF597F203D965C00232C32 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		02B1ABFB2028F79200A24C56 /* MidCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidCollectionViewCell.swift; sourceTree = "<group>"; };
 		02B1AC03202A40CD00A24C56 /* midfielder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = midfielder.png; path = Icons/midfielder.png; sourceTree = SOURCE_ROOT; };
 		02B1AC04202A40D000A24C56 /* defender.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = defender.png; path = Icons/defender.png; sourceTree = SOURCE_ROOT; };
@@ -481,6 +485,8 @@
 			isa = PBXGroup;
 			children = (
 				02D091CF20172728003D3087 /* TokenGenerationViewController.swift */,
+				02AF597D203D65E700232C32 /* DataStore.swift */,
+				02AF597F203D965C00232C32 /* Spinner.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -766,9 +772,11 @@
 				025251882006270A00A1C8D4 /* FixturesTableViewCell.swift in Sources */,
 				029E17D31FBA307C00E5F8AB /* AppDelegate.swift in Sources */,
 				02B1AC0A202A45F100A24C56 /* StrikerCollectionViewCell.swift in Sources */,
+				02AF5980203D965C00232C32 /* Spinner.swift in Sources */,
 				02B1ABFC2028F79200A24C56 /* MidCollectionViewCell.swift in Sources */,
 				023A355820224F0100894651 /* PlayerFixturesTableViewCell.swift in Sources */,
 				02326B0820307D0000729FFE /* TeamsViewController.swift in Sources */,
+				02AF597E203D65E700232C32 /* DataStore.swift in Sources */,
 				025251861FFABDAD00A1C8D4 /* FixturesTableViewController.swift in Sources */,
 				02F607AC1FF2DBB10025D18F /* CreateGameViewController.swift in Sources */,
 				02D091C72015D884003D3087 /* PlayerViewController.swift in Sources */,

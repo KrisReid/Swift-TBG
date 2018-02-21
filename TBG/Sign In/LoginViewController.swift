@@ -18,6 +18,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
     
+    //let dataStore = Person.init()
+    
     var playerEmail = ""
     var playerPassword = ""
     
@@ -26,6 +28,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //print("8888888888888888888")
+        //print(dataStore.age)
         
         if playerEmail != "" {
             tfEmail.text = playerEmail

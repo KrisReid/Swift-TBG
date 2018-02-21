@@ -13,6 +13,7 @@ import MessageUI
 
 class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate, UITextFieldDelegate  {
     
+    let dataStore = DataStore.init()
     
     @IBOutlet weak var tvPlayers: UITableView!
     @IBOutlet weak var lblTeamName: UILabel!
@@ -31,6 +32,23 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("9999999999999")
+        
+        let currentUserHandlerBlock: (Bool) -> () = { (isSuccess: Bool) in
+            if isSuccess {
+                print("Function has completed")
+            }
+        }
+        
+        func getStuff (completionBlock: (Bool) -> Void) {
+            let a = dataStore.getCurrentUser()
+            print(a)
+            completionBlock(true)
+            let b = dataStore.getUserDetails()
+            print(b)
+        }
+        
+        getStuff(completionBlock: currentUserHandlerBlock)
         
         _ = TokenGenerationViewController().viewDidLoad()
 

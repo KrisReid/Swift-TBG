@@ -154,18 +154,6 @@ class CreateGameViewController: UIViewController, UIPickerViewDelegate, UIPicker
                         
                         //Capture the key
                         let newFixtureId = newFixture.key
-                        
-                        //Loop through Players, set and add to dictionary
-//                        for player in playerKeys {
-//                            let newPlayer : [String:Any] = [player:"Maybe"]
-//                            self.allPlayers.append(newPlayer)
-//                        }
-//                        print("ALL PLAYERS: \(self.allPlayers)")
-//                        
-//                        let PlayerFixture = Database.database().reference().child("Teams").child(self.homeTeamId).child("Fixtures").child(newFixtureId).child("Players")
-//                        
-//                        PlayerFixture.setValue(self.allPlayers)
-                        
 
                         //Manager added as available
                         let manager : [String:Any] = [self.managerId:"Available"]
