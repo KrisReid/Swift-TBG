@@ -32,23 +32,23 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("9999999999999")
-        
-        let currentUserHandlerBlock: (Bool) -> () = { (isSuccess: Bool) in
-            if isSuccess {
-                print("Function has completed")
-            }
-        }
-        
-        func getStuff (completionBlock: (Bool) -> Void) {
-            let a = dataStore.getCurrentUser()
-            print(a)
-            completionBlock(true)
-            let b = dataStore.getUserDetails()
-            print(b)
-        }
-        
-        getStuff(completionBlock: currentUserHandlerBlock)
+//        print("9999999999999")
+//        
+//        let currentUserHandlerBlock: (Bool) -> () = { (isSuccess: Bool) in
+//            if isSuccess {
+//                print("Function has completed")
+//            }
+//        }
+//        
+//        func getStuff (completionBlock: (Bool) -> Void) {
+//            let a = dataStore.getCurrentUser()
+//            print(a)
+//            completionBlock(true)
+//            let b = dataStore.getUserDetails()
+//            print(b)
+//        }
+//        
+//        getStuff(completionBlock: currentUserHandlerBlock)
         
         _ = TokenGenerationViewController().viewDidLoad()
 

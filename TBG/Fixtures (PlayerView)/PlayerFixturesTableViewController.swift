@@ -13,7 +13,7 @@ import FirebaseDatabase
 class PlayerFixturesTableViewController: UITableViewController {
     
     var teamFixtures : [DataSnapshot] = []
-    var teamIdentity = ""
+    var teamIdentity: String = ""
     var playerName = ""
     var playerId = ""
     
@@ -93,7 +93,7 @@ class PlayerFixturesTableViewController: UITableViewController {
                     if let players = TeamDictionary["Players"] as? [String:Any] {
                         for player in players {
                             if player.key == playerId {
-                                var value = player.value as? String
+                                let value = player.value as? String
                                 if value == "Available" {
                                     cell.ivPlayingStatus.image = #imageLiteral(resourceName: "Accept.png")
                                 } else if value == "Unavailable" {
@@ -112,16 +112,19 @@ class PlayerFixturesTableViewController: UITableViewController {
     }
     
     
-    
     func updatePlayerAvailability(fixtureId: String, availability: String, playerFixtureCount: Int) {
+        
+        // BROKEN - NEED TO ADD A COMPLETION HANDLER INTO THIS
+        
+        var count = 1
         Database.database().reference().child("Teams").child(self.teamIdentity).child("Fixtures").child(fixtureId).child("Players").observe(.childAdded) { (snapshot) in
-            
-            var count = 1
             
             let id = snapshot.key
             let player : [String:String] = [id: availability]
             let playerUpdate = Database.database().reference().child("Teams").child(self.teamIdentity).child("Fixtures").child(fixtureId).child("Players")
             
+            print("id ===== \(id)")
+            print("playerid ===== \(self.playerId)")
             if id == self.playerId {
                 playerUpdate.updateChildValues(player)
                 count += 1
@@ -130,6 +133,7 @@ class PlayerFixturesTableViewController: UITableViewController {
                 print(playerFixtureCount)
                 if count == playerFixtureCount {
                     // Match not found ... just add
+                    print("IN HERE 777777777")
                 Database.database().reference().child("Teams").child(self.teamIdentity).child("Fixtures").child(fixtureId).child("Players").child(self.playerId).setValue(player)
                 } else {
                     //ERROR - THERE WILL ALWAYS BE THE CREATOR THERE
@@ -143,7 +147,7 @@ class PlayerFixturesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PlayerFixturesTableViewCell {
+        if tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) is PlayerFixturesTableViewCell {
             
             let snapshot = self.teamFixtures[indexPath.row]
             
@@ -159,6 +163,7 @@ class PlayerFixturesTableViewController: UITableViewController {
             
             let accept = UITableViewRowAction(style: .normal, title: "Accept") { action, index in
                 print("Accept button tapped")
+                print("\(fixtureId) and \(playerFixtureCount)")
                 self.updatePlayerAvailability(fixtureId: fixtureId, availability: "Available", playerFixtureCount: playerFixtureCount)
                 
                 self.getFixtures()
@@ -168,6 +173,7 @@ class PlayerFixturesTableViewController: UITableViewController {
             
             let maybe = UITableViewRowAction(style: .normal, title: "Maybe") { action, index in
                 print("Maybe button tapped")
+                print("\(fixtureId) and \(playerFixtureCount)")
                 self.updatePlayerAvailability(fixtureId: fixtureId, availability: "Maybe", playerFixtureCount: playerFixtureCount)
                 
                 self.getFixtures()
@@ -177,6 +183,7 @@ class PlayerFixturesTableViewController: UITableViewController {
             
             let reject = UITableViewRowAction(style: .normal, title: "Reject") { action, index in
                 print("Reject button tapped")
+                print("\(fixtureId) and \(playerFixtureCount)")
                 self.updatePlayerAvailability(fixtureId: fixtureId, availability: "Unavailable", playerFixtureCount: playerFixtureCount)
                 
                 self.getFixtures()

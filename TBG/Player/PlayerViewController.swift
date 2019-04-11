@@ -31,10 +31,8 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var tfAddressLine1: UITextField!
     @IBOutlet weak var tfAddressLine2: UITextField!
     @IBOutlet weak var tfPostcode: UITextField!
-    // @IBOutlet weak var tfEmail: UITextField!
     
     @IBOutlet weak var btnEditAddress: UIButton!
-    // @IBOutlet weak var btnEditEmail: UIButton!
     @IBOutlet weak var btnEditPosition: UIButton!
     @IBOutlet weak var btnEditPositionSide: UIButton!
     @IBOutlet weak var btnLeaveJoin: UIButton!

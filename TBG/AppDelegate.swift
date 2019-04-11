@@ -22,9 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        // UINavigationBar.appearance().tintColor = UIColor(red: 30/255, green: 230/255, blue: 30/255, alpha: 1.0)
+        
         FirebaseApp.configure()
         
-        // let token = InstanceID.instanceID().token()
         if let token = InstanceID.instanceID().token() {
             self.token = token
             
