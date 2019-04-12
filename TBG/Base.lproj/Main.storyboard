@@ -1972,6 +1972,7 @@
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4hO-Xi-TZI">
                                         <rect key="frame" x="0.0" y="0.0" width="279" height="391"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </scrollView>
                                     <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="5bv-0z-YxN">
                                         <rect key="frame" x="0.0" y="352.33333333333337" width="279" height="37"/>
@@ -1993,6 +1994,8 @@
                     <connections>
                         <outlet property="btnCancel" destination="U7N-Sh-340" id="aQA-DW-3mQ"/>
                         <outlet property="btnSubmt" destination="qB2-5I-6NY" id="Ib2-z8-WdM"/>
+                        <outlet property="pageControl" destination="5bv-0z-YxN" id="6SG-kL-iFI"/>
+                        <outlet property="scrollView" destination="4hO-Xi-TZI" id="BC8-JB-wqF"/>
                         <outlet property="svLogin" destination="4hO-Xi-TZI" id="NDg-A4-gib"/>
                         <outlet property="vContainer" destination="Dpk-5z-BFV" id="S4M-Zo-n0F"/>
                     </connections>

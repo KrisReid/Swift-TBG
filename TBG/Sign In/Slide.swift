@@ -9,8 +9,7 @@
 import UIKit
 
 class Slide: UIView {
-    
-    @IBOutlet weak var ivProfile: UIImageView!
+
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblAge: UILabel!
 
