@@ -111,7 +111,6 @@
 		0247DF6D225FC18100E80367 /* Icon 18-50-18-105.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF3D225FC17C00E80367 /* Icon 18-50-18-105.png */; };
 		0247DF6E225FC18100E80367 /* Icon-Small@2x 18-50-17-192.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF3E225FC17C00E80367 /* Icon-Small@2x 18-50-17-192.png */; };
 		0247DF6F225FC18100E80367 /* Icon-60 18-50-16-084.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF3F225FC17C00E80367 /* Icon-60 18-50-16-084.png */; };
-		0247DF70225FC18100E80367 /* defender.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF40225FC17C00E80367 /* defender.png */; };
 		0247DF71225FC18100E80367 /* fixture.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF41225FC17C00E80367 /* fixture.png */; };
 		0247DF72225FC18100E80367 /* Icon-72 18-50-18-878.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF42225FC17C00E80367 /* Icon-72 18-50-18-878.png */; };
 		0247DF73225FC18100E80367 /* Icon-Small-50@2x 18-50-19-404.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF43225FC17C00E80367 /* Icon-Small-50@2x 18-50-19-404.png */; };
@@ -120,7 +119,6 @@
 		0247DF76225FC18100E80367 /* Icon-Spotlight-40@3x 18-50-19-717.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF46225FC17D00E80367 /* Icon-Spotlight-40@3x 18-50-19-717.png */; };
 		0247DF77225FC18100E80367 /* Icon-60@2x 18-50-18-384.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF47225FC17D00E80367 /* Icon-60@2x 18-50-18-384.png */; };
 		0247DF78225FC18100E80367 /* Icon-60@2x 18-50-20-710.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF48225FC17D00E80367 /* Icon-60@2x 18-50-20-710.png */; };
-		0247DF79225FC18200E80367 /* striker.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF49225FC17D00E80367 /* striker.png */; };
 		0247DF7A225FC18200E80367 /* add-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF4A225FC17D00E80367 /* add-user.png */; };
 		0247DF7B225FC18200E80367 /* Icon-72@2x 18-50-19-418.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF4B225FC17D00E80367 /* Icon-72@2x 18-50-19-418.png */; };
 		0247DF7C225FC18200E80367 /* Icon-76 18-50-19-041.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF4C225FC17D00E80367 /* Icon-76 18-50-19-041.png */; };
@@ -142,7 +140,6 @@
 		0247DF8C225FC18200E80367 /* Icon-76@2x 18-50-18-732.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF5C225FC18000E80367 /* Icon-76@2x 18-50-18-732.png */; };
 		0247DF8D225FC18200E80367 /* Icon-Small@3x 18-50-15-819.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF5D225FC18000E80367 /* Icon-Small@3x 18-50-15-819.png */; };
 		0247DF8E225FC18200E80367 /* maybe.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF5E225FC18000E80367 /* maybe.png */; };
-		0247DF8F225FC18200E80367 /* midfielder.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF5F225FC18100E80367 /* midfielder.png */; };
 		0247DF90225FC18200E80367 /* Icon-Small 18-50-17-584.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF60225FC18100E80367 /* Icon-Small 18-50-17-584.png */; };
 		0247DF91225FC18200E80367 /* Profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF61225FC18100E80367 /* Profile.png */; };
 		0247DF92225FC18200E80367 /* Icon-Spotlight-40 18-50-17-991.png in Resources */ = {isa = PBXBuildFile; fileRef = 0247DF62225FC18100E80367 /* Icon-Spotlight-40 18-50-17-991.png */; };
@@ -163,6 +160,10 @@
 		02D091D020172728003D3087 /* TokenGenerationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D091CF20172728003D3087 /* TokenGenerationViewController.swift */; };
 		02E332F820260334008BE39B /* FixtureDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E332F720260334008BE39B /* FixtureDetailCollectionViewCell.swift */; };
 		02F607AC1FF2DBB10025D18F /* CreateGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F607AB1FF2DBB10025D18F /* CreateGameViewController.swift */; };
+		0C1F35872260BE8E003F4FB1 /* signup-background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C1F35862260BE8E003F4FB1 /* signup-background.jpg */; };
+		0C1F358B2260CA9E003F4FB1 /* AlternativeSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1F358A2260CA9E003F4FB1 /* AlternativeSignUpViewController.swift */; };
+		0C1F358D22611789003F4FB1 /* Slide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1F358C22611789003F4FB1 /* Slide.swift */; };
+		0C1F358F2261181D003F4FB1 /* Slide.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C1F358E2261181D003F4FB1 /* Slide.xib */; };
 		21D8FE36B2E01535BB68E0D5 /* Pods_TBG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E738D854AE3B77EF8EAD9C /* Pods_TBG.framework */; };
 /* End PBXBuildFile section */
 
@@ -271,7 +272,6 @@
 		0247DF3D225FC17C00E80367 /* Icon 18-50-18-105.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon 18-50-18-105.png"; path = "TBG/icons/Icon 18-50-18-105.png"; sourceTree = SOURCE_ROOT; };
 		0247DF3E225FC17C00E80367 /* Icon-Small@2x 18-50-17-192.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x 18-50-17-192.png"; path = "TBG/icons/Icon-Small@2x 18-50-17-192.png"; sourceTree = SOURCE_ROOT; };
 		0247DF3F225FC17C00E80367 /* Icon-60 18-50-16-084.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60 18-50-16-084.png"; path = "TBG/icons/Icon-60 18-50-16-084.png"; sourceTree = SOURCE_ROOT; };
-		0247DF40225FC17C00E80367 /* defender.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = defender.png; path = TBG/icons/defender.png; sourceTree = SOURCE_ROOT; };
 		0247DF41225FC17C00E80367 /* fixture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fixture.png; path = TBG/icons/fixture.png; sourceTree = SOURCE_ROOT; };
 		0247DF42225FC17C00E80367 /* Icon-72 18-50-18-878.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72 18-50-18-878.png"; path = "TBG/icons/Icon-72 18-50-18-878.png"; sourceTree = SOURCE_ROOT; };
 		0247DF43225FC17C00E80367 /* Icon-Small-50@2x 18-50-19-404.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50@2x 18-50-19-404.png"; path = "TBG/icons/Icon-Small-50@2x 18-50-19-404.png"; sourceTree = SOURCE_ROOT; };
@@ -280,7 +280,6 @@
 		0247DF46225FC17D00E80367 /* Icon-Spotlight-40@3x 18-50-19-717.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Spotlight-40@3x 18-50-19-717.png"; path = "TBG/icons/Icon-Spotlight-40@3x 18-50-19-717.png"; sourceTree = SOURCE_ROOT; };
 		0247DF47225FC17D00E80367 /* Icon-60@2x 18-50-18-384.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@2x 18-50-18-384.png"; path = "TBG/icons/Icon-60@2x 18-50-18-384.png"; sourceTree = SOURCE_ROOT; };
 		0247DF48225FC17D00E80367 /* Icon-60@2x 18-50-20-710.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@2x 18-50-20-710.png"; path = "TBG/icons/Icon-60@2x 18-50-20-710.png"; sourceTree = SOURCE_ROOT; };
-		0247DF49225FC17D00E80367 /* striker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = striker.png; path = TBG/icons/striker.png; sourceTree = SOURCE_ROOT; };
 		0247DF4A225FC17D00E80367 /* add-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add-user.png"; path = "TBG/icons/add-user.png"; sourceTree = SOURCE_ROOT; };
 		0247DF4B225FC17D00E80367 /* Icon-72@2x 18-50-19-418.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x 18-50-19-418.png"; path = "TBG/icons/Icon-72@2x 18-50-19-418.png"; sourceTree = SOURCE_ROOT; };
 		0247DF4C225FC17D00E80367 /* Icon-76 18-50-19-041.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76 18-50-19-041.png"; path = "TBG/icons/Icon-76 18-50-19-041.png"; sourceTree = SOURCE_ROOT; };
@@ -302,7 +301,6 @@
 		0247DF5C225FC18000E80367 /* Icon-76@2x 18-50-18-732.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76@2x 18-50-18-732.png"; path = "TBG/icons/Icon-76@2x 18-50-18-732.png"; sourceTree = SOURCE_ROOT; };
 		0247DF5D225FC18000E80367 /* Icon-Small@3x 18-50-15-819.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@3x 18-50-15-819.png"; path = "TBG/icons/Icon-Small@3x 18-50-15-819.png"; sourceTree = SOURCE_ROOT; };
 		0247DF5E225FC18000E80367 /* maybe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = maybe.png; path = TBG/icons/maybe.png; sourceTree = SOURCE_ROOT; };
-		0247DF5F225FC18100E80367 /* midfielder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = midfielder.png; path = TBG/icons/midfielder.png; sourceTree = SOURCE_ROOT; };
 		0247DF60225FC18100E80367 /* Icon-Small 18-50-17-584.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small 18-50-17-584.png"; path = "TBG/icons/Icon-Small 18-50-17-584.png"; sourceTree = SOURCE_ROOT; };
 		0247DF61225FC18100E80367 /* Profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Profile.png; path = TBG/icons/Profile.png; sourceTree = SOURCE_ROOT; };
 		0247DF62225FC18100E80367 /* Icon-Spotlight-40 18-50-17-991.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Spotlight-40 18-50-17-991.png"; path = "TBG/icons/Icon-Spotlight-40 18-50-17-991.png"; sourceTree = SOURCE_ROOT; };
@@ -327,6 +325,10 @@
 		02E332F720260334008BE39B /* FixtureDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		02F607AB1FF2DBB10025D18F /* CreateGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameViewController.swift; sourceTree = "<group>"; };
 		03C597F2654A7830B541D478 /* Pods-TBG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TBG.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TBG/Pods-TBG.debug.xcconfig"; sourceTree = "<group>"; };
+		0C1F35862260BE8E003F4FB1 /* signup-background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "signup-background.jpg"; path = "TBG/icons/signup-background.jpg"; sourceTree = SOURCE_ROOT; };
+		0C1F358A2260CA9E003F4FB1 /* AlternativeSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeSignUpViewController.swift; sourceTree = "<group>"; };
+		0C1F358C22611789003F4FB1 /* Slide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slide.swift; sourceTree = "<group>"; };
+		0C1F358E2261181D003F4FB1 /* Slide.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Slide.xib; sourceTree = "<group>"; };
 		49C8561EA02B5F2CD4A48983 /* Pods-TBG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TBG.release.xcconfig"; path = "Pods/Target Support Files/Pods-TBG/Pods-TBG.release.xcconfig"; sourceTree = "<group>"; };
 		80E738D854AE3B77EF8EAD9C /* Pods_TBG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TBG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -447,10 +449,10 @@
 		0247DF33225FC13800E80367 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				0C1F35862260BE8E003F4FB1 /* signup-background.jpg */,
 				0247DF36225FC17B00E80367 /* Accept.png */,
 				0247DF4A225FC17D00E80367 /* add-user.png */,
 				0247DF57225FC17F00E80367 /* Away.png */,
-				0247DF40225FC17C00E80367 /* defender.png */,
 				0247DF4D225FC17E00E80367 /* edit.png */,
 				0247DF41225FC17C00E80367 /* fixture.png */,
 				0247DF3A225FC17B00E80367 /* game.png */,
@@ -489,10 +491,8 @@
 				0247DF54225FC17F00E80367 /* Icon@2x 18-50-20-504.png */,
 				0247DF5E225FC18000E80367 /* maybe.png */,
 				0247DF52225FC17E00E80367 /* messaging.png */,
-				0247DF5F225FC18100E80367 /* midfielder.png */,
 				0247DF61225FC18100E80367 /* Profile.png */,
 				0247DF53225FC17F00E80367 /* Reject.png */,
-				0247DF49225FC17D00E80367 /* striker.png */,
 				0247DF55225FC17F00E80367 /* team.png */,
 				0247DF4E225FC17E00E80367 /* upload.png */,
 			);
@@ -515,6 +515,9 @@
 				023269C1202B917C00729FFE /* Pen GIF */,
 				021BB1221FBA45E300AC52CE /* SignUpViewController.swift */,
 				02409ED91FD7460900CE23BD /* LoginViewController.swift */,
+				0C1F358A2260CA9E003F4FB1 /* AlternativeSignUpViewController.swift */,
+				0C1F358C22611789003F4FB1 /* Slide.swift */,
+				0C1F358E2261181D003F4FB1 /* Slide.xib */,
 			);
 			path = "Sign In";
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 				TargetAttributes = {
 					029E17CE1FBA307C00E5F8AB = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -689,6 +693,7 @@
 				02326A5B202B917C00729FFE /* frame_20_delay-0.16s.gif in Resources */,
 				0247DF7E225FC18200E80367 /* upload.png in Resources */,
 				02326A40202B917C00729FFE /* frame_70_delay-0.16s.gif in Resources */,
+				0C1F35872260BE8E003F4FB1 /* signup-background.jpg in Resources */,
 				02326A42202B917C00729FFE /* frame_13_delay-0.16s.gif in Resources */,
 				0247DF6F225FC18100E80367 /* Icon-60 18-50-16-084.png in Resources */,
 				0247DF88225FC18200E80367 /* Icon-Small 18-50-22-952.png in Resources */,
@@ -707,7 +712,6 @@
 				02326A24202B917C00729FFE /* frame_9_delay-0.16s.gif in Resources */,
 				0247DF76225FC18100E80367 /* Icon-Spotlight-40@3x 18-50-19-717.png in Resources */,
 				0247DF86225FC18200E80367 /* Icon-Spotlight-40@2x 18-50-21-092.png in Resources */,
-				0247DF79225FC18200E80367 /* striker.png in Resources */,
 				02326A4A202B917C00729FFE /* frame_2_delay-0.16s.gif in Resources */,
 				0247DF87225FC18200E80367 /* Away.png in Resources */,
 				0247DF72225FC18100E80367 /* Icon-72 18-50-18-878.png in Resources */,
@@ -743,10 +747,10 @@
 				02326A20202B917C00729FFE /* frame_58_delay-0.16s.gif in Resources */,
 				02326A1F202B917C00729FFE /* frame_65_delay-0.16s.gif in Resources */,
 				02326A47202B917C00729FFE /* frame_29_delay-0.16s.gif in Resources */,
+				0C1F358F2261181D003F4FB1 /* Slide.xib in Resources */,
 				0247DF6B225FC18100E80367 /* Icon-iPadPro@2x 18-50-20-333.png in Resources */,
 				02326A22202B917C00729FFE /* frame_57_delay-0.16s.gif in Resources */,
 				02326A4D202B917C00729FFE /* frame_61_delay-0.16s.gif in Resources */,
-				0247DF70225FC18100E80367 /* defender.png in Resources */,
 				02326A43202B917C00729FFE /* frame_69_delay-0.16s.gif in Resources */,
 				02326A13202B917C00729FFE /* frame_74_delay-0.16s.gif in Resources */,
 				02326A5C202B917C00729FFE /* frame_4_delay-0.16s.gif in Resources */,
@@ -812,7 +816,6 @@
 				02326A50202B917C00729FFE /* frame_15_delay-0.16s.gif in Resources */,
 				02326A1E202B917C00729FFE /* frame_41_delay-0.16s.gif in Resources */,
 				02326A39202B917C00729FFE /* frame_0_delay-0.16s.gif in Resources */,
-				0247DF8F225FC18200E80367 /* midfielder.png in Resources */,
 				029E17D81FBA307C00E5F8AB /* Main.storyboard in Resources */,
 				02326A3B202B917C00729FFE /* frame_21_delay-0.16s.gif in Resources */,
 				02326A51202B917C00729FFE /* frame_28_delay-0.16s.gif in Resources */,
@@ -876,6 +879,7 @@
 			files = (
 				02409EDA1FD7460900CE23BD /* LoginViewController.swift in Sources */,
 				02E332F820260334008BE39B /* FixtureDetailCollectionViewCell.swift in Sources */,
+				0C1F358B2260CA9E003F4FB1 /* AlternativeSignUpViewController.swift in Sources */,
 				029E17DB1FBA307C00E5F8AB /* TBG.xcdatamodeld in Sources */,
 				02B1AC0C202A52A300A24C56 /* GoalkeeperCollectionViewCell.swift in Sources */,
 				023FAF3B1FC7837800AD6505 /* PlayersTableViewCell.swift in Sources */,
@@ -888,6 +892,7 @@
 				02AF5980203D965C00232C32 /* Spinner.swift in Sources */,
 				02B1ABFC2028F79200A24C56 /* MidCollectionViewCell.swift in Sources */,
 				023A355820224F0100894651 /* PlayerFixturesTableViewCell.swift in Sources */,
+				0C1F358D22611789003F4FB1 /* Slide.swift in Sources */,
 				02326B0820307D0000729FFE /* TeamsViewController.swift in Sources */,
 				02AF597E203D65E700232C32 /* DataStore.swift in Sources */,
 				025251861FFABDAD00A1C8D4 /* FixturesTableViewController.swift in Sources */,
@@ -1042,7 +1047,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.krisreid.TBG;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1061,7 +1066,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.krisreid.TBG;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

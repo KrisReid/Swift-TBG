@@ -66,8 +66,8 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         btnCancel.layer.cornerRadius = 5.0
         btnSubmit.layer.cornerRadius = 5.0
         
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         fetchTeams ()
         fetchPlayers ()
@@ -75,7 +75,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0{
                 self.view.frame.origin.y -= 70
             }
@@ -83,7 +83,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0{
                 self.view.frame.origin.y += 70
             }
@@ -122,13 +122,16 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         })
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         
         var selectedImageFromPicker: UIImage?
         
-        if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+        if let editedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage {
             selectedImageFromPicker = editedImage
-        } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        } else if let originalImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
             selectedImageFromPicker = originalImage
         }
         
@@ -142,7 +145,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBAction func btnPhotoTapped(_ sender: Any) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
-        imagePickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
         imagePickerController.allowsEditing = true
         self.present(imagePickerController, animated: true, completion: nil)
     }
@@ -286,7 +289,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                 
                                 if let user = user {
                                     let imageFolder = Storage.storage().reference().child("images")
-                                    if let uploadData = UIImageJPEGRepresentation(photo, 0.2) {
+                                    if let uploadData = photo.jpegData(compressionQuality: 0.2) {
                                         imageFolder.child("\(NSUUID().uuidString).jpg").putData(uploadData, metadata: nil, completion: { (metadata, error) in
                                             if let error = error {
                                                 self.displayAlert(title: "Error", message: error.localizedDescription)
@@ -333,7 +336,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                 
                                 if let user = user {
                                     let imageFolder = Storage.storage().reference().child("images")
-                                    if let uploadData = UIImageJPEGRepresentation(photo, 0.2) {
+                                    if let uploadData = photo.jpegData(compressionQuality: 0.2) {
                                         imageFolder.child("\(NSUUID().uuidString).jpg").putData(uploadData, metadata: nil, completion: { (metadata, error) in
                                             if let error = error {
                                                 self.displayAlert(title: "Error", message: error.localizedDescription)
@@ -390,7 +393,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.vLoading.isHidden = false
         self.activityIndicator.center = self.view.center
         self.activityIndicator.hidesWhenStopped = true
-        self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        self.activityIndicator.style = UIActivityIndicatorView.Style.gray
         view.addSubview(self.activityIndicator)
         self.activityIndicator.startAnimating()
         UIApplication.shared.beginIgnoringInteractionEvents()
@@ -415,4 +418,14 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         return true
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

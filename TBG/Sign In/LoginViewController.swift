@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var tfPassword: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
+    @IBOutlet weak var newSignup: UIButton!
     
     //let dataStore = Person.init()
     
@@ -30,8 +31,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         timer = Timer.scheduledTimer(timeInterval: 0.16, target: self, selector: #selector(LoginViewController.animate), userInfo: nil, repeats: true)
-        //print("8888888888888888888")
-        //print(dataStore.age)
         
         if playerEmail != "" {
             tfEmail.text = playerEmail
@@ -43,8 +42,8 @@ class LoginViewController: UIViewController {
         loginButton.layer.cornerRadius = 5.0
         signupButton.layer.cornerRadius = 5.0
         
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func setTextFields (textfieldName : UITextField) {
@@ -55,7 +54,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0{
 //                self.view.frame.origin.y -= keyboardSize.height
                 self.view.frame.origin.y -= 40
@@ -64,7 +63,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0{
 //                self.view.frame.origin.y += keyboardSize.height
                 self.view.frame.origin.y += 40

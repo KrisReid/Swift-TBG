@@ -24,7 +24,7 @@ class PlayersTableViewController: UITableViewController {
         updatePlayers()
         
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refresher.addTarget(self, action: #selector(PlayersTableViewController.updatePlayers), for: UIControlEvents.valueChanged)
+        refresher.addTarget(self, action: #selector(PlayersTableViewController.updatePlayers), for: UIControl.Event.valueChanged)
         tableView.addSubview(refresher)
         
     }
@@ -160,8 +160,8 @@ class PlayersTableViewController: UITableViewController {
     }
     
     //CODE FOR DELETING PLAYERS FROM THE DATABASE AND REFESHING
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
             
             let snapshot = allPlayers[indexPath.row]
             

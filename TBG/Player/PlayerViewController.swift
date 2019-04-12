@@ -351,7 +351,7 @@ class PlayerViewController: UIViewController {
         self.vLoading.isHidden = false
         self.activityIndicator.center = self.view.center
         self.activityIndicator.hidesWhenStopped = true
-        self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        self.activityIndicator.style = UIActivityIndicatorView.Style.gray
         view.addSubview(self.activityIndicator)
         self.activityIndicator.startAnimating()
         UIApplication.shared.beginIgnoringInteractionEvents()

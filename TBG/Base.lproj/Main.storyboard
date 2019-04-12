@@ -69,6 +69,17 @@
                                     <segue destination="9Zk-FD-tCp" kind="show" identifier="signupSegue" id="7wx-dg-Xnr"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yWe-TW-UsC">
+                                <rect key="frame" x="140" y="245" width="94" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.51851050939999999" blue="0.55009571209999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="NEW">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="OPu-yk-vtg" kind="show" identifier="signupSegue" id="0h7-5b-btk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -92,6 +103,7 @@
                     <connections>
                         <outlet property="imgBackgroundGIF" destination="UT4-mY-awr" id="xfF-oG-YsY"/>
                         <outlet property="loginButton" destination="N45-zf-jsP" id="6l8-Sn-nHL"/>
+                        <outlet property="newSignup" destination="yWe-TW-UsC" id="ZVz-nQ-i4B"/>
                         <outlet property="signupButton" destination="Eli-p3-qv5" id="4BS-x0-VoR"/>
                         <outlet property="tfEmail" destination="Pnj-o7-L6x" id="7Lu-7Y-LOW"/>
                         <outlet property="tfPassword" destination="QAu-a8-PwL" id="NkO-6D-zp5"/>
@@ -101,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="33" y="-186"/>
+            <point key="canvasLocation" x="32.799999999999997" y="-186.20689655172416"/>
         </scene>
         <!--Me-->
         <scene sceneID="jS0-9v-X8f">
@@ -1919,7 +1931,75 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Vm-D1-TRa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="-932.51231527093603"/>
+            <point key="canvasLocation" x="33" y="-931"/>
+        </scene>
+        <!--Alternative Sign Up View Controller-->
+        <scene sceneID="cPB-z1-ehl">
+            <objects>
+                <viewController id="OPu-yk-vtg" customClass="AlternativeSignUpViewController" customModule="TBG" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NxC-mt-HhW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signup-background.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="pme-Cv-71h">
+                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dpk-5z-BFV">
+                                <rect key="frame" x="48" y="187.66666666666663" width="279" height="437"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U7N-Sh-340">
+                                        <rect key="frame" x="0.0" y="389" width="120" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnCancelClicked:" destination="OPu-yk-vtg" eventType="touchUpInside" id="ugT-ov-TrN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qB2-5I-6NY">
+                                        <rect key="frame" x="177" y="389" width="107" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Submit">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnSubmitClicked:" destination="OPu-yk-vtg" eventType="touchUpInside" id="ynf-VR-gEZ"/>
+                                        </connections>
+                                    </button>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4hO-Xi-TZI">
+                                        <rect key="frame" x="0.0" y="0.0" width="279" height="391"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </scrollView>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="5bv-0z-YxN">
+                                        <rect key="frame" x="0.0" y="352.33333333333337" width="279" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </pageControl>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pme-Cv-71h" firstAttribute="leading" secondItem="48v-fR-TJJ" secondAttribute="leading" id="1cJ-v7-lbN"/>
+                            <constraint firstItem="pme-Cv-71h" firstAttribute="trailing" secondItem="48v-fR-TJJ" secondAttribute="trailing" id="GaX-dj-DnX"/>
+                            <constraint firstAttribute="bottom" secondItem="pme-Cv-71h" secondAttribute="bottom" id="YQU-5S-hWO"/>
+                            <constraint firstItem="pme-Cv-71h" firstAttribute="top" secondItem="48v-fR-TJJ" secondAttribute="top" id="vIV-YL-l6V"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="48v-fR-TJJ"/>
+                    </view>
+                    <connections>
+                        <outlet property="btnCancel" destination="U7N-Sh-340" id="aQA-DW-3mQ"/>
+                        <outlet property="btnSubmt" destination="qB2-5I-6NY" id="Ib2-z8-WdM"/>
+                        <outlet property="svLogin" destination="4hO-Xi-TZI" id="NDg-A4-gib"/>
+                        <outlet property="vContainer" destination="Dpk-5z-BFV" id="S4M-Zo-n0F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fex-Lg-gXE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="884" y="-931.0344827586207"/>
         </scene>
     </scenes>
     <resources>
@@ -2735,6 +2815,7 @@ F1wcXClcLFw5XD5cRlxJXE5cVlxZXGtcblxzAAAAAAAAAgEAAAAAAAAAWQAAAAAAAAAAAAAAAAAAXHU
 </mutableData>
         </image>
         <image name="messaging.png" width="32" height="32"/>
+        <image name="signup-background.jpg" width="4016" height="6016"/>
         <image name="team.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>

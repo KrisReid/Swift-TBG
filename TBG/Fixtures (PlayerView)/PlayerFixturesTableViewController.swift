@@ -23,7 +23,7 @@ class PlayerFixturesTableViewController: UITableViewController {
         super.viewDidLoad()
         
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refresher.addTarget(self, action: #selector(FixturesTableViewController.getFixtures), for: UIControlEvents.valueChanged)
+        refresher.addTarget(self, action: #selector(FixturesTableViewController.getFixtures), for: UIControl.Event.valueChanged)
         tableView.addSubview(refresher)
 
     }
