@@ -630,7 +630,6 @@
 				029E17CC1FBA307C00E5F8AB /* Frameworks */,
 				029E17CD1FBA307C00E5F8AB /* Resources */,
 				80E811AEA865FCC0FC00AB09 /* [CP] Embed Pods Frameworks */,
-				B69D761C9C0415BB1BBA5D51 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -848,7 +847,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TBG/Pods-TBG-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-TBG/Pods-TBG-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -865,22 +864,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TBG/Pods-TBG-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B69D761C9C0415BB1BBA5D51 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TBG/Pods-TBG-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TBG/Pods-TBG-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

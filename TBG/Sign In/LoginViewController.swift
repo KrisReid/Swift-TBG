@@ -29,6 +29,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        timer = Timer.scheduledTimer(timeInterval: 0.16, target: self, selector: #selector(LoginViewController.animate), userInfo: nil, repeats: true)
         //print("8888888888888888888")
         //print(dataStore.age)
         
@@ -71,9 +72,9 @@ class LoginViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        timer = Timer.scheduledTimer(timeInterval: 0.16, target: self, selector: #selector(LoginViewController.animate), userInfo: nil, repeats: true)
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        timer = Timer.scheduledTimer(timeInterval: 0.16, target: self, selector: #selector(LoginViewController.animate), userInfo: nil, repeats: true)
+//    }
     
     @objc func animate() {
         imgBackgroundGIF.image = UIImage(named: "frame_\(counter)_delay-0.16s.gif")
