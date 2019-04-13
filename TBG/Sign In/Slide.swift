@@ -9,8 +9,17 @@
 import UIKit
 
 class Slide: UIView {
+//class Slide: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblAge: UILabel!
+    @IBOutlet weak var lblToner: UILabel!
+    
+    @IBOutlet weak var ivProfile: UIImageView!
+    @IBOutlet weak var btnProfile: UIButton!
+    
 
+    
 }
+
+

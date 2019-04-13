@@ -164,6 +164,8 @@
 		0C1F358B2260CA9E003F4FB1 /* AlternativeSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1F358A2260CA9E003F4FB1 /* AlternativeSignUpViewController.swift */; };
 		0C1F358D22611789003F4FB1 /* Slide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1F358C22611789003F4FB1 /* Slide.swift */; };
 		0C1F358F2261181D003F4FB1 /* Slide.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C1F358E2261181D003F4FB1 /* Slide.xib */; };
+		0CF7DDD9226201B30028E3E5 /* Slide2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CF7DDD8226201B30028E3E5 /* Slide2.xib */; };
+		0CF7DDDB226205DA0028E3E5 /* AccountSlide.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CF7DDDA226205DA0028E3E5 /* AccountSlide.xib */; };
 		21D8FE36B2E01535BB68E0D5 /* Pods_TBG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E738D854AE3B77EF8EAD9C /* Pods_TBG.framework */; };
 /* End PBXBuildFile section */
 
@@ -329,6 +331,8 @@
 		0C1F358A2260CA9E003F4FB1 /* AlternativeSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeSignUpViewController.swift; sourceTree = "<group>"; };
 		0C1F358C22611789003F4FB1 /* Slide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slide.swift; sourceTree = "<group>"; };
 		0C1F358E2261181D003F4FB1 /* Slide.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Slide.xib; sourceTree = "<group>"; };
+		0CF7DDD8226201B30028E3E5 /* Slide2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Slide2.xib; sourceTree = "<group>"; };
+		0CF7DDDA226205DA0028E3E5 /* AccountSlide.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountSlide.xib; sourceTree = "<group>"; };
 		49C8561EA02B5F2CD4A48983 /* Pods-TBG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TBG.release.xcconfig"; path = "Pods/Target Support Files/Pods-TBG/Pods-TBG.release.xcconfig"; sourceTree = "<group>"; };
 		80E738D854AE3B77EF8EAD9C /* Pods_TBG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TBG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -518,6 +522,8 @@
 				0C1F358A2260CA9E003F4FB1 /* AlternativeSignUpViewController.swift */,
 				0C1F358C22611789003F4FB1 /* Slide.swift */,
 				0C1F358E2261181D003F4FB1 /* Slide.xib */,
+				0CF7DDD8226201B30028E3E5 /* Slide2.xib */,
+				0CF7DDDA226205DA0028E3E5 /* AccountSlide.xib */,
 			);
 			path = "Sign In";
 			sourceTree = "<group>";
@@ -695,6 +701,7 @@
 				02326A40202B917C00729FFE /* frame_70_delay-0.16s.gif in Resources */,
 				0C1F35872260BE8E003F4FB1 /* signup-background.jpg in Resources */,
 				02326A42202B917C00729FFE /* frame_13_delay-0.16s.gif in Resources */,
+				0CF7DDDB226205DA0028E3E5 /* AccountSlide.xib in Resources */,
 				0247DF6F225FC18100E80367 /* Icon-60 18-50-16-084.png in Resources */,
 				0247DF88225FC18200E80367 /* Icon-Small 18-50-22-952.png in Resources */,
 				0247DF6D225FC18100E80367 /* Icon 18-50-18-105.png in Resources */,
@@ -820,6 +827,7 @@
 				02326A3B202B917C00729FFE /* frame_21_delay-0.16s.gif in Resources */,
 				02326A51202B917C00729FFE /* frame_28_delay-0.16s.gif in Resources */,
 				0247DF85225FC18200E80367 /* team.png in Resources */,
+				0CF7DDD9226201B30028E3E5 /* Slide2.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

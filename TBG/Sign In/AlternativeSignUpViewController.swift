@@ -21,6 +21,7 @@ class AlternativeSignUpViewController : UIViewController, UINavigationController
     }
     @IBOutlet weak var pageControl: UIPageControl!
     
+    @IBOutlet weak var vSlide4: UIView!
     var slides:[Slide] = [];
     
     override func viewDidLoad() {
@@ -79,17 +80,26 @@ class AlternativeSignUpViewController : UIViewController, UINavigationController
     
     func createSlides() -> [Slide] {
         
-        let slide1:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
-        slide1.lblAge.text = "A real-life bear"
-        slide1.lblName.text = "Did you know that Winnie the chubby little cubby was based on a real, young bear in London"
+        let slide1:Slide = Bundle.main.loadNibNamed("AccountSlide", owner: self, options: nil)?.first as! Slide
+        
+        slide1.ivProfile.layer.cornerRadius = slide1.ivProfile.frame.size.width / 2
+        slide1.ivProfile.layer.masksToBounds = true
+        
+        slide1.btnProfile.layer.cornerRadius = slide1.btnProfile.frame.size.width / 2
+        slide1.btnProfile.layer.masksToBounds = true
+        let myColor = UIColor.white
+        slide1.btnProfile.layer.borderColor = myColor.cgColor
+        slide1.btnProfile.layer.borderWidth = 1.0
+        
+        
         
         let slide2:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
         slide2.lblAge.text = "A real-life bear"
         slide2.lblName.text = "Did you know that Winnie the chubby little cubby was based on a real, young bear in London"
         
-        let slide3:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
-        slide3.lblAge.text = "A real-life bear"
-        slide3.lblName.text = "Did you know that Winnie the chubby little cubby was based on a real, young bear in London"
+        let slide3:Slide = Bundle.main.loadNibNamed("Slide2", owner: self, options: nil)?.first as! Slide
+        slide3.lblToner.text = "A real-life bear"
+        
         
         return [slide1, slide2, slide3]
     }
@@ -122,5 +132,7 @@ class AlternativeSignUpViewController : UIViewController, UINavigationController
         let percentOffset: CGPoint = CGPoint(x: percentageHorizontalOffset, y: percentageVerticalOffset)
         
     }
+    
+    
     
 }
