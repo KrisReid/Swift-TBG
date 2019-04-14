@@ -7,132 +7,232 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
 
-class AlternativeSignUpViewController : UIViewController, UINavigationControllerDelegate, UIScrollViewDelegate  {
+class AlternativeSignUpViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
-    @IBOutlet weak var btnSubmt: UIButton!
-    @IBOutlet weak var btnCancel: UIButton!
-    @IBOutlet weak var vContainer: UIView!
-    @IBOutlet weak var svLogin: UIScrollView!
-    @IBOutlet weak var scrollView: UIScrollView!{
-        didSet{
-            scrollView.delegate = self
-        }
-    }
-    @IBOutlet weak var pageControl: UIPageControl!
     
-    @IBOutlet weak var vSlide4: UIView!
-    var slides:[Slide] = [];
+    @IBOutlet weak var svCredentials: UIScrollView!
+    @IBOutlet weak var vCredentials: UIView!
+    @IBOutlet weak var btnMoveToPersonalDetails: UIButton!
+    @IBOutlet weak var btnCancelForm: UIButton!
+    @IBOutlet weak var btnProfilePicture: UIButton!
+    @IBOutlet weak var ivProfilePicture: UIImageView!
+    @IBOutlet weak var tfFullName: UITextField!
+    @IBOutlet weak var tfEmailAddress: UITextField!
+    @IBOutlet weak var tfPassword: UITextField!
+    
+    
+    @IBOutlet weak var vPersonalDetails: UIView!
+    @IBOutlet weak var btnBackToCredentials: UIButton!
+    @IBOutlet weak var btnMoveToSubmit: UIButton!
+    @IBOutlet weak var tfAddressLineOne: UITextField!
+    @IBOutlet weak var tfAddressLineTwo: UITextField!
+    @IBOutlet weak var tfAddressPostcode: UITextField!
+    
+    
+    
+    @IBOutlet weak var vTeamDetails: UIView!
+    @IBOutlet weak var btnBackToPersonalDetails: UIButton!
+    @IBOutlet weak var btnSubmit: UIButton!
+    
     
     override func viewDidLoad() {
         
-        //SET THE CONTAINER
-        vContainer.layer.borderWidth = 1
-        vContainer.layer.borderColor = UIColor.white.cgColor
-        vContainer.layer.cornerRadius = 10
-        vContainer.frame = CGRect(x: 0 , y: 0, width: UIScreen.main.bounds.height / 2.5, height: UIScreen.main.bounds.height / 2)
-        vContainer.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
         
-        //CANCEL BUTTON
-        btnCancel.layer.borderWidth = 1
-        btnCancel.layer.borderColor = UIColor.white.cgColor
-        btnCancel.layer.cornerRadius = CGFloat(10)
-        btnCancel.clipsToBounds = true
-        btnCancel.layer.maskedCorners = [.layerMinXMaxYCorner]
-        let cancelY = vContainer.frame.height - (btnCancel.frame.height)
-        btnCancel.frame = CGRect(x: 0, y: cancelY, width: vContainer.frame.width/2, height: 50)
-        
-        //SUBMIT BUTTON
-        btnSubmt.layer.borderWidth = 1
-        btnSubmt.layer.borderColor = UIColor.white.cgColor
-        btnSubmt.layer.cornerRadius = CGFloat(10)
-        btnSubmt.clipsToBounds = true
-        btnSubmt.layer.maskedCorners = [.layerMaxXMaxYCorner]
-        let submitX = vContainer.frame.width / 2 - 1
-        let submitY = vContainer.frame.height - btnSubmt.frame.height
-        btnSubmt.frame = CGRect(x: submitX, y: submitY, width: vContainer.frame.width/2 + 1, height: 50)
+        setContainer(container: vCredentials, leftButton: btnCancelForm, rightButton: btnMoveToPersonalDetails);
+        setContainer(container: vPersonalDetails, leftButton: btnBackToCredentials, rightButton: btnMoveToSubmit);
+        setContainer(container: vTeamDetails, leftButton: btnBackToPersonalDetails, rightButton: btnSubmit);
         
         
-        slides = createSlides()
-        setupSlideScrollView(slides: slides)
         
-        pageControl.numberOfPages = slides.count
-        pageControl.currentPage = 0
-        view.bringSubviewToFront(pageControl)
+        svCredentials.frame = CGRect(x: 0 , y: 0, width: vCredentials.frame.width, height: vCredentials.frame.height - 50)
+        svCredentials.contentSize.height = vCredentials.frame.height
+        svCredentials.contentSize.width = vCredentials.frame.width
         
-        pageControl.frame = CGRect(x: 0, y: vContainer.frame.height - 80, width: vContainer.frame.width, height: 20)
+        
+        
+        setImage()
+        
+        
+        
+        setTextFields (textfieldName: tfFullName, view: vCredentials, yCoordinate: 210, placeholder: "Full Name")
+        setTextFields (textfieldName: tfEmailAddress, view: vCredentials, yCoordinate: 260, placeholder: "Email Address")
+        setTextFields (textfieldName: tfPassword, view: vCredentials, yCoordinate: 310, placeholder: "Password")
+        setTextFields (textfieldName: tfAddressLineOne, view: vCredentials, yCoordinate: 360, placeholder: "Address Line 1")
+        setTextFields (textfieldName: tfAddressLineTwo, view: vCredentials, yCoordinate: 410, placeholder: "Address Line 2")
+        setTextFields (textfieldName: tfAddressPostcode, view: vCredentials, yCoordinate: 460, placeholder: "Postcode")
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(AlternativeSignUpViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AlternativeSignUpViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
     }
     
     
-    
-    @IBAction func btnCancelClicked(_ sender: Any) {
+    //CREDENTIALS
+    @IBAction func btnCancelFormClicked(_ sender: Any) {
+        
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
         
     }
     
+    @IBAction func btnMoveToPersonalDetailsClicked(_ sender: Any) {
+        vCredentials.isHidden = true
+        vPersonalDetails.isHidden = false
+    }
+    
+    @IBAction func btnProfilePictureClicked(_ sender: Any) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePickerController.allowsEditing = true
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func setImage () {
+        ivProfilePicture.layer.cornerRadius = ivProfilePicture.frame.size.width / 2
+        ivProfilePicture.layer.masksToBounds = true
+        ivProfilePicture.center = CGPoint(x: vCredentials.frame.width / 2, y: 100)
+        
+        btnProfilePicture.layer.cornerRadius = btnProfilePicture.frame.size.width / 2
+        btnProfilePicture.layer.masksToBounds = true
+        let myColor = UIColor.white
+        btnProfilePicture.layer.borderColor = myColor.cgColor
+        btnProfilePicture.layer.borderWidth = 1.0
+        btnProfilePicture.center = CGPoint(x: vCredentials.frame.width / 2, y: 100)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        
+        var selectedImageFromPicker: UIImage?
+        
+        if let editedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage {
+            selectedImageFromPicker = editedImage
+        } else if let originalImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
+            selectedImageFromPicker = originalImage
+        }
+        
+        if let selectedImage = selectedImageFromPicker {
+            ivProfilePicture.image = selectedImage
+            btnProfilePicture.setTitle("",for: .normal)
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
+    //PERSONAL DETAILS
+    @IBAction func btnBackToCredentialsClicked(_ sender: Any) {
+        vPersonalDetails.isHidden = true
+        vCredentials.isHidden = false
+    }
+    
+    
+    @IBAction func btnMoveToTeamDetailsClicked(_ sender: Any) {
+        vPersonalDetails.isHidden = true
+        vTeamDetails.isHidden = false
+    }
+    
+    
+    
+    
+    
+    //TEAM DETAILS
+    @IBAction func btnBackToPersonalDetailsClicked(_ sender: Any) {
+        vTeamDetails.isHidden = true
+        vPersonalDetails.isHidden = false
+    }
     
     @IBAction func btnSubmitClicked(_ sender: Any) {
-        
+        print("Submit Clicked")
     }
     
     
-    func createSlides() -> [Slide] {
+    
+    
+    
+    //GENERAL FUNCTIONS
+    func setContainer (container: UIView, leftButton: UIButton, rightButton:UIButton) {
+        //SET THE CONTAINER
+        container.layer.borderWidth = 1
+        container.layer.borderColor = UIColor.white.cgColor
+        container.layer.cornerRadius = 10
+        container.frame = CGRect(x: 0 , y: 0, width: UIScreen.main.bounds.height / 2.5, height: UIScreen.main.bounds.height / 1.5)
+        container.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
         
-        let slide1:Slide = Bundle.main.loadNibNamed("AccountSlide", owner: self, options: nil)?.first as! Slide
+        //CANCEL BUTTON
+        leftButton.layer.borderWidth = 1
+        leftButton.layer.borderColor = UIColor.white.cgColor
+        leftButton.layer.cornerRadius = CGFloat(10)
+        leftButton.clipsToBounds = true
+        leftButton.layer.maskedCorners = [.layerMinXMaxYCorner]
+        let cancelY = container.frame.height - (leftButton.frame.height)
+        leftButton.frame = CGRect(x: 0, y: cancelY, width: container.frame.width/2, height: 50)
         
-        slide1.ivProfile.layer.cornerRadius = slide1.ivProfile.frame.size.width / 2
-        slide1.ivProfile.layer.masksToBounds = true
-        
-        slide1.btnProfile.layer.cornerRadius = slide1.btnProfile.frame.size.width / 2
-        slide1.btnProfile.layer.masksToBounds = true
+        //SUBMIT BUTTON
+        rightButton.layer.borderWidth = 1
+        rightButton.layer.borderColor = UIColor.white.cgColor
+        rightButton.layer.cornerRadius = CGFloat(10)
+        rightButton.clipsToBounds = true
+        rightButton.layer.maskedCorners = [.layerMaxXMaxYCorner]
+        let submitX = container.frame.width / 2 - 1
+        let submitY = container.frame.height - rightButton.frame.height
+        rightButton.frame = CGRect(x: submitX, y: submitY, width: container.frame.width/2 + 1, height: 50)
+    }
+    
+    func setTextFields (textfieldName: UITextField, view: UIView, yCoordinate: CGFloat, placeholder: String) {
         let myColor = UIColor.white
-        slide1.btnProfile.layer.borderColor = myColor.cgColor
-        slide1.btnProfile.layer.borderWidth = 1.0
-        
-        
-        
-        let slide2:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
-        slide2.lblAge.text = "A real-life bear"
-        slide2.lblName.text = "Did you know that Winnie the chubby little cubby was based on a real, young bear in London"
-        
-        let slide3:Slide = Bundle.main.loadNibNamed("Slide2", owner: self, options: nil)?.first as! Slide
-        slide3.lblToner.text = "A real-life bear"
-        
-        
-        return [slide1, slide2, slide3]
+        textfieldName.layer.borderColor = myColor.cgColor
+        textfieldName.layer.borderWidth = 1.0
+        textfieldName.layer.cornerRadius = 10.0
+        textfieldName.frame = CGRect(x: 0 , y: yCoordinate, width: view.frame.width / 1.2, height: 30)
+        textfieldName.center = CGPoint(x: view.frame.width / 2, y: yCoordinate)
+        textfieldName.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
     
-    func setupSlideScrollView(slides : [Slide]) {
-        scrollView.frame = CGRect(x: 0, y: 0, width: vContainer.frame.width, height: vContainer.frame.height - 50)
-        scrollView.contentSize = CGSize(width: vContainer.frame.width * CGFloat(slides.count), height: vContainer.frame.height - 50)
-        scrollView.isPagingEnabled = true
-        
-        for i in 0 ..< slides.count {
-            slides[i].frame = CGRect(x: vContainer.frame.width * CGFloat(i), y: 0, width: vContainer.frame.width, height: vContainer.frame.height - 50)
-            scrollView.addSubview(slides[i])
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= 110
+            }
         }
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let pageIndex = round(scrollView.contentOffset.x/vContainer.frame.width)
-        pageControl.currentPage = Int(pageIndex)
-        
-        let maximumHorizontalOffset: CGFloat = scrollView.contentSize.width - scrollView.frame.width
-        let currentHorizontalOffset: CGFloat = scrollView.contentOffset.x
-        
-        // vertical
-        let maximumVerticalOffset: CGFloat = scrollView.contentSize.height - scrollView.frame.height
-        let currentVerticalOffset: CGFloat = scrollView.contentOffset.y
-        
-        let percentageHorizontalOffset: CGFloat = currentHorizontalOffset / maximumHorizontalOffset
-        let percentageVerticalOffset: CGFloat = currentVerticalOffset / maximumVerticalOffset
-        
-        let percentOffset: CGPoint = CGPoint(x: percentageHorizontalOffset, y: percentageVerticalOffset)
-        
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += 110
+            }
+        }
     }
     
+    //closes the keyboard when you touch white space in outer view
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+
+    //enter button will close the keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Helper function inserted by Swift 4.2 migrator.
+    fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+        return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+    }
+    
+    // Helper function inserted by Swift 4.2 migrator.
+    fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+        return input.rawValue
+    }
     
     
 }

@@ -1699,7 +1699,7 @@
                                     <action selector="btnPhotoTapped:" destination="9Zk-FD-tCp" eventType="touchUpInside" id="ZXQ-DY-DRi"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Test " placeholder="Full Name" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="t9O-m1-WYn">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="t9O-m1-WYn">
                                 <rect key="frame" x="20" y="239" width="335" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -1941,63 +1941,197 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signup-background.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="pme-Cv-71h">
-                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signup-background.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="HCb-Vw-np9">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dpk-5z-BFV">
-                                <rect key="frame" x="48" y="187.66666666666663" width="279" height="437"/>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dpk-5z-BFV">
+                                <rect key="frame" x="30" y="507" width="308" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U7N-Sh-340">
-                                        <rect key="frame" x="0.0" y="389" width="120" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="Cancel">
+                                        <state key="normal" title="Back">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="btnCancelClicked:" destination="OPu-yk-vtg" eventType="touchUpInside" id="ugT-ov-TrN"/>
+                                            <action selector="btnBackToCredentialsClicked:" destination="OPu-yk-vtg" eventType="touchUpInside" id="LyP-A6-UrY"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qB2-5I-6NY">
-                                        <rect key="frame" x="177" y="389" width="107" height="50"/>
+                                        <rect key="frame" x="193" y="0.0" width="107" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Next">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnMoveToTeamDetailsClicked:" destination="OPu-yk-vtg" eventType="touchUpInside" id="Jyt-73-3DB"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cYp-43-b4B">
+                                <rect key="frame" x="30" y="572" width="313" height="193"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcg-HC-7tt">
+                                        <rect key="frame" x="37" y="142" width="34" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Back">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnBackToPersonalDetailsClicked:" destination="OPu-yk-vtg" eventType="touchUpInside" id="r3K-WA-3c6"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Submit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oyn-UM-3X2">
+                                        <rect key="frame" x="135" y="25" width="55" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2E4-Ji-bzF">
+                                        <rect key="frame" x="234" y="142" width="49" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Submit">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="btnSubmitClicked:" destination="OPu-yk-vtg" eventType="touchUpInside" id="ynf-VR-gEZ"/>
+                                            <action selector="btnSubmitClicked:" destination="OPu-yk-vtg" eventType="touchUpInside" id="gUl-Es-LP1"/>
                                         </connections>
                                     </button>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4hO-Xi-TZI">
-                                        <rect key="frame" x="0.0" y="0.0" width="279" height="391"/>
+                                </subviews>
+                                <color key="backgroundColor" red="0.75058694948186533" green="0.47789376332486144" blue="0.7422315716829635" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ5-dh-5DM">
+                                <rect key="frame" x="30" y="44" width="313" height="440"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bK8-9G-2kn">
+                                        <rect key="frame" x="21" y="390" width="48" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnCancelFormClicked:" destination="OPu-yk-vtg" eventType="touchUpInside" id="RR0-Ic-WjW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O2f-Ex-3PR">
+                                        <rect key="frame" x="230" y="390" width="66" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Next">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnMoveToPersonalDetailsClicked:" destination="OPu-yk-vtg" eventType="touchUpInside" id="8bL-QT-b45"/>
+                                        </connections>
+                                    </button>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="EfY-UC-h8u">
+                                        <rect key="frame" x="0.0" y="0.0" width="313" height="366"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rsc-jR-YEP">
+                                                <rect key="frame" x="98" y="30" width="130" height="130"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Htb-Iz-hFq">
+                                                <rect key="frame" x="98" y="30" width="130" height="130"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Add Photo">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleShadowColor" red="0.36348259529999999" green="0.66626720959999997" blue="0.81934089470000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnProfilePictureClicked:" destination="OPu-yk-vtg" eventType="touchUpInside" id="hVi-wn-inh"/>
+                                                </connections>
+                                            </button>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FTG-18-Imi">
+                                                <rect key="frame" x="24" y="194" width="264" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="07K-Yi-ttY">
+                                                <rect key="frame" x="31" y="223" width="259" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AvA-LE-6vd">
+                                                <rect key="frame" x="31" y="251" width="259" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address Line 1" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ccm-AS-J9C">
+                                                <rect key="frame" x="31" y="279" width="264" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Postcode" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mKh-34-bc1">
+                                                <rect key="frame" x="24" y="336" width="264" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address Line 2" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="oM0-4Z-NWL">
+                                                <rect key="frame" x="35" y="308" width="264" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                            </textField>
+                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </scrollView>
-                                    <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="5bv-0z-YxN">
-                                        <rect key="frame" x="0.0" y="352.33333333333337" width="279" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </pageControl>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="pme-Cv-71h" firstAttribute="leading" secondItem="48v-fR-TJJ" secondAttribute="leading" id="1cJ-v7-lbN"/>
-                            <constraint firstItem="pme-Cv-71h" firstAttribute="trailing" secondItem="48v-fR-TJJ" secondAttribute="trailing" id="GaX-dj-DnX"/>
-                            <constraint firstAttribute="bottom" secondItem="pme-Cv-71h" secondAttribute="bottom" id="YQU-5S-hWO"/>
-                            <constraint firstItem="pme-Cv-71h" firstAttribute="top" secondItem="48v-fR-TJJ" secondAttribute="top" id="vIV-YL-l6V"/>
+                            <constraint firstItem="HCb-Vw-np9" firstAttribute="leading" secondItem="48v-fR-TJJ" secondAttribute="leading" id="fRE-Ga-p3n"/>
+                            <constraint firstAttribute="bottom" secondItem="HCb-Vw-np9" secondAttribute="bottom" id="jQd-Bi-YGX"/>
+                            <constraint firstItem="HCb-Vw-np9" firstAttribute="trailing" secondItem="48v-fR-TJJ" secondAttribute="trailing" id="meo-Yh-04u"/>
+                            <constraint firstItem="HCb-Vw-np9" firstAttribute="top" secondItem="NxC-mt-HhW" secondAttribute="top" id="sdj-D1-Gks"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="48v-fR-TJJ"/>
                     </view>
                     <connections>
-                        <outlet property="btnCancel" destination="U7N-Sh-340" id="aQA-DW-3mQ"/>
-                        <outlet property="btnSubmt" destination="qB2-5I-6NY" id="Ib2-z8-WdM"/>
-                        <outlet property="pageControl" destination="5bv-0z-YxN" id="6SG-kL-iFI"/>
-                        <outlet property="scrollView" destination="4hO-Xi-TZI" id="BC8-JB-wqF"/>
-                        <outlet property="svLogin" destination="4hO-Xi-TZI" id="NDg-A4-gib"/>
-                        <outlet property="vContainer" destination="Dpk-5z-BFV" id="S4M-Zo-n0F"/>
+                        <outlet property="btnBackToCredentials" destination="U7N-Sh-340" id="JvW-kN-Vdh"/>
+                        <outlet property="btnBackToPersonalDetails" destination="fcg-HC-7tt" id="Q6n-a0-ueq"/>
+                        <outlet property="btnCancelForm" destination="bK8-9G-2kn" id="BQY-ZW-K8Y"/>
+                        <outlet property="btnMoveToPersonalDetails" destination="O2f-Ex-3PR" id="C6y-oF-h2f"/>
+                        <outlet property="btnMoveToSubmit" destination="qB2-5I-6NY" id="n7e-QU-VDa"/>
+                        <outlet property="btnProfilePicture" destination="Htb-Iz-hFq" id="lcp-Py-Uy2"/>
+                        <outlet property="btnSubmit" destination="2E4-Ji-bzF" id="gTv-x9-BoK"/>
+                        <outlet property="ivProfilePicture" destination="Rsc-jR-YEP" id="OIY-eL-BC6"/>
+                        <outlet property="svCredentials" destination="EfY-UC-h8u" id="vuo-36-hje"/>
+                        <outlet property="tfAddressLineOne" destination="ccm-AS-J9C" id="yQW-9g-rFW"/>
+                        <outlet property="tfAddressLineTwo" destination="oM0-4Z-NWL" id="wW6-Ni-cOo"/>
+                        <outlet property="tfAddressPostcode" destination="mKh-34-bc1" id="Jcj-Kq-HLC"/>
+                        <outlet property="tfEmailAddress" destination="07K-Yi-ttY" id="mwp-Tu-rF4"/>
+                        <outlet property="tfFullName" destination="FTG-18-Imi" id="Uhj-s7-vBF"/>
+                        <outlet property="tfPassword" destination="AvA-LE-6vd" id="Ddu-7s-N45"/>
+                        <outlet property="vCredentials" destination="ZQ5-dh-5DM" id="YEL-vL-pLz"/>
+                        <outlet property="vPersonalDetails" destination="Dpk-5z-BFV" id="mFC-fl-VKt"/>
+                        <outlet property="vTeamDetails" destination="cYp-43-b4B" id="TpG-kz-zn4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fex-Lg-gXE" userLabel="First Responder" sceneMemberID="firstResponder"/>
