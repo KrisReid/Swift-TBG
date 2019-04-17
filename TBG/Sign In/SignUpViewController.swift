@@ -75,7 +75,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             if self.view.frame.origin.y == 0{
                 self.view.frame.origin.y -= 70
             }
@@ -83,7 +83,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             if self.view.frame.origin.y != 0{
                 self.view.frame.origin.y += 70
             }
@@ -238,12 +238,12 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         //Make sure you add the text field to the delegate
         
-        // limit to 4 characters
+        // limit to 6 characters
         let characterCountLimit = 6
         
         // We need to figure out how many characters would be in the string after the change happens
-        let startingLength = tfTeamPIN.text?.characters.count ?? 0
-        let lengthToAdd = string.characters.count
+        let startingLength = tfTeamPIN.text?.count ?? 0
+        let lengthToAdd = string.count
         let lengthToReplace = range.length
         
         let newLength = startingLength + lengthToAdd - lengthToReplace

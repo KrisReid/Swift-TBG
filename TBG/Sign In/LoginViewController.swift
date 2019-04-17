@@ -43,19 +43,10 @@ class LoginViewController: UIViewController {
         setTextFields(textfieldName: tfEmail, view: vSignInContainer, yCoordinate: vSignInContainer.frame.height / 3, placeholder: "Email Address")
         setTextFields(textfieldName: tfPassword, view: vSignInContainer, yCoordinate: vSignInContainer.frame.height / 2, placeholder: "Password")
         
-//        loginButton.layer.cornerRadius = 5.0
-//        signupButton.layer.cornerRadius = 5.0
         
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
-//    func setTextFields (textfieldName : UITextField) {
-//        let myColor = UIColor.white
-//        textfieldName.layer.borderColor = myColor.cgColor
-//        textfieldName.layer.borderWidth = 1.0
-//        textfieldName.layer.cornerRadius = 10.0
-//    }
     
     //GENERAL FUNCTIONS
     func setContainer (container: UIView, leftButton: UIButton, rightButton:UIButton) {
@@ -98,7 +89,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             if self.view.frame.origin.y == 0{
 //                self.view.frame.origin.y -= keyboardSize.height
                 self.view.frame.origin.y -= 300
@@ -107,7 +98,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             if self.view.frame.origin.y != 0{
 //                self.view.frame.origin.y += keyboardSize.height
                 self.view.frame.origin.y += 300

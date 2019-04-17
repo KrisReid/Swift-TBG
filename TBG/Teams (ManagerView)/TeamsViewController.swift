@@ -22,6 +22,8 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var btnShare: UIButton!
     @IBOutlet weak var btnUpdatePIN: UIButton!
     @IBOutlet weak var tfPIN: UITextField!
+    @IBOutlet weak var vShare: UIView!
+    
     
     var allPlayers : [DataSnapshot] = []
     var refresher: UIRefreshControl = UIRefreshControl()
@@ -45,9 +47,11 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         setTextFields(textfieldName: tfPIN)
         
         let tvColor = UIColor.gray
-        tvPlayers.layer.borderColor = tvColor.cgColor
-        tvPlayers.layer.borderWidth = 1.0
-        tvPlayers.layer.cornerRadius = 10.0
+        vShare.layer.borderColor = tvColor.cgColor
+        vShare.layer.borderWidth = 1.0
+        
+        
+        vShare.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2.5)
         
     }
     
@@ -75,6 +79,24 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
+    @IBAction func btnShare(_ sender: Any) {
+        print("Share Me Half Modal")
+        
+        UIView.animate(withDuration: 1) {
+            self.vShare.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - self.vShare.bounds.height, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2.5)
+            self.vShare.alpha = 1
+        }
+        
+    }
+    
+    @IBAction func btnCloseShareClicked(_ sender: Any) {
+        UIView.animate(withDuration: 1) {
+            self.vShare.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2.5)
+            self.vShare.alpha = 0
+        }
+    }
+    
+    
     @IBAction func btnLogOut(_ sender: Any) {
         try? Auth.auth().signOut()
         navigationController?.dismiss(animated: true, completion: nil)
@@ -87,7 +109,8 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             btnUpdatePIN.setImage(#imageLiteral(resourceName: "upload.png"), for: .normal)
             self.PINEditMode = false
         } else {
-            if tfPIN.text?.characters.count == 6 {
+//            if tfPIN.text?.characters.count == 6 {
+            if tfPIN.text?.count == 6 {
                 tfPIN.isHidden = true
                 lblTeamPIN.isHidden = false
                 lblTeamPIN.text = tfPIN.text
