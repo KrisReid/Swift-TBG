@@ -789,13 +789,19 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Side" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lkd-BK-EfY">
-                                                    <rect key="frame" x="116" y="48" width="244" height="14.333333333333336"/>
+                                                    <rect key="frame" x="116" y="48" width="244" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="244" id="7Te-b5-Q7z"/>
                                                         <constraint firstAttribute="height" constant="14.33" id="b2x-DG-KzY"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oKT-RH-YZi">
+                                                    <rect key="frame" x="334" y="29" width="11" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.48404921369999998" green="0.74307804399999999" blue="0.43948322020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -812,6 +818,8 @@
                                                 <constraint firstItem="AVj-Kl-1Vl" firstAttribute="leading" secondItem="EeD-nO-K0f" secondAttribute="trailing" constant="29" id="gFA-Wd-TZU"/>
                                                 <constraint firstItem="lkd-BK-EfY" firstAttribute="top" secondItem="dLL-fs-A8L" secondAttribute="bottom" constant="18" id="kXN-h0-Afj"/>
                                                 <constraint firstItem="EeD-nO-K0f" firstAttribute="leading" secondItem="Gyh-kd-gJE" secondAttribute="leading" constant="27" id="mmy-3Z-K3S"/>
+                                                <constraint firstItem="oKT-RH-YZi" firstAttribute="centerY" secondItem="Gyh-kd-gJE" secondAttribute="centerY" id="rMt-85-TeG"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="oKT-RH-YZi" secondAttribute="trailing" constant="15" id="yIX-hj-1n5"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -832,39 +840,17 @@
                                 <rect key="frame" x="44" y="401" width="296" height="224"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zk-Tf-Y6c">
-                                        <rect key="frame" x="224" y="8" width="64" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="X"/>
-                                        <connections>
-                                            <action selector="btnCloseShareClicked:" destination="exC-fB-Ewm" eventType="touchUpInside" id="1W5-ar-kTO"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOO-ok-36W">
-                                        <rect key="frame" x="8" y="45" width="90.666666666666686" height="19.333333333333343"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SY2-SI-zvA">
-                                        <rect key="frame" x="110" y="39" width="140" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3KH-Pe-cMF">
-                                        <rect key="frame" x="8" y="90" width="63.333333333333343" height="19.333333333333343"/>
+                                        <rect key="frame" x="8" y="90" width="70" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team PIN:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="at2-sT-OTu">
-                                        <rect key="frame" x="8" y="137" width="73.333333333333329" height="19.333333333333343"/>
+                                        <rect key="frame" x="8" y="137" width="70" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -876,15 +862,16 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POc-1O-DFY">
-                                        <rect key="frame" x="123" y="126" width="127" height="40"/>
+                                        <rect key="frame" x="123" y="126" width="127" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="gBe-el-ZB8">
-                                        <rect key="frame" x="123" y="132" width="118" height="29"/>
+                                        <rect key="frame" x="123" y="132" width="118" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.5453861364" blue="0.55468872440000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="cc-number"/>
@@ -892,12 +879,9 @@
                                             <outlet property="delegate" destination="exC-fB-Ewm" id="TbX-m3-sp8"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jda-6x-m9n">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jda-6x-m9n">
                                         <rect key="frame" x="246" y="136" width="21" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="ICH-Ze-HZB"/>
-                                            <constraint firstAttribute="width" constant="21" id="r6h-2H-n2T"/>
-                                        </constraints>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button" image="edit.png"/>
                                         <connections>
                                             <action selector="btnUpdatePINClicked:" destination="exC-fB-Ewm" eventType="touchUpInside" id="zIO-U6-BWg"/>
@@ -914,6 +898,21 @@
                                             <action selector="btnShareClicked:" destination="exC-fB-Ewm" eventType="touchUpInside" id="evh-2F-enV"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zk-Tf-Y6c">
+                                        <rect key="frame" x="258" y="8" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="X"/>
+                                        <connections>
+                                            <action selector="btnCloseShareClicked:" destination="exC-fB-Ewm" eventType="touchUpInside" id="1W5-ar-kTO"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SY2-SI-zvA">
+                                        <rect key="frame" x="8" y="8" width="210" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -940,11 +939,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnCloseShare" destination="8zk-Tf-Y6c" id="I0h-eJ-AZN"/>
                         <outlet property="btnShare" destination="reJ-lu-IZ8" id="1zF-6m-qxc"/>
                         <outlet property="btnUpdatePIN" destination="jda-6x-m9n" id="3PV-LG-kl9"/>
                         <outlet property="lblTeamId" destination="mwy-fW-N17" id="KDW-7i-TrL"/>
+                        <outlet property="lblTeamIdDescription" destination="3KH-Pe-cMF" id="cQ0-Pl-OcC"/>
                         <outlet property="lblTeamName" destination="SY2-SI-zvA" id="OJ8-ic-qcY"/>
                         <outlet property="lblTeamPIN" destination="POc-1O-DFY" id="h6b-0K-PVf"/>
+                        <outlet property="lblTeamPINDescription" destination="at2-sT-OTu" id="YQ5-Rd-Pdt"/>
                         <outlet property="tfPIN" destination="gBe-el-ZB8" id="JFC-sB-208"/>
                         <outlet property="tvPlayers" destination="kgZ-Na-D8h" id="hrl-eZ-Jip"/>
                         <outlet property="vShare" destination="sva-9G-PON" id="qbc-tW-0WM"/>

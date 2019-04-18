@@ -17,12 +17,15 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var tvPlayers: UITableView!
     @IBOutlet weak var lblTeamName: UILabel!
+    @IBOutlet weak var lblTeamIdDescription: UILabel!
     @IBOutlet weak var lblTeamId: UILabel!
+    @IBOutlet weak var lblTeamPINDescription: UILabel!
     @IBOutlet weak var lblTeamPIN: UILabel!
     @IBOutlet weak var btnShare: UIButton!
     @IBOutlet weak var btnUpdatePIN: UIButton!
     @IBOutlet weak var tfPIN: UITextField!
     @IBOutlet weak var vShare: UIView!
+    @IBOutlet weak var btnCloseShare: UIButton!
     
     
     var allPlayers : [DataSnapshot] = []
@@ -49,9 +52,23 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let tvColor = UIColor.gray
         vShare.layer.borderColor = tvColor.cgColor
         vShare.layer.borderWidth = 1.0
-        
-        
         vShare.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2.5)
+        
+        btnCloseShare.frame = CGRect(x: vShare.bounds.width - btnCloseShare.bounds.width, y: 0, width: 30, height: 30)
+        lblTeamName.frame = CGRect(x: 10, y: 0, width: vShare.bounds.width - btnCloseShare.bounds.width, height: 30)
+        lblTeamIdDescription.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
+        lblTeamId.frame = CGRect(x: lblTeamIdDescription.frame.width + 20, y: 60, width: vShare.bounds.width - lblTeamIdDescription.frame.width + 20, height: 30)
+        
+        lblTeamPINDescription.frame = CGRect(x: 10, y: 90, width: 70, height: 30)
+        lblTeamPIN.frame = CGRect(x: lblTeamPINDescription.frame.width + 20, y: 90, width: vShare.bounds.width - lblTeamPINDescription.frame.width - 80, height: 30)
+        tfPIN.frame = CGRect(x: lblTeamPINDescription.frame.width + 20, y: 90, width: vShare.bounds.width - lblTeamPINDescription.frame.width - 80, height: 30)
+        btnUpdatePIN.frame = CGRect(x: lblTeamPINDescription.frame.width + 20 + lblTeamPIN.frame.width + 20, y: 90, width: 21, height: 21)
+        
+        btnShare.frame = CGRect(x: vShare.frame.width / 2 - 50, y: 170, width: 100, height: 30)
+        
+        //Keyboard show and dismiss observers
+        NotificationCenter.default.addObserver(self, selector: #selector(AlternativeSignUpViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AlternativeSignUpViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
     }
     
@@ -61,7 +78,6 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //SMS CODE
     @IBAction func btnShareClicked(_ sender: Any) {
-        print("SHARE")
         
         if (MFMessageComposeViewController.canSendText()) {
             let controller = MFMessageComposeViewController()
@@ -82,7 +98,7 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBAction func btnShare(_ sender: Any) {
         print("Share Me Half Modal")
         
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.6) {
             self.vShare.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - self.vShare.bounds.height, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2.5)
             self.vShare.alpha = 1
         }
@@ -90,7 +106,7 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func btnCloseShareClicked(_ sender: Any) {
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.6) {
             self.vShare.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2.5)
             self.vShare.alpha = 0
         }
@@ -125,6 +141,7 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     Database.database().reference().child("Teams").removeAllObservers()
                 })
                 
+                self.view.endEditing(true)
             }
         }
     }
@@ -302,6 +319,33 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
         }
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= vShare.frame.height - 100
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += vShare.frame.height - 100
+            }
+        }
+    }
+    
+    //closes the keyboard when you touch white space
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    //enter button will close the keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 
