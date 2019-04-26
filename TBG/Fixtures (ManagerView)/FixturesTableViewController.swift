@@ -12,6 +12,9 @@ import FirebaseDatabase
 
 class FixturesTableViewController: UITableViewController {
     
+    
+    @IBOutlet var tvFixtures: UITableView!
+    
     var teamFixtures : [DataSnapshot] = []
     
     var teamIdentity = ""
@@ -21,8 +24,8 @@ class FixturesTableViewController: UITableViewController {
         super.viewDidLoad()
         
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refresher.addTarget(self, action: #selector(FixturesTableViewController.getFixtures), for: UIControl.Event.valueChanged)
-        tableView.addSubview(refresher)
+        refresher.addTarget(self, action: #selector(FixturesTableViewController.updateFixtures), for: UIControl.Event.valueChanged)
+        tvFixtures.addSubview(refresher)
 
     }
     
@@ -30,9 +33,52 @@ class FixturesTableViewController: UITableViewController {
         getFixtures()
     }
     
+    @objc func updateFixtures () {
+        if let email = Auth.auth().currentUser?.email {
+            Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: email).observe(.childAdded, with: { (snapshot) in
+                Database.database().reference().child("Players").removeAllObservers()
+
+                if let ManagerDictionary = snapshot.value as? [String:Any] {
+                    if let teamID = ManagerDictionary["Team ID"] as? String {
+                        self.teamIdentity = teamID
+                        Database.database().reference().child("Teams/\(teamID)/Fixtures").queryOrderedByKey().observe(.childAdded, with: { (snapshot) in
+                            
+
+                            let count = self.teamFixtures.count
+                            print("All Fixtures count: \(self.teamFixtures.count)")
+                            var counting = 0
+
+                            if let key = snapshot.key as? String {
+                                if count == 0 {
+                                    self.teamFixtures.append(snapshot)
+                                }
+                                for player in self.teamFixtures {
+                                    if player.key == key {
+                                        print("Fixture already exists")
+                                    } else {
+                                        counting += 1
+                                        if counting == count {
+                                            print("Add that Fixture: \(snapshot.key)")
+                                            self.teamFixtures.append(snapshot)
+                                        } else {
+                                            print(counting)
+                                        }
+                                    }
+                                }
+                            }
+                            self.tvFixtures.reloadData()
+                            self.refresher.endRefreshing()
+
+                        })
+                    }
+                }
+            })
+        }
+    }
+    
+    
     @objc func getFixtures () {
-        
-        self.teamFixtures = []
+        teamFixtures = []
         
         if let email = Auth.auth().currentUser?.email {
             Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: email).observe(.childAdded, with: { (snapshot) in
@@ -45,7 +91,7 @@ class FixturesTableViewController: UITableViewController {
                         Database.database().reference().child("Teams/\(teamID)/Fixtures").queryOrderedByKey().observe(.childAdded, with: { (snapshot) in
                             
                             self.teamFixtures.append(snapshot)
-                            self.tableView.reloadData()
+                            self.tvFixtures.reloadData()
                             self.refresher.endRefreshing()
                             
                         })
@@ -76,14 +122,8 @@ class FixturesTableViewController: UITableViewController {
         }
     }
 
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return teamFixtures.count
-
     }
     
     
@@ -92,6 +132,7 @@ class FixturesTableViewController: UITableViewController {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? FixturesTableViewCell {
             
             let snapshot = teamFixtures[indexPath.row]
+            
             if let TeamDictionary = snapshot.value as? [String:Any] {
                 if let venue = TeamDictionary["Venue"] as? String, let opposition = TeamDictionary["Away Team Name"] as? String, let dateTime = TeamDictionary["Date and Time"] as? String, let homeAway = TeamDictionary["Home or Away"] as? String {
                     
@@ -104,13 +145,12 @@ class FixturesTableViewController: UITableViewController {
                         } else {
                             cell.ivHomeAway.image = #imageLiteral(resourceName: "Away.png")
                         }
-                    
-                        return cell
+
+                    return cell
                 }
             }
         }
         return UITableViewCell()
-
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

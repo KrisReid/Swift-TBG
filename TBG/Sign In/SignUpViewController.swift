@@ -2,35 +2,41 @@
 //  SignUpViewController.swift
 //  TBG
 //
-//  Created by Kris Reid on 13/11/2017.
-//  Copyright © 2017 Kris Reid. All rights reserved.
+//  Created by Kris Reid on 12/04/2019.
+//  Copyright © 2019 Kris Reid. All rights reserved.
 //
+
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
-class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+class SignUpViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
     
-    @IBOutlet weak var vLoading: UIView!
-    @IBOutlet weak var btnPhoto: UIButton!
-    @IBOutlet weak var btnSubmit: UIButton!
-    @IBOutlet weak var btnCancel: UIButton!
-    @IBOutlet weak var tfAddressLine1: UITextField!
-    @IBOutlet weak var imgProfileImage: UIImageView!
-    @IBOutlet weak var tfTeamPostcode: UITextField!
-    @IBOutlet weak var tfTeamName: UITextField!
-    @IBOutlet weak var managerSwitch: UISwitch!
-    @IBOutlet weak var tfTeamId: UITextField!
-    @IBOutlet weak var tfPostcode: UITextField!
-    @IBOutlet weak var tfAddressLine2: UITextField!
-    @IBOutlet weak var tfPassword: UITextField!
-    @IBOutlet weak var tfEmailAddress: UITextField!
+    @IBOutlet weak var svCredentials: UIScrollView!
+    @IBOutlet weak var vCredentials: UIView!
+    @IBOutlet weak var btnMoveToPersonalDetails: UIButton!
+    @IBOutlet weak var btnCancelForm: UIButton!
+    @IBOutlet weak var btnProfilePicture: UIButton!
+    @IBOutlet weak var ivProfilePicture: UIImageView!
     @IBOutlet weak var tfFullName: UITextField!
-    @IBOutlet weak var lblSwitchText: UILabel!
+    @IBOutlet weak var tfEmailAddress: UITextField!
+    @IBOutlet weak var tfPassword: UITextField!
+    @IBOutlet weak var tfAddressLineOne: UITextField!
+    @IBOutlet weak var tfAddressLineTwo: UITextField!
+    @IBOutlet weak var tfAddressPostcode: UITextField!
+    
+    @IBOutlet weak var vTeamDetails: UIView!
+    @IBOutlet weak var btnBackToCredentials :UIButton!
+    @IBOutlet weak var btnSubmit: UIButton!
+    @IBOutlet weak var swManager: UISwitch!
+    @IBOutlet weak var lblManager: UILabel!
+    @IBOutlet weak var tfTeamID: UITextField!
     @IBOutlet weak var tfTeamPIN: UITextField!
-    @IBOutlet weak var submitConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tfTeamName: UITextField!
+    @IBOutlet weak var tfTeamPostcode: UITextField!
+    
     
     var teams : [DataSnapshot] = []
     var players : [DataSnapshot] = []
@@ -45,81 +51,83 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     var pushToken = ""
     let activityIndicator = UIActivityIndicatorView(frame:CGRect(x: 0, y: 0, width: 150, height: 150))
     
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
         
         self.pushToken = self.delegate.token
         
+        //Set the containers
+        setContainer(container: vCredentials, leftButton: btnCancelForm, rightButton: btnMoveToPersonalDetails);
+        setContainer(container: vTeamDetails, leftButton: btnBackToCredentials, rightButton: btnSubmit);
+        
+        
+        //Setting the ScrollView for Page 1
+        svCredentials.frame = CGRect(x: 0 , y: 0, width: vCredentials.frame.width, height: vCredentials.frame.height - 50)
+        svCredentials.contentSize.height = vCredentials.frame.height
+        svCredentials.contentSize.width = vCredentials.frame.width
+        
+        //Set the image for Page 1
         setImage()
         
-        setTextFields(textfieldName: tfFullName)
-        setTextFields(textfieldName: tfEmailAddress)
-        setTextFields(textfieldName: tfPassword)
-        setTextFields(textfieldName: tfAddressLine1)
-        setTextFields(textfieldName: tfAddressLine2)
-        setTextFields(textfieldName: tfPostcode)
-        setTextFields(textfieldName: tfTeamId)
-        setTextFields(textfieldName: tfTeamName)
-        setTextFields(textfieldName: tfTeamPostcode)
-        setTextFields(textfieldName: tfTeamPIN)
+        //Set the switch for page 2
+        swManager.center = CGPoint(x: vCredentials.frame.width / 2, y: 50)
+        lblManager.center = CGPoint(x: vCredentials.frame.width / 2, y: 80)
         
-        btnCancel.layer.cornerRadius = 5.0
-        btnSubmit.layer.cornerRadius = 5.0
+        //Set the TextFields
+        setTextFields (textfieldName: tfFullName, view: vCredentials, yCoordinate: 210, placeholder: "Full Name")
+        setTextFields (textfieldName: tfEmailAddress, view: vCredentials, yCoordinate: 260, placeholder: "Email Address")
+        setTextFields (textfieldName: tfPassword, view: vCredentials, yCoordinate: 310, placeholder: "Password")
+        setTextFields (textfieldName: tfAddressLineOne, view: vCredentials, yCoordinate: 360, placeholder: "Address Line 1")
+        setTextFields (textfieldName: tfAddressLineTwo, view: vCredentials, yCoordinate: 410, placeholder: "Address Line 2")
+        setTextFields (textfieldName: tfAddressPostcode, view: vCredentials, yCoordinate: 460, placeholder: "Postcode")
         
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        setTextFields (textfieldName: tfTeamPIN, view: vTeamDetails, yCoordinate: 160, placeholder: "Team PIN (6 digit code)")
+        setTextFields (textfieldName: tfTeamID, view: vTeamDetails, yCoordinate: 210, placeholder: "Team ID")
+        setTextFields (textfieldName: tfTeamName, view: vTeamDetails, yCoordinate: 210, placeholder: "Team Name")
+        setTextFields (textfieldName: tfTeamPostcode, view: vTeamDetails, yCoordinate: 260, placeholder: "Team Postcode")
         
-        fetchTeams ()
-        fetchPlayers ()
+        //Keyboard show and dismiss observers
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        fetchTeams()
+        fetchPlayers()
         
     }
     
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= 70
-            }
-        }
+    
+    //CREDENTIALS
+    @IBAction func btnCancelFormClicked(_ sender: Any) {
+        
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+        
     }
     
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += 70
-            }
-        }
+    @IBAction func btnMoveToPersonalDetailsClicked(_ sender: Any) {
+        vCredentials.isHidden = true
+        vTeamDetails.isHidden = false
+    }
+    
+    @IBAction func btnProfilePictureClicked(_ sender: Any) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePickerController.allowsEditing = true
+        self.present(imagePickerController, animated: true, completion: nil)
     }
     
     func setImage () {
-        imgProfileImage.layer.cornerRadius = imgProfileImage.frame.size.width / 2
-        imgProfileImage.layer.masksToBounds = true
+        ivProfilePicture.layer.cornerRadius = ivProfilePicture.frame.size.width / 2
+        ivProfilePicture.layer.masksToBounds = true
+        ivProfilePicture.center = CGPoint(x: vCredentials.frame.width / 2, y: 100)
         
-        btnPhoto.layer.cornerRadius = btnPhoto.frame.size.width / 2
-        btnPhoto.layer.masksToBounds = true
-        let myColor = UIColor.gray
-        btnPhoto.layer.borderColor = myColor.cgColor
-        btnPhoto.layer.borderWidth = 1.0
-    }
-    
-    func setTextFields (textfieldName : UITextField) {
-        let myColor = UIColor.gray
-        textfieldName.layer.borderColor = myColor.cgColor
-        textfieldName.layer.borderWidth = 1.0
-        textfieldName.layer.cornerRadius = 10.0
-    }
-    
-    func fetchTeams () {
-        Database.database().reference().child("Teams").observe(.childAdded, with: { (snapshot) in
-            self.teams.append(snapshot)
-            print("Teams Fetched")
-        })
-    }
-    
-    func fetchPlayers () {
-        Database.database().reference().child("Players").observe(.childAdded, with: { (snapshot) in
-            self.players.append(snapshot)
-            print("Players Fetched")
-        })
+        btnProfilePicture.layer.cornerRadius = btnProfilePicture.frame.size.width / 2
+        btnProfilePicture.layer.masksToBounds = true
+        let myColor = UIColor.white
+        btnProfilePicture.layer.borderColor = myColor.cgColor
+        btnProfilePicture.layer.borderWidth = 1.0
+        btnProfilePicture.center = CGPoint(x: vCredentials.frame.width / 2, y: 100)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -136,36 +144,19 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         
         if let selectedImage = selectedImageFromPicker {
-            imgProfileImage.image = selectedImage
-            btnPhoto.setTitle("",for: .normal)
+            ivProfilePicture.image = selectedImage
+            btnProfilePicture.setTitle("",for: .normal)
         }
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func btnPhotoTapped(_ sender: Any) {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
-        imagePickerController.allowsEditing = true
-        self.present(imagePickerController, animated: true, completion: nil)
-    }
     
-    @IBAction func managerSwitchTapped(_ sender: Any) {
-        if managerSwitch.isOn {
-            tfTeamName.isHidden = false
-            tfTeamPostcode.isHidden = false
-            tfTeamId.isHidden = true
-            lblSwitchText.text = "I'm creating a team"
-            submitConstraint.constant =  60
-        } else {
-            tfTeamName.isHidden = true
-            tfTeamPostcode.isHidden = true
-            tfTeamId.isHidden = false
-            lblSwitchText.text = "I'm joining a team"
-            submitConstraint.constant = 20
-        }
-    }
     
+    //TEAM DETAILS
+    @IBAction func btnBackToCredentialsClicked(_ sender: Any) {
+        vTeamDetails.isHidden = true
+        vCredentials.isHidden = false
+    }
     
     func teamNameDBCheck () {
         self.teamNameExistsInDB = false
@@ -218,7 +209,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                 if let tempId = teamDictionary["id"] as? String {
                     if let PIN = teamDictionary["PIN"] as? Int {
                         if teamIdExistsInDB == false {
-                            if (tfTeamId.text == tempId && tfTeamPIN.text == String(PIN)) {
+                            if (tfTeamID.text == tempId && tfTeamPIN.text == String(PIN)) {
                                 print("Team ID found")
                                 self.teamIdExistsInDB = true
                             } else {
@@ -234,36 +225,14 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             }
         }
     }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        //Make sure you add the text field to the delegate
-        
-        // limit to 6 characters
-        let characterCountLimit = 6
-        
-        // We need to figure out how many characters would be in the string after the change happens
-        let startingLength = tfTeamPIN.text?.count ?? 0
-        let lengthToAdd = string.count
-        let lengthToReplace = range.length
-        
-        let newLength = startingLength + lengthToAdd - lengthToReplace
-        
-        return newLength <= characterCountLimit
-    }
-    
-    
-    @IBAction func btnCancelClicked(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
-        
-    }
-    
+
     
     @IBAction func btnSubmitClicked(_ sender: Any) {
+        print("Submit Clicked")
         
-        if let photo = imgProfileImage.image, let email = tfEmailAddress.text, let password = tfPassword.text, let fullName = tfFullName.text, let address1 = tfAddressLine1.text, let address2 = tfAddressLine2.text, let postcode = tfPostcode.text, let teamId = tfTeamId.text, let teamName = tfTeamName.text, let teamPostcode = tfTeamPostcode.text, let teamPIN = tfTeamPIN.text {
+        if let photo = ivProfilePicture.image, let email = tfEmailAddress.text, let password = tfPassword.text, let fullName = tfFullName.text, let address1 = tfAddressLineOne.text, let address2 = tfAddressLineTwo.text, let postcode = tfAddressPostcode.text, let teamId = tfTeamID.text, let teamName = tfTeamName.text, let teamPostcode = tfTeamPostcode.text, let teamPIN = tfTeamPIN.text {
             
-            if self.managerSwitch.isOn {
+            if self.swManager.isOn {
                 //MANAGER MODE
                 if fullName == "" || password == "" || email == "" || address1 == "" || address2 == "" || postcode == "" || teamName == "" || teamPostcode == "" || teamPIN == "" {
                     self.displayAlert(title: "Missing Information", message: "You must provide information in all of the fields provided.")
@@ -274,7 +243,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                     PostcodeDBCheck()
                     
                     if teamNameExistsInDB && teamPostcodeExistsInDB {
-                        stopSpinner()
+//                        stopSpinner()
                         self.displayAlert(title: "Team already exists", message: "The team already exists. Please create a different team or contact your club to get the TeamID.")
                     } else {
                         
@@ -282,7 +251,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                             if let error = error {
                                 self.displayAlert(title: "Error", message: error.localizedDescription)
                             } else {
-                                self.startSpinner()
+//                                self.startSpinner()
                                 let req = Auth.auth().currentUser?.createProfileChangeRequest()
                                 req?.displayName = "Manager"
                                 req?.commitChanges(completion: nil)
@@ -329,7 +298,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                             if let error = error {
                                 self.displayAlert(title: "Error", message: (error.localizedDescription))
                             } else {
-                                self.startSpinner()
+//                                self.startSpinner()
                                 let req = Auth.auth().currentUser?.createProfileChangeRequest()
                                 req?.displayName = "Player"
                                 req?.commitChanges(completion: nil)
@@ -369,6 +338,100 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
     }
     
+    
+    @IBAction func swManagerClicked(_ sender: Any) {
+        if swManager.isOn {
+            tfTeamName.isHidden = false
+            tfTeamPostcode.isHidden = false
+            tfTeamID.isHidden = true
+            lblManager.text = "I'm creating a team"
+//            submitConstraint.constant =  60
+        } else {
+            tfTeamName.isHidden = true
+            tfTeamPostcode.isHidden = true
+            tfTeamID.isHidden = false
+            lblManager.text = "I'm joining a team"
+//            submitConstraint.constant = 20
+        }
+    }
+    
+    
+    
+    //GENERAL FUNCTIONS
+    func setContainer (container: UIView, leftButton: UIButton, rightButton:UIButton) {
+        //SET THE CONTAINER
+        container.layer.borderWidth = 1
+        container.layer.borderColor = UIColor.white.cgColor
+        container.layer.cornerRadius = 10
+        container.frame = CGRect(x: 0 , y: 0, width: UIScreen.main.bounds.height / 2.5, height: UIScreen.main.bounds.height / 1.5)
+        container.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
+        
+        //CANCEL BUTTON
+        leftButton.layer.borderWidth = 1
+        leftButton.layer.borderColor = UIColor.white.cgColor
+        leftButton.layer.cornerRadius = CGFloat(10)
+        leftButton.clipsToBounds = true
+        leftButton.layer.maskedCorners = [.layerMinXMaxYCorner]
+        let cancelY = container.frame.height - (leftButton.frame.height)
+        leftButton.frame = CGRect(x: 0, y: cancelY, width: container.frame.width/2, height: 50)
+        
+        //SUBMIT BUTTON
+        rightButton.layer.borderWidth = 1
+        rightButton.layer.borderColor = UIColor.white.cgColor
+        rightButton.layer.cornerRadius = CGFloat(10)
+        rightButton.clipsToBounds = true
+        rightButton.layer.maskedCorners = [.layerMaxXMaxYCorner]
+        let submitX = container.frame.width / 2 - 1
+        let submitY = container.frame.height - rightButton.frame.height
+        rightButton.frame = CGRect(x: submitX, y: submitY, width: container.frame.width/2 + 1, height: 50)
+    }
+    
+    
+    func setTextFields (textfieldName: UITextField, view: UIView, yCoordinate: CGFloat, placeholder: String) {
+        let myColor = UIColor.white
+        textfieldName.layer.borderColor = myColor.cgColor
+        textfieldName.layer.borderWidth = 1.0
+        textfieldName.layer.cornerRadius = 10.0
+        textfieldName.frame = CGRect(x: 0 , y: yCoordinate, width: view.frame.width / 1.2, height: 30)
+        textfieldName.center = CGPoint(x: view.frame.width / 2, y: yCoordinate)
+        textfieldName.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= 110
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += 110
+            }
+        }
+    }
+    
+    //closes the keyboard when you touch white space in outer view
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func fetchTeams () {
+        Database.database().reference().child("Teams").observe(.childAdded, with: { (snapshot) in
+            self.teams.append(snapshot)
+            print("Teams Fetched")
+        })
+    }
+    
+    func fetchPlayers () {
+        Database.database().reference().child("Players").observe(.childAdded, with: { (snapshot) in
+            self.players.append(snapshot)
+            print("Players Fetched")
+        })
+    }
+    
     func displayAlert(title:String, message:String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -376,8 +439,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        stopSpinner()
-        print("IN PREPARE FOR SEGUE")
+//        stopSpinner()
         if let email = sender as? String {
             print("Email captured: \(email)")
             if let selectVC = segue.destination as? LoginViewController {
@@ -387,45 +449,34 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
     }
     
-    func startSpinner() {
-        //MARK: Spinner
-        print("START SPINNER CALLED")
-        self.vLoading.isHidden = false
-        self.activityIndicator.center = self.view.center
-        self.activityIndicator.hidesWhenStopped = true
-        self.activityIndicator.style = UIActivityIndicatorView.Style.gray
-        view.addSubview(self.activityIndicator)
-        self.activityIndicator.startAnimating()
-        UIApplication.shared.beginIgnoringInteractionEvents()
+//    func startSpinner() {
+//        //MARK: Spinner
+//        print("START SPINNER CALLED")
+//        self.vLoading.isHidden = false
+//        self.activityIndicator.center = self.view.center
+//        self.activityIndicator.hidesWhenStopped = true
+//        self.activityIndicator.style = UIActivityIndicatorView.Style.gray
+//        view.addSubview(self.activityIndicator)
+//        self.activityIndicator.startAnimating()
+//        UIApplication.shared.beginIgnoringInteractionEvents()
+//    }
+//
+//    func stopSpinner() {
+//        print("STOP SPINNER CALLED")
+//        self.vLoading.isHidden = true
+//        self.activityIndicator.stopAnimating()
+//        UIApplication.shared.endIgnoringInteractionEvents()
+//    }
+    
+    
+    // Helper function inserted by Swift 4.2 migrator.
+    fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+        return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
     }
     
-    func stopSpinner() {
-        print("STOP SPINNER CALLED")
-        self.vLoading.isHidden = true
-        self.activityIndicator.stopAnimating()
-        UIApplication.shared.endIgnoringInteractionEvents()
+    // Helper function inserted by Swift 4.2 migrator.
+    fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+        return input.rawValue
     }
-    
-    
-    //closes the keyboard when you touch white space
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
-    //enter button will close the keyboard
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-}
 
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-	return input.rawValue
 }

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		021BB1231FBA45E300AC52CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021BB1221FBA45E300AC52CE /* SignUpViewController.swift */; };
 		02326A13202B917C00729FFE /* frame_74_delay-0.16s.gif in Resources */ = {isa = PBXBuildFile; fileRef = 023269C2202B917C00729FFE /* frame_74_delay-0.16s.gif */; };
 		02326A14202B917C00729FFE /* frame_49_delay-0.16s.gif in Resources */ = {isa = PBXBuildFile; fileRef = 023269C3202B917C00729FFE /* frame_49_delay-0.16s.gif */; };
 		02326A15202B917C00729FFE /* frame_33_delay-0.16s.gif in Resources */ = {isa = PBXBuildFile; fileRef = 023269C4202B917C00729FFE /* frame_33_delay-0.16s.gif */; };
@@ -95,7 +94,6 @@
 		023A35502020E2E000894651 /* PlayerFixturesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A354F2020E2E000894651 /* PlayerFixturesTableViewController.swift */; };
 		023A355820224F0100894651 /* PlayerFixturesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A355720224F0100894651 /* PlayerFixturesTableViewCell.swift */; };
 		023FAEE91FC7553700AD6505 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */; };
-		023FAF391FC75BA000AD6505 /* PlayersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023FAF381FC75B9F00AD6505 /* PlayersTableViewController.swift */; };
 		023FAF3B1FC7837800AD6505 /* PlayersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023FAF3A1FC7837800AD6505 /* PlayersTableViewCell.swift */; };
 		023FAF421FC9EA6900AD6505 /* PlayerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023FAF411FC9EA6900AD6505 /* PlayerDetailViewController.swift */; };
 		02409EDA1FD7460900CE23BD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02409ED91FD7460900CE23BD /* LoginViewController.swift */; };
@@ -161,12 +159,14 @@
 		02E332F820260334008BE39B /* FixtureDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E332F720260334008BE39B /* FixtureDetailCollectionViewCell.swift */; };
 		02F607AC1FF2DBB10025D18F /* CreateGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F607AB1FF2DBB10025D18F /* CreateGameViewController.swift */; };
 		0C1F35872260BE8E003F4FB1 /* signup-background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C1F35862260BE8E003F4FB1 /* signup-background.jpg */; };
-		0C1F358B2260CA9E003F4FB1 /* AlternativeSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1F358A2260CA9E003F4FB1 /* AlternativeSignUpViewController.swift */; };
+		0C1F358B2260CA9E003F4FB1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1F358A2260CA9E003F4FB1 /* SignUpViewController.swift */; };
+		0C6D3EBF226CF08C00488E63 /* MessagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6D3EBE226CF08C00488E63 /* MessagingViewController.swift */; };
+		0C6D3EC1226F33EB00488E63 /* FixturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6D3EC0226F33EB00488E63 /* FixturesViewController.swift */; };
+		0C6D3EC322722E0C00488E63 /* FixturesTableViewCellMore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6D3EC222722E0C00488E63 /* FixturesTableViewCellMore.swift */; };
 		21D8FE36B2E01535BB68E0D5 /* Pods_TBG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E738D854AE3B77EF8EAD9C /* Pods_TBG.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		021BB1221FBA45E300AC52CE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		023269C2202B917C00729FFE /* frame_74_delay-0.16s.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "frame_74_delay-0.16s.gif"; sourceTree = "<group>"; };
 		023269C3202B917C00729FFE /* frame_49_delay-0.16s.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "frame_49_delay-0.16s.gif"; sourceTree = "<group>"; };
 		023269C4202B917C00729FFE /* frame_33_delay-0.16s.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "frame_33_delay-0.16s.gif"; sourceTree = "<group>"; };
@@ -254,7 +254,6 @@
 		023A354F2020E2E000894651 /* PlayerFixturesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFixturesTableViewController.swift; sourceTree = "<group>"; };
 		023A355720224F0100894651 /* PlayerFixturesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFixturesTableViewCell.swift; sourceTree = "<group>"; };
 		023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		023FAF381FC75B9F00AD6505 /* PlayersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayersTableViewController.swift; sourceTree = "<group>"; };
 		023FAF3A1FC7837800AD6505 /* PlayersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersTableViewCell.swift; sourceTree = "<group>"; };
 		023FAF411FC9EA6900AD6505 /* PlayerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailViewController.swift; sourceTree = "<group>"; };
 		02409ED91FD7460900CE23BD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -324,7 +323,10 @@
 		02F607AB1FF2DBB10025D18F /* CreateGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameViewController.swift; sourceTree = "<group>"; };
 		03C597F2654A7830B541D478 /* Pods-TBG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TBG.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TBG/Pods-TBG.debug.xcconfig"; sourceTree = "<group>"; };
 		0C1F35862260BE8E003F4FB1 /* signup-background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "signup-background.jpg"; path = "TBG/icons/signup-background.jpg"; sourceTree = SOURCE_ROOT; };
-		0C1F358A2260CA9E003F4FB1 /* AlternativeSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeSignUpViewController.swift; sourceTree = "<group>"; };
+		0C1F358A2260CA9E003F4FB1 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		0C6D3EBE226CF08C00488E63 /* MessagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingViewController.swift; sourceTree = "<group>"; };
+		0C6D3EC0226F33EB00488E63 /* FixturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesViewController.swift; sourceTree = "<group>"; };
+		0C6D3EC222722E0C00488E63 /* FixturesTableViewCellMore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesTableViewCellMore.swift; sourceTree = "<group>"; };
 		49C8561EA02B5F2CD4A48983 /* Pods-TBG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TBG.release.xcconfig"; path = "Pods/Target Support Files/Pods-TBG/Pods-TBG.release.xcconfig"; sourceTree = "<group>"; };
 		80E738D854AE3B77EF8EAD9C /* Pods_TBG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TBG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -435,7 +437,6 @@
 			isa = PBXGroup;
 			children = (
 				02326B0720307D0000729FFE /* TeamsViewController.swift */,
-				023FAF381FC75B9F00AD6505 /* PlayersTableViewController.swift */,
 				023FAF3A1FC7837800AD6505 /* PlayersTableViewCell.swift */,
 				023FAF411FC9EA6900AD6505 /* PlayerDetailViewController.swift */,
 			);
@@ -509,9 +510,8 @@
 			isa = PBXGroup;
 			children = (
 				023269C1202B917C00729FFE /* Pen GIF */,
-				021BB1221FBA45E300AC52CE /* SignUpViewController.swift */,
 				02409ED91FD7460900CE23BD /* LoginViewController.swift */,
-				0C1F358A2260CA9E003F4FB1 /* AlternativeSignUpViewController.swift */,
+				0C1F358A2260CA9E003F4FB1 /* SignUpViewController.swift */,
 			);
 			path = "Sign In";
 			sourceTree = "<group>";
@@ -519,6 +519,8 @@
 		025251841FFAB97F00A1C8D4 /* Fixtures (ManagerView) */ = {
 			isa = PBXGroup;
 			children = (
+				0C6D3EC0226F33EB00488E63 /* FixturesViewController.swift */,
+				0C6D3EC222722E0C00488E63 /* FixturesTableViewCellMore.swift */,
 				025251851FFABDAD00A1C8D4 /* FixturesTableViewController.swift */,
 				025251872006270A00A1C8D4 /* FixturesTableViewCell.swift */,
 				02F607AB1FF2DBB10025D18F /* CreateGameViewController.swift */,
@@ -558,6 +560,7 @@
 				023FAF401FC9E65100AD6505 /* Teams (ManagerView) */,
 				025251841FFAB97F00A1C8D4 /* Fixtures (ManagerView) */,
 				025251821FFAAED400A1C8D4 /* Fixtures (PlayerView) */,
+				0C6D3EBD226CF04100488E63 /* Messaging */,
 				02D091C82015DB31003D3087 /* Shared */,
 				029E17E11FBA307C00E5F8AB /* Info.plist */,
 				023FAEE81FC7553600AD6505 /* GoogleService-Info.plist */,
@@ -595,6 +598,14 @@
 				02B1AC09202A45F100A24C56 /* StrikerCollectionViewCell.swift */,
 			);
 			path = "Fixture Detail";
+			sourceTree = "<group>";
+		};
+		0C6D3EBD226CF04100488E63 /* Messaging */ = {
+			isa = PBXGroup;
+			children = (
+				0C6D3EBE226CF08C00488E63 /* MessagingViewController.swift */,
+			);
+			path = Messaging;
 			sourceTree = "<group>";
 		};
 		1B2717BB178DC4D760675242 /* Pods */ = {
@@ -872,18 +883,20 @@
 			files = (
 				02409EDA1FD7460900CE23BD /* LoginViewController.swift in Sources */,
 				02E332F820260334008BE39B /* FixtureDetailCollectionViewCell.swift in Sources */,
-				0C1F358B2260CA9E003F4FB1 /* AlternativeSignUpViewController.swift in Sources */,
+				0C6D3EC322722E0C00488E63 /* FixturesTableViewCellMore.swift in Sources */,
+				0C1F358B2260CA9E003F4FB1 /* SignUpViewController.swift in Sources */,
 				029E17DB1FBA307C00E5F8AB /* TBG.xcdatamodeld in Sources */,
 				02B1AC0C202A52A300A24C56 /* GoalkeeperCollectionViewCell.swift in Sources */,
+				0C6D3EBF226CF08C00488E63 /* MessagingViewController.swift in Sources */,
 				023FAF3B1FC7837800AD6505 /* PlayersTableViewCell.swift in Sources */,
 				023A3548201B725700894651 /* FixtureDetailViewController.swift in Sources */,
 				023FAF421FC9EA6900AD6505 /* PlayerDetailViewController.swift in Sources */,
-				021BB1231FBA45E300AC52CE /* SignUpViewController.swift in Sources */,
 				025251882006270A00A1C8D4 /* FixturesTableViewCell.swift in Sources */,
 				029E17D31FBA307C00E5F8AB /* AppDelegate.swift in Sources */,
 				02B1AC0A202A45F100A24C56 /* StrikerCollectionViewCell.swift in Sources */,
 				02AF5980203D965C00232C32 /* Spinner.swift in Sources */,
 				02B1ABFC2028F79200A24C56 /* MidCollectionViewCell.swift in Sources */,
+				0C6D3EC1226F33EB00488E63 /* FixturesViewController.swift in Sources */,
 				023A355820224F0100894651 /* PlayerFixturesTableViewCell.swift in Sources */,
 				02326B0820307D0000729FFE /* TeamsViewController.swift in Sources */,
 				02AF597E203D65E700232C32 /* DataStore.swift in Sources */,
@@ -892,7 +905,6 @@
 				02D091C72015D884003D3087 /* PlayerViewController.swift in Sources */,
 				02D091D020172728003D3087 /* TokenGenerationViewController.swift in Sources */,
 				023A35502020E2E000894651 /* PlayerFixturesTableViewController.swift in Sources */,
-				023FAF391FC75BA000AD6505 /* PlayersTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -968,7 +980,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1021,7 +1033,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1044,7 +1056,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1063,7 +1075,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

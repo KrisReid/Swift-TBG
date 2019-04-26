@@ -111,36 +111,33 @@ class PlayerFixturesTableViewController: UITableViewController {
         return UITableViewCell()
     }
     
+    func SetPlayerToFixture(fixtureId: String, player: [String:String]) {
+        Database.database().reference().child("Teams").child(self.teamIdentity).child("Fixtures").child(fixtureId).child("Players").updateChildValues(player)
+    }
+    
     
     func updatePlayerAvailability(fixtureId: String, availability: String, playerFixtureCount: Int) {
         
-        // BROKEN - NEED TO ADD A COMPLETION HANDLER INTO THIS
-        
-        var count = 1
+        var count = 0
+        var skip = false
         Database.database().reference().child("Teams").child(self.teamIdentity).child("Fixtures").child(fixtureId).child("Players").observe(.childAdded) { (snapshot) in
             
-            let id = snapshot.key
-            let player : [String:String] = [id: availability]
-            let playerUpdate = Database.database().reference().child("Teams").child(self.teamIdentity).child("Fixtures").child(fixtureId).child("Players")
+            let player : [String:String] = [self.playerId: availability]
             
-            print("id ===== \(id)")
-            print("playerid ===== \(self.playerId)")
-            if id == self.playerId {
-                playerUpdate.updateChildValues(player)
+            if snapshot.key != self.playerId {
                 count += 1
+                if playerFixtureCount == count {
+                    self.SetPlayerToFixture(fixtureId: fixtureId, player: player)
+                    skip = true
+                }
             } else {
-                print(count)
-                print(playerFixtureCount)
-                if count == playerFixtureCount {
-                    // Match not found ... just add
-                    print("IN HERE 777777777")
-                Database.database().reference().child("Teams").child(self.teamIdentity).child("Fixtures").child(fixtureId).child("Players").child(self.playerId).setValue(player)
+                if skip {
+                    print("WE Stop HERE")
                 } else {
-                    //ERROR - THERE WILL ALWAYS BE THE CREATOR THERE
+                    self.SetPlayerToFixture(fixtureId: fixtureId, player: player)
                 }
             }
         }
-
     }
     
     

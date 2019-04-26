@@ -25,6 +25,7 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var btnUpdatePIN: UIButton!
     @IBOutlet weak var tfPIN: UITextField!
     @IBOutlet weak var vShare: UIView!
+    @IBOutlet weak var vShareCover: UIView!
     @IBOutlet weak var btnCloseShare: UIButton!
     
     
@@ -43,16 +44,18 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action:
-            #selector(PlayersTableViewController.updatePlayers), for: UIControl.Event.valueChanged)
+            #selector(TeamsViewController.updatePlayers), for: UIControl.Event.valueChanged)
         tvPlayers.addSubview(refresher)
         
         btnShare.layer.cornerRadius = 5.0
         setTextFields(textfieldName: tfPIN)
         
-        let tvColor = UIColor.gray
-        vShare.layer.borderColor = tvColor.cgColor
-        vShare.layer.borderWidth = 1.0
+        vShare.layer.cornerRadius = CGFloat(10)
+        
         vShare.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2.5)
+        
+        vShareCover.frame = CGRect(x: 0 , y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        vShareCover.alpha = 0
         
         btnCloseShare.frame = CGRect(x: vShare.bounds.width - btnCloseShare.bounds.width, y: 0, width: 30, height: 30)
         lblTeamName.frame = CGRect(x: 10, y: 0, width: vShare.bounds.width - btnCloseShare.bounds.width, height: 30)
@@ -67,8 +70,8 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         btnShare.frame = CGRect(x: vShare.frame.width / 2 - 50, y: 170, width: 100, height: 30)
         
         //Keyboard show and dismiss observers
-        NotificationCenter.default.addObserver(self, selector: #selector(AlternativeSignUpViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(AlternativeSignUpViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
     }
     
@@ -101,6 +104,7 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         UIView.animate(withDuration: 0.6) {
             self.vShare.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - self.vShare.bounds.height, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2.5)
             self.vShare.alpha = 1
+            self.vShareCover.alpha = 1
         }
         
     }
@@ -109,6 +113,7 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         UIView.animate(withDuration: 0.6) {
             self.vShare.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2.5)
             self.vShare.alpha = 0
+            self.vShareCover.alpha = 0
         }
     }
     
@@ -176,6 +181,9 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                     self.allPlayers.append(snapshot)
                                 }
                                 for player in self.allPlayers {
+                                    print("11111111")
+                                    print(player.key)
+                                    print(key)
                                     if player.key == key {
                                         print("It was found at least once")
                                     } else {
@@ -184,6 +192,7 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                             print("It never existed and therefore needs adding")
                                             self.allPlayers.append(snapshot)
                                         } else {
+                                            print("//////")
                                             print(counting)
                                         }
                                     }

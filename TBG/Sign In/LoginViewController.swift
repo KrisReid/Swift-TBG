@@ -40,12 +40,29 @@ class LoginViewController: UIViewController {
         //Set the containers
         setContainer(container: vSignInContainer, leftButton: newSignup, rightButton: loginButton);
         
+        //Set the Text Fields
         setTextFields(textfieldName: tfEmail, view: vSignInContainer, yCoordinate: vSignInContainer.frame.height / 3, placeholder: "Email Address")
         setTextFields(textfieldName: tfPassword, view: vSignInContainer, yCoordinate: vSignInContainer.frame.height / 2, placeholder: "Password")
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if Auth.auth().currentUser?.uid != nil {
+            //Has UID: Auto-Signin
+            if Auth.auth().currentUser?.displayName == "Manager" {
+                //MANAGER
+                self.performSegue(withIdentifier: "ManagerSegue", sender: nil)
+            } else {
+                //PLAYER
+                self.performSegue(withIdentifier: "PlayerSegue", sender: nil)
+            }
+        } else {
+            //No UID: Not Signed in
+            print("No Automatic signin")
+        }
     }
     
     //GENERAL FUNCTIONS
