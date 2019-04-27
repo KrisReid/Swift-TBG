@@ -12,16 +12,20 @@ import FirebaseDatabase
 
 class FixturesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
+    
     @IBOutlet var tvFixtures: UITableView!
     @IBOutlet weak var vAddFixtureCover: UIView!
     @IBOutlet weak var vAddFixture: UIView!
     @IBOutlet weak var vSwipeDown: UIView!
-    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var tfDate: UITextField!
-    @IBOutlet weak var tfOpposition: UITextField!
-    @IBOutlet weak var tfLocation: UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var vDatePicker: UIView!
     @IBOutlet weak var swHomeAway: UISwitch!
-    
+    @IBOutlet weak var ivHome: UIImageView!
+    @IBOutlet weak var ivAway: UIImageView!
+    @IBOutlet weak var tfOpposition: UITextField!
+    @IBOutlet weak var tfVenue: UITextField!
+    @IBOutlet weak var btnCreateGame: UIButton!
     
     let dataStore = DataStore.init()
     var teamFixtures : [DataSnapshot] = []
@@ -69,8 +73,22 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         vSwipeDown.frame = CGRect(x: UIScreen.main.bounds.width / 2 - vSwipeDown.frame.width / 2, y: UIScreen.main.bounds.height - 20, width: 48, height: 8)
         vSwipeDown.alpha = 0
         
+        
+        vDatePicker.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - 300, width: UIScreen.main.bounds.width, height: 230)
+        datePicker.frame = CGRect(x: 0 , y: 0, width: UIScreen.main.bounds.width, height: 230)
+        
         setTextFields (textfieldName: tfDate, view: vAddFixture, yCoordinate: 30, placeholder: "Date / Time")
         
+        swHomeAway.frame = CGRect(x: (vAddFixture.bounds.width - swHomeAway.bounds.width) / 2, y: 60, width: 49, height: 31)
+        
+        ivAway.frame = CGRect(x: (vAddFixture.bounds.width / 2) + 50, y: 60, width: 31, height: 31)
+        
+        ivHome.frame = CGRect(x: (vAddFixture.bounds.width / 2) - 31 - 50, y: 60, width: 31, height: 31)
+        
+        setTextFields (textfieldName: tfOpposition, view: vAddFixture, yCoordinate: 120, placeholder: "Opposition")
+        setTextFields (textfieldName: tfVenue, view: vAddFixture, yCoordinate: 160, placeholder: "Venue")
+        
+        btnCreateGame.frame = CGRect(x: (vAddFixture.bounds.width - btnCreateGame.bounds.width) / 2, y: 190, width: 90, height: 30)
         
     }
     
@@ -263,13 +281,28 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func tfDateStarted(_ sender: Any) {
-        //expand the view and show the picker
-        self.datePicker.isHidden = false
-        self.view.layoutIfNeeded()
+        self.vDatePicker.isHidden = false
+        
+        UIView.animate(withDuration: 0.6) {
+            
+            self.vAddFixture.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - self.vAddFixture.bounds.height - self.vDatePicker.bounds.height, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2.5)
+            self.vSwipeDown.frame = CGRect(x: UIScreen.main.bounds.width / 2 - self.vSwipeDown.frame.width / 2, y: UIScreen.main.bounds.height - self.vAddFixture.bounds.height - self.vDatePicker.bounds.height - 20, width: 48, height: 8)
+        }
+        
+    }
+    
+    func hidePicker () {
+        self.vDatePicker.isHidden = true
+        
+        UIView.animate(withDuration: 0.6) {
+            
+            self.vAddFixture.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - self.vAddFixture.bounds.height, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2.5)
+            self.vSwipeDown.frame = CGRect(x: UIScreen.main.bounds.width / 2 - self.vSwipeDown.frame.width / 2, y: UIScreen.main.bounds.height - self.vAddFixture.bounds.height - 20, width: 48, height: 8)
+        }
     }
     
     @IBAction func tfDateFinished(_ sender: Any) {
-        self.datePicker.isHidden = true
+        hidePicker()
     }
     
     @IBAction func datePickerAction(_ sender: Any) {
@@ -282,7 +315,7 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     @IBAction func swHomeAwayClicked(_ sender: Any) {
-        
+        hidePicker()
     }
     
     
@@ -294,7 +327,7 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     @objc func keyboardWillShow(notification: NSNotification) {
         if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= 210
+                self.view.frame.origin.y -= 240
             }
         }
     }
@@ -303,7 +336,7 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     @objc func keyboardWillHide(notification: NSNotification) {
         if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += 210
+                self.view.frame.origin.y += 240
             }
         }
     }
@@ -321,3 +354,4 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
 }
+

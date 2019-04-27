@@ -158,7 +158,6 @@
 		02D091D020172728003D3087 /* TokenGenerationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D091CF20172728003D3087 /* TokenGenerationViewController.swift */; };
 		02E332F820260334008BE39B /* FixtureDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E332F720260334008BE39B /* FixtureDetailCollectionViewCell.swift */; };
 		02F607AC1FF2DBB10025D18F /* CreateGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F607AB1FF2DBB10025D18F /* CreateGameViewController.swift */; };
-		0C1F35872260BE8E003F4FB1 /* signup-background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C1F35862260BE8E003F4FB1 /* signup-background.jpg */; };
 		0C1F358B2260CA9E003F4FB1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1F358A2260CA9E003F4FB1 /* SignUpViewController.swift */; };
 		0C6D3EBF226CF08C00488E63 /* MessagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6D3EBE226CF08C00488E63 /* MessagingViewController.swift */; };
 		0C6D3EC1226F33EB00488E63 /* FixturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6D3EC0226F33EB00488E63 /* FixturesViewController.swift */; };
@@ -322,7 +321,6 @@
 		02E332F720260334008BE39B /* FixtureDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		02F607AB1FF2DBB10025D18F /* CreateGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameViewController.swift; sourceTree = "<group>"; };
 		03C597F2654A7830B541D478 /* Pods-TBG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TBG.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TBG/Pods-TBG.debug.xcconfig"; sourceTree = "<group>"; };
-		0C1F35862260BE8E003F4FB1 /* signup-background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "signup-background.jpg"; path = "TBG/icons/signup-background.jpg"; sourceTree = SOURCE_ROOT; };
 		0C1F358A2260CA9E003F4FB1 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		0C6D3EBE226CF08C00488E63 /* MessagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingViewController.swift; sourceTree = "<group>"; };
 		0C6D3EC0226F33EB00488E63 /* FixturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesViewController.swift; sourceTree = "<group>"; };
@@ -446,7 +444,6 @@
 		0247DF33225FC13800E80367 /* icons */ = {
 			isa = PBXGroup;
 			children = (
-				0C1F35862260BE8E003F4FB1 /* signup-background.jpg */,
 				0247DF36225FC17B00E80367 /* Accept.png */,
 				0247DF4A225FC17D00E80367 /* add-user.png */,
 				0247DF57225FC17F00E80367 /* Away.png */,
@@ -698,7 +695,6 @@
 				02326A5B202B917C00729FFE /* frame_20_delay-0.16s.gif in Resources */,
 				0247DF7E225FC18200E80367 /* upload.png in Resources */,
 				02326A40202B917C00729FFE /* frame_70_delay-0.16s.gif in Resources */,
-				0C1F35872260BE8E003F4FB1 /* signup-background.jpg in Resources */,
 				02326A42202B917C00729FFE /* frame_13_delay-0.16s.gif in Resources */,
 				0247DF6F225FC18100E80367 /* Icon-60 18-50-16-084.png in Resources */,
 				0247DF88225FC18200E80367 /* Icon-Small 18-50-22-952.png in Resources */,
@@ -854,7 +850,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TBG/Pods-TBG-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-TBG/Pods-TBG-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -871,7 +867,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TBG/Pods-TBG-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TBG/Pods-TBG-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
