@@ -30,6 +30,20 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     let dataStore = DataStore.init()
     var teamFixtures : [DataSnapshot] = []
     var teamIdentity = ""
+
+    var allPlayers = [Dictionary<String, Any>]()
+    var playerKeys: [String] = []
+    
+    var dateMode = true
+    var oppositionMode = true
+    var homeTeamId = ""
+    var homeTeamName = ""
+    var homeOrAway = "Home"
+    
+    var managerName : String = ""
+    var managerId : String = ""
+    
+    var tokens : [String] = []
     var refresher: UIRefreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -60,6 +74,10 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidAppear(_ animated: Bool) {
         getFixtures ()
+        
+        //Get required Information
+        getTeamName()
+        getPlayersTokens()
     }
     
     func styling () {
@@ -99,7 +117,7 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         textfieldName.layer.cornerRadius = 10.0
         textfieldName.frame = CGRect(x: 0 , y: yCoordinate, width: view.frame.width / 1.2, height: 30)
         textfieldName.center = CGPoint(x: view.frame.width / 2, y: yCoordinate)
-        textfieldName.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        textfieldName.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
     }
     
     @objc func updateFixtures () {
@@ -169,6 +187,91 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    func getTeamName () {
+        //Email of manager signed in
+        let managerEmail = Auth.auth().currentUser?.email
+        
+        //Get the record of the manager signed in
+        Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: managerEmail).observe(.childAdded) { (snapshot) in
+            
+            Database.database().reference().child("Players").removeAllObservers()
+            
+            if let managerDictionary = snapshot.value as? [String:Any] {
+                if let teamID = managerDictionary["Team ID"] as? String  {
+                    if let managerName = managerDictionary["Full Name"] as? String {
+                        
+                        self.managerName = managerName
+                        self.managerId = snapshot.key
+                        self.homeTeamId = teamID
+                        
+                        Database.database().reference().child("Teams").queryOrdered(byChild: "id").queryEqual(toValue: teamID).observe(.childAdded, with: { (snapshot) in
+                            Database.database().reference().child("Teams").removeAllObservers()
+                            
+                            if let teamDictionary = snapshot.value as? [String:Any] {
+                                if let teamName = teamDictionary["Team Name"] as? String {
+                                    
+                                    self.homeTeamName = teamName
+                                }
+                            }
+                        })
+                    }
+                }
+            }
+        }
+    }
+    
+    func getPlayersTokens () {
+        //Email of manager signed in
+        let managerEmail = Auth.auth().currentUser?.email
+        
+        //Get the record of the manager signed in
+        Database.database().reference().child("Players").queryOrdered(byChild: "Email").queryEqual(toValue: managerEmail).observe(.childAdded) { (snapshot) in
+            
+            Database.database().reference().child("Players").removeAllObservers()
+            
+            if let managerDictionary = snapshot.value as? [String:Any] {
+                if let teamID = managerDictionary["Team ID"] as? String  {
+                    Database.database().reference().child("Players").queryOrdered(byChild: "Team ID").queryEqual(toValue: teamID).observe(.childAdded, with: { (snapshot) in
+                        
+                        self.playerKeys.append(snapshot.key)
+                        
+                        Database.database().reference().child("Players").removeAllObservers()
+                        if let playerDictionary = snapshot.value as? [String:Any] {
+                            if let token = playerDictionary["Active Token"] as? String {
+                                
+                                self.tokens.append(token)
+                            }
+                        }
+                    })
+                    
+                }
+            }
+        }
+    }
+    
+    func pushNotifiy() {
+        print("22222222222222222222")
+        print(tokens)
+        for token in tokens {
+            if let url = URL(string: "https://fcm.googleapis.com/fcm/send") {
+                var request = URLRequest(url: url)
+                request.allHTTPHeaderFields = ["Content-Type":"application/json","Authorization":"key=AAAA7rglZew:APA91bEj2s8uNgjlptrh8ULTuJzD9d5lxTElN7Jln_LLUWnng-5AUHO6087KwqQ7YMOLu0UcXV0Y44_Hd09KLc6ZD-I_iupcjIMoz37vbbyG79ibrd83NFTtfCLUmzN2DBI6XYv_d0sO"]
+                
+                request.httpMethod = "POST"
+                request.httpBody = "{\"to\":\"\(token)\",\"notification\":{\"title\":\"A new Game has been created. Can you play?\"}}".data(using: .utf8)
+                
+                URLSession.shared.dataTask(with: request, completionHandler: { (data, urlresponse, error) in
+                    if error != nil {
+                        print(error!)
+                    } else {
+                        
+                    }
+                }).resume()
+            }
+        }
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return teamFixtures.count
     }
@@ -199,11 +302,6 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         return UITableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let snapshot = teamFixtures[indexPath.row]
-        performSegue(withIdentifier: "FixtureDetailSegue", sender: snapshot)
-    }
-    
     //CODE FOR DELETING PLAYERS FROM THE DATABASE AND REFESHING
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
@@ -219,8 +317,12 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
             self.getFixtures()
         }
     }
-
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let snapshot = teamFixtures[indexPath.row]
+        performSegue(withIdentifier: "FixtureDetailSegue", sender: snapshot)
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let acceptVC = segue.destination as? FixtureDetailViewController {
             
@@ -295,7 +397,6 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
         self.vDatePicker.isHidden = true
         
         UIView.animate(withDuration: 0.6) {
-            
             self.vAddFixture.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height - self.vAddFixture.bounds.height, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2.5)
             self.vSwipeDown.frame = CGRect(x: UIScreen.main.bounds.width / 2 - self.vSwipeDown.frame.width / 2, y: UIScreen.main.bounds.height - self.vAddFixture.bounds.height - 20, width: 48, height: 8)
         }
@@ -316,11 +417,59 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func swHomeAwayClicked(_ sender: Any) {
         hidePicker()
+        
+        if swHomeAway.isOn == true {
+            self.homeOrAway = "Away"
+        } else {
+            self.homeOrAway = "Home"
+        }
     }
     
     
     @IBAction func btnCreateGameClicked(_ sender: Any) {
-        
+        if let date = tfDate.text {
+            if let venue = tfVenue.text {
+                if let opposition = tfOpposition.text {
+                    if date == "" || venue == "" || opposition == "" {
+                        self.displayAlert(title: "Missing Information", message: "You must provide information in all of the fields provided.")
+                    } else {
+                        
+                        //Add the basic fixture structure
+                        let fixtureDictionary : [String:Any] = ["Date and Time": date, "Home Team Name": self.homeTeamName, "Away Team Name": opposition, "Home or Away": self.homeOrAway, "Venue": venue]
+                        let newFixture =  Database.database().reference().child("Teams").child(self.homeTeamId).child("Fixtures").childByAutoId()
+                        newFixture.setValue(fixtureDictionary)
+                        
+                        //Capture the key
+                        let newFixtureId = newFixture.key
+                        
+                        //Manager added as available
+                        let manager : [String:Any] = [self.managerId:"Available"]
+                        let newPlayerFixture = Database.database().reference().child("Teams").child(self.homeTeamId).child("Fixtures").child(newFixtureId).child("Players")
+                        newPlayerFixture.setValue(manager)
+                        
+                        //Send Push Notification
+                        self.pushNotifiy()
+                        
+                        //notify success
+                        self.displayAlert(title: "Game Created", message: "The game has been added to your teams fixture list")
+                        
+                        //reset the page to empty
+                        tfDate.text = ""
+                        tfVenue.text = ""
+                        tfOpposition.text = ""
+                        swHomeAway.isOn = false
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    //Alert code
+    func displayAlert(title:String, message:String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
     
     //Keyboard will Show
@@ -340,7 +489,6 @@ class FixturesViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
-    
     
     //closes the keyboard when you touch white space
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -92,7 +92,7 @@
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="-186.20689655172416"/>
         </scene>
-        <!--Me-->
+        <!--Player View Controller-->
         <scene sceneID="jS0-9v-X8f">
             <objects>
                 <viewController id="tuC-xq-94V" customClass="PlayerViewController" customModule="TBG" customModuleProvider="target" sceneMemberID="viewController">
@@ -323,7 +323,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2Ro-PT-JNa"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Me" image="Profile.png" landscapeImage="Profile.png" largeContentSizeImage="Profile.png" selectedImage="Profile.png" id="QJk-hC-17h"/>
+                    <tabBarItem key="tabBarItem" title="" image="Profile.png" landscapeImage="Profile.png" largeContentSizeImage="Profile.png" selectedImage="Profile.png" id="QJk-hC-17h"/>
                     <connections>
                         <outlet property="btnEditAddress" destination="Oqe-vb-5y3" id="vS9-If-J6Y"/>
                         <outlet property="btnEditPosition" destination="ITU-9c-1Zg" id="Z9h-8T-HIn"/>
@@ -363,6 +363,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.65490196079999996" green="0.82745098039999998" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="tuC-xq-94V" kind="relationship" relationship="viewControllers" id="QhU-YQ-a0t"/>
@@ -374,7 +377,7 @@
             </objects>
             <point key="canvasLocation" x="33" y="956"/>
         </scene>
-        <!--Fixtures-->
+        <!--Player Fixtures Table View Controller-->
         <scene sceneID="3Cm-b4-JZU">
             <objects>
                 <tableViewController id="xyf-q0-MGR" customClass="PlayerFixturesTableViewController" customModule="TBG" customModuleProvider="target" sceneMemberID="viewController">
@@ -465,7 +468,7 @@
                             <outlet property="delegate" destination="xyf-q0-MGR" id="4FH-l0-yH0"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Fixtures" image="fixture.png" id="tiD-zG-KOF"/>
+                    <tabBarItem key="tabBarItem" title="" image="fixture.png" id="tiD-zG-KOF"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yFr-3Q-h5O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -893,7 +896,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uQM-B4-w6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3791" y="-186"/>
+            <point key="canvasLocation" x="4705" y="-186"/>
         </scene>
         <!--Messaging View Controller-->
         <scene sceneID="C8T-KO-Kar">
@@ -1132,7 +1135,6 @@
                                             <outlet property="lblDateTime" destination="tuu-bh-Q8f" id="g8x-eH-yMH"/>
                                             <outlet property="lblOpposition" destination="gpw-Mp-y4o" id="t6c-W3-yBD"/>
                                             <outlet property="lblVenue" destination="P5G-s5-rzP" id="kUI-DP-5hD"/>
-                                            <segue destination="YZC-e5-OFJ" kind="show" identifier="FixtureDetailSegue" id="z5H-f0-UMG"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1158,6 +1160,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date / Time" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="CFy-a0-KLM">
                                         <rect key="frame" x="4" y="16" width="335" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -1165,7 +1168,7 @@
                                             <action selector="tfDateStarted:" destination="jEC-eo-Nkh" eventType="touchDown" id="7mw-uW-wk4"/>
                                         </connections>
                                     </textField>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KZH-eZ-0gN">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KZH-eZ-0gN">
                                         <rect key="frame" x="148" y="64" width="49" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
@@ -1183,6 +1186,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Opposition" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="6iB-rQ-G7y">
                                         <rect key="frame" x="4" y="105" width="335" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -1192,6 +1196,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Venue" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="jla-Gw-weh">
                                         <rect key="frame" x="0.0" y="126" width="335" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -1260,17 +1265,18 @@
                         <outlet property="vAddFixtureCover" destination="tac-Ln-qgf" id="ojY-q0-DFz"/>
                         <outlet property="vDatePicker" destination="1d1-ke-TGR" id="vBE-vZ-DcE"/>
                         <outlet property="vSwipeDown" destination="Bvb-MG-wYh" id="ZlD-Vo-YzN"/>
+                        <segue destination="YZC-e5-OFJ" kind="show" identifier="FixtureDetailSegue" id="E9n-lA-1Rb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pMy-mE-Cai" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4705" y="-935"/>
         </scene>
-        <!--Fixtures-->
+        <!--Navigation Controller-->
         <scene sceneID="0xj-NM-pgU">
             <objects>
                 <navigationController id="lEa-qY-FcV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Fixtures" image="fixture.png" id="xQp-sN-kMW"/>
+                    <tabBarItem key="tabBarItem" title="" image="fixture.png" id="xQp-sN-kMW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="erv-C1-fkZ">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1560,11 +1566,11 @@
             </objects>
             <point key="canvasLocation" x="5652" y="-935"/>
         </scene>
-        <!--Messaging-->
+        <!--Navigation Controller-->
         <scene sceneID="f64-ok-WZb">
             <objects>
                 <navigationController id="6xg-sV-HpS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Messaging" image="messaging.png" landscapeImage="messaging.png" largeContentSizeImage="messaging.png" selectedImage="messaging.png" id="ewE-lo-2RX"/>
+                    <tabBarItem key="tabBarItem" title="" image="messaging.png" landscapeImage="messaging.png" largeContentSizeImage="messaging.png" selectedImage="messaging.png" id="ewE-lo-2RX"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hAg-kw-kua">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1752,13 +1758,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G1K-RZ-UwO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4706" y="-186"/>
+            <point key="canvasLocation" x="5652" y="-186"/>
         </scene>
-        <!--Team-->
+        <!--Navigation Controller-->
         <scene sceneID="8MR-PI-iH2">
             <objects>
                 <navigationController id="ImB-CD-5nh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Team" image="team.png" landscapeImage="team.png" largeContentSizeImage="team.png" selectedImage="team.png" id="zTH-eH-exw"/>
+                    <tabBarItem key="tabBarItem" title="" image="team.png" landscapeImage="team.png" largeContentSizeImage="team.png" selectedImage="team.png" id="zTH-eH-exw"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GPh-g2-PHW">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1769,7 +1775,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a3K-Ty-NYH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2650" y="-542"/>
+            <point key="canvasLocation" x="3790" y="-186"/>
         </scene>
         <!--Team-->
         <scene sceneID="03z-vk-xo7">
@@ -1780,11 +1786,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.65490196079999996" green="0.82745098039999998" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="ImB-CD-5nh" kind="relationship" relationship="viewControllers" id="Hy4-0N-ems"/>
                         <segue destination="6xg-sV-HpS" kind="relationship" relationship="viewControllers" id="Hzq-Rm-C48"/>
-                        <segue destination="2fi-cd-Ydm" kind="relationship" relationship="viewControllers" id="U0b-Bw-tId"/>
                         <segue destination="tuC-xq-94V" kind="relationship" relationship="viewControllers" id="v7F-Gi-ErT"/>
                         <segue destination="lEa-qY-FcV" kind="relationship" relationship="viewControllers" id="IH5-sS-22x"/>
                     </connections>
