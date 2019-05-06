@@ -90,6 +90,7 @@
 		02326A63202B917C00729FFE /* frame_12_delay-0.16s.gif in Resources */ = {isa = PBXBuildFile; fileRef = 02326A12202B917C00729FFE /* frame_12_delay-0.16s.gif */; };
 		02326B0820307D0000729FFE /* TeamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02326B0720307D0000729FFE /* TeamsViewController.swift */; };
 		02326B0A2030A2AA00729FFE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02326B092030A2AA00729FFE /* MessageUI.framework */; };
+		0232F6D92280CC230041F705 /* ShareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0232F6D82280CC230041F705 /* ShareTableViewCell.swift */; };
 		023A3548201B725700894651 /* FixtureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A3547201B725700894651 /* FixtureDetailViewController.swift */; };
 		023A35502020E2E000894651 /* PlayerFixturesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A354F2020E2E000894651 /* PlayerFixturesTableViewController.swift */; };
 		023A355820224F0100894651 /* PlayerFixturesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A355720224F0100894651 /* PlayerFixturesTableViewCell.swift */; };
@@ -249,6 +250,7 @@
 		02326A12202B917C00729FFE /* frame_12_delay-0.16s.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "frame_12_delay-0.16s.gif"; sourceTree = "<group>"; };
 		02326B0720307D0000729FFE /* TeamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsViewController.swift; sourceTree = "<group>"; };
 		02326B092030A2AA00729FFE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		0232F6D82280CC230041F705 /* ShareTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTableViewCell.swift; sourceTree = "<group>"; };
 		023A3547201B725700894651 /* FixtureDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureDetailViewController.swift; sourceTree = "<group>"; };
 		023A354F2020E2E000894651 /* PlayerFixturesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFixturesTableViewController.swift; sourceTree = "<group>"; };
 		023A355720224F0100894651 /* PlayerFixturesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFixturesTableViewCell.swift; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 			children = (
 				02326B0720307D0000729FFE /* TeamsViewController.swift */,
 				023FAF3A1FC7837800AD6505 /* PlayersTableViewCell.swift */,
+				0232F6D82280CC230041F705 /* ShareTableViewCell.swift */,
 				023FAF411FC9EA6900AD6505 /* PlayerDetailViewController.swift */,
 			);
 			path = "Teams (ManagerView)";
@@ -881,6 +884,7 @@
 				02E332F820260334008BE39B /* FixtureDetailCollectionViewCell.swift in Sources */,
 				0C6D3EC322722E0C00488E63 /* FixturesTableViewCellMore.swift in Sources */,
 				0C1F358B2260CA9E003F4FB1 /* SignUpViewController.swift in Sources */,
+				0232F6D92280CC230041F705 /* ShareTableViewCell.swift in Sources */,
 				029E17DB1FBA307C00E5F8AB /* TBG.xcdatamodeld in Sources */,
 				02B1AC0C202A52A300A24C56 /* GoalkeeperCollectionViewCell.swift in Sources */,
 				0C6D3EBF226CF08C00488E63 /* MessagingViewController.swift in Sources */,
