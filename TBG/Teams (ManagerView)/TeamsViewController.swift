@@ -11,22 +11,15 @@ import FirebaseAuth
 import FirebaseDatabase
 import MessageUI
 
-class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate, UITextFieldDelegate  {
+class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate  {
     
     let dataStore = DataStore.init()
     
     @IBOutlet weak var tvPlayers: UITableView!
-    @IBOutlet weak var lblTeamIdDescription: UILabel!
-    @IBOutlet weak var lblTeamId: UILabel!
-    @IBOutlet weak var lblTeamPINDescription: UILabel!
-    @IBOutlet weak var lblTeamPIN: UILabel!
-    @IBOutlet weak var btnShare: UIButton!
     @IBOutlet weak var vShare: UIView!
     @IBOutlet weak var vShareCover: UIView!
     @IBOutlet weak var vSwipeDown: UIView!
-    
-    @IBOutlet weak var tvShare: UITableView!
-    
+    @IBOutlet weak var cvShare: UIView!
     
     var allPlayers : [DataSnapshot] = []
     var refresher: UIRefreshControl = UIRefreshControl()
@@ -61,11 +54,14 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidAppear(_ animated: Bool) {
         getPlayers ()
+
     }
     
     func styling () {
         vShare.layer.cornerRadius = CGFloat(10)
         vShare.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2.5)
+        
+        cvShare.frame = CGRect(x: 0 , y: 10, width: vShare.bounds.width, height: vShare.bounds.height)
         
         vShareCover.frame = CGRect(x: 0 , y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         vShareCover.alpha = 0
@@ -73,33 +69,6 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         vSwipeDown.layer.cornerRadius = CGFloat(5)
         vSwipeDown.frame = CGRect(x: UIScreen.main.bounds.width / 2 - vSwipeDown.frame.width / 2, y: UIScreen.main.bounds.height - 20, width: 48, height: 8)
         vSwipeDown.alpha = 0
-        
-        lblTeamIdDescription.frame = CGRect(x: 10, y: 60, width: 70, height: 30)
-        lblTeamId.frame = CGRect(x: lblTeamIdDescription.frame.width + 20, y: 60, width: vShare.bounds.width - lblTeamIdDescription.frame.width + 20, height: 30)
-        
-        lblTeamPINDescription.frame = CGRect(x: 10, y: 90, width: 70, height: 30)
-        lblTeamPIN.frame = CGRect(x: lblTeamPINDescription.frame.width + 20, y: 90, width: vShare.bounds.width - lblTeamPINDescription.frame.width - 80, height: 30)
-        
-        btnShare.frame = CGRect(x: vShare.frame.width / 2 - 50, y: 170, width: 100, height: 30)
-        
-    }
-    
-    //SMS CODE
-    @IBAction func btnShareClicked(_ sender: Any) {
-        
-        if (MFMessageComposeViewController.canSendText()) {
-            let controller = MFMessageComposeViewController()
-            controller.body = "Hey, \n\nCome join my team at TNF using: \n\nTeam ID: \(teamId) \n\nTeam PIN: \(teamPIN) \n\nDownload on the app store here"
-            //controller.recipients = [phoneNumber]
-            controller.messageComposeDelegate = self
-            self.present(controller, animated: true, completion: nil)
-        }
-        
-    }
-    
-    //SMS CODE
-    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        self.dismiss(animated: true, completion: nil)
     }
     
     
@@ -126,14 +95,6 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
     }
-    
-//    @IBAction func btnCloseShareClicked(_ sender: Any) {
-//        UIView.animate(withDuration: 0.6) {
-//            self.vShare.frame = CGRect(x: 0 , y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2.5)
-//            self.vShare.alpha = 0
-//            self.vShareCover.alpha = 0
-//        }
-//    }
     
     
     @IBAction func btnLogOut(_ sender: Any) {
@@ -237,7 +198,7 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 if let ManagerDictionary = snapshot.value as? [String:Any] {
                     if let teamID = ManagerDictionary["Team ID"] as? String {
-                        self.lblTeamId.text = teamID
+//                        self.lblTeamId.text = teamID
                         self.teamId = teamID
                         self.getTeam(teamId: teamID)
                         
@@ -261,8 +222,8 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if let TeamDictionary = snapshot.value as? [String:Any] {
                 if let teamName = TeamDictionary["Team Name"] as? String, let PIN = TeamDictionary["PIN"] as? Int {
                     
-                    self.lblTeamPIN.text = String(PIN)
-                    self.teamPIN = PIN
+//                    self.lblTeamPIN.text = String(PIN)
+//                    self.teamPIN = PIN
                 }
             }
         })
@@ -270,13 +231,13 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return allPlayers.count
-        return tableView == tvPlayers ? allPlayers.count : 2
+        return allPlayers.count
+//        return tableView == tvPlayers ? allPlayers.count : 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if tableView == tvPlayers {
+//        if tableView == tvPlayers {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PlayersTableViewCell {
                 let snapshot = allPlayers[indexPath.row]
                 if let PlayerDictionary = snapshot.value as? [String:Any] {
@@ -309,11 +270,11 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     }
                 }
             }
-        } else {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as? ShareTableViewCell {
-                return cell
-            }
-        }
+//        } else {
+//            if let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as? ShareTableViewCell {
+//                return cell
+//            }
+//        }
         
         return UITableViewCell()
     }

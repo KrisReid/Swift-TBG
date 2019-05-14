@@ -90,7 +90,6 @@
 		02326A63202B917C00729FFE /* frame_12_delay-0.16s.gif in Resources */ = {isa = PBXBuildFile; fileRef = 02326A12202B917C00729FFE /* frame_12_delay-0.16s.gif */; };
 		02326B0820307D0000729FFE /* TeamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02326B0720307D0000729FFE /* TeamsViewController.swift */; };
 		02326B0A2030A2AA00729FFE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02326B092030A2AA00729FFE /* MessageUI.framework */; };
-		0232F6D92280CC230041F705 /* ShareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0232F6D82280CC230041F705 /* ShareTableViewCell.swift */; };
 		023A3548201B725700894651 /* FixtureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A3547201B725700894651 /* FixtureDetailViewController.swift */; };
 		023A35502020E2E000894651 /* PlayerFixturesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A354F2020E2E000894651 /* PlayerFixturesTableViewController.swift */; };
 		023A355820224F0100894651 /* PlayerFixturesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023A355720224F0100894651 /* PlayerFixturesTableViewCell.swift */; };
@@ -163,6 +162,7 @@
 		0C6D3EBF226CF08C00488E63 /* MessagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6D3EBE226CF08C00488E63 /* MessagingViewController.swift */; };
 		0C6D3EC1226F33EB00488E63 /* FixturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6D3EC0226F33EB00488E63 /* FixturesViewController.swift */; };
 		0C6D3EC322722E0C00488E63 /* FixturesTableViewCellMore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6D3EC222722E0C00488E63 /* FixturesTableViewCellMore.swift */; };
+		0C9F18A122895A17009809F8 /* ShareTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F18A022895A17009809F8 /* ShareTableViewController.swift */; };
 		21D8FE36B2E01535BB68E0D5 /* Pods_TBG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E738D854AE3B77EF8EAD9C /* Pods_TBG.framework */; };
 /* End PBXBuildFile section */
 
@@ -250,7 +250,6 @@
 		02326A12202B917C00729FFE /* frame_12_delay-0.16s.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "frame_12_delay-0.16s.gif"; sourceTree = "<group>"; };
 		02326B0720307D0000729FFE /* TeamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsViewController.swift; sourceTree = "<group>"; };
 		02326B092030A2AA00729FFE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		0232F6D82280CC230041F705 /* ShareTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTableViewCell.swift; sourceTree = "<group>"; };
 		023A3547201B725700894651 /* FixtureDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureDetailViewController.swift; sourceTree = "<group>"; };
 		023A354F2020E2E000894651 /* PlayerFixturesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFixturesTableViewController.swift; sourceTree = "<group>"; };
 		023A355720224F0100894651 /* PlayerFixturesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFixturesTableViewCell.swift; sourceTree = "<group>"; };
@@ -327,6 +326,7 @@
 		0C6D3EBE226CF08C00488E63 /* MessagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingViewController.swift; sourceTree = "<group>"; };
 		0C6D3EC0226F33EB00488E63 /* FixturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesViewController.swift; sourceTree = "<group>"; };
 		0C6D3EC222722E0C00488E63 /* FixturesTableViewCellMore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesTableViewCellMore.swift; sourceTree = "<group>"; };
+		0C9F18A022895A17009809F8 /* ShareTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTableViewController.swift; sourceTree = "<group>"; };
 		49C8561EA02B5F2CD4A48983 /* Pods-TBG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TBG.release.xcconfig"; path = "Pods/Target Support Files/Pods-TBG/Pods-TBG.release.xcconfig"; sourceTree = "<group>"; };
 		80E738D854AE3B77EF8EAD9C /* Pods_TBG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TBG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -438,7 +438,7 @@
 			children = (
 				02326B0720307D0000729FFE /* TeamsViewController.swift */,
 				023FAF3A1FC7837800AD6505 /* PlayersTableViewCell.swift */,
-				0232F6D82280CC230041F705 /* ShareTableViewCell.swift */,
+				0C9F18A022895A17009809F8 /* ShareTableViewController.swift */,
 				023FAF411FC9EA6900AD6505 /* PlayerDetailViewController.swift */,
 			);
 			path = "Teams (ManagerView)";
@@ -884,7 +884,6 @@
 				02E332F820260334008BE39B /* FixtureDetailCollectionViewCell.swift in Sources */,
 				0C6D3EC322722E0C00488E63 /* FixturesTableViewCellMore.swift in Sources */,
 				0C1F358B2260CA9E003F4FB1 /* SignUpViewController.swift in Sources */,
-				0232F6D92280CC230041F705 /* ShareTableViewCell.swift in Sources */,
 				029E17DB1FBA307C00E5F8AB /* TBG.xcdatamodeld in Sources */,
 				02B1AC0C202A52A300A24C56 /* GoalkeeperCollectionViewCell.swift in Sources */,
 				0C6D3EBF226CF08C00488E63 /* MessagingViewController.swift in Sources */,
@@ -901,6 +900,7 @@
 				02326B0820307D0000729FFE /* TeamsViewController.swift in Sources */,
 				02AF597E203D65E700232C32 /* DataStore.swift in Sources */,
 				025251861FFABDAD00A1C8D4 /* FixturesTableViewController.swift in Sources */,
+				0C9F18A122895A17009809F8 /* ShareTableViewController.swift in Sources */,
 				02F607AC1FF2DBB10025D18F /* CreateGameViewController.swift in Sources */,
 				02D091C72015D884003D3087 /* PlayerViewController.swift in Sources */,
 				02D091D020172728003D3087 /* TokenGenerationViewController.swift in Sources */,
