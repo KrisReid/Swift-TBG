@@ -54,7 +54,6 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidAppear(_ animated: Bool) {
         getPlayers ()
-
     }
     
     func styling () {
@@ -102,33 +101,6 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         navigationController?.dismiss(animated: true, completion: nil)
     }
     
-//    @IBAction func btnUpdatePINClicked(_ sender: Any) {
-//        if PINEditMode {
-//            tfPIN.isHidden = false
-//            lblTeamPIN.isHidden = true
-//            btnUpdatePIN.setImage(#imageLiteral(resourceName: "upload.png"), for: .normal)
-//            self.PINEditMode = false
-//        } else {
-////            if tfPIN.text?.characters.count == 6 {
-//            if tfPIN.text?.count == 6 {
-//                tfPIN.isHidden = true
-//                lblTeamPIN.isHidden = false
-//                lblTeamPIN.text = tfPIN.text
-//
-//                btnUpdatePIN.setImage(#imageLiteral(resourceName: "edit.png"), for: .normal)
-//                self.PINEditMode = true
-//
-//                Database.database().reference().child("Teams").queryOrdered(byChild: "id").queryEqual(toValue: teamId).observe(.childAdded, with: { (snapshot) in
-//
-//                    print(Int(self.teamPIN))
-//                    snapshot.ref.updateChildValues(["PIN": Int(self.tfPIN.text!)!])
-//                    Database.database().reference().child("Teams").removeAllObservers()
-//                })
-//
-//                self.view.endEditing(true)
-//            }
-//        }
-//    }
     
     func setTextFields (textfieldName : UITextField) {
         let myColor = UIColor.gray
@@ -200,7 +172,6 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     if let teamID = ManagerDictionary["Team ID"] as? String {
 //                        self.lblTeamId.text = teamID
                         self.teamId = teamID
-                        self.getTeam(teamId: teamID)
                         
                         Database.database().reference().child("Players").queryOrdered(byChild: "Team ID").queryEqual(toValue: teamID).observe(.childAdded, with: { (snapshot) in
                             Database.database().reference().child("Players").removeAllObservers()
@@ -214,19 +185,6 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
             })
         }
-    }
-    
-    func getTeam (teamId:String) {
-        Database.database().reference().child("Teams").queryOrdered(byChild: "id").queryEqual(toValue: teamId).observe(.childAdded, with: { (snapshot) in
-            
-            if let TeamDictionary = snapshot.value as? [String:Any] {
-                if let teamName = TeamDictionary["Team Name"] as? String, let PIN = TeamDictionary["PIN"] as? Int {
-                    
-//                    self.lblTeamPIN.text = String(PIN)
-//                    self.teamPIN = PIN
-                }
-            }
-        })
     }
     
     

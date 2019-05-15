@@ -12,7 +12,8 @@ import FirebaseDatabase
 
 class ShareTableViewController: UITableViewController  {
     
-//    let dataStore = DataStore.init()
+    let dataStore = DataStore.init()
+    var managersPlayers : [DataSnapshot] = []
     
     @IBOutlet weak var lblTeamIdDescription: UILabel!
     @IBOutlet weak var lblTeamId: UILabel!
@@ -21,9 +22,6 @@ class ShareTableViewController: UITableViewController  {
     @IBOutlet weak var btnShare: UIButton!
     @IBOutlet weak var lblActive: UILabel!
     @IBOutlet weak var tvShare: UITableView!
-    
-    var teamId : String = ""
-    var teamPIN: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +35,7 @@ class ShareTableViewController: UITableViewController  {
         lblActive.frame = CGRect(x: 100, y: 20, width: UIScreen.main.bounds.width - 120, height: 30)
 //        btnShare.frame = CGRect(x: 10, y: 20, width: 100, height: 30)
         
-        
-//        let b = dataStore.getManagersPlayers()
-//        print("My managers players folks: \(b)");
+        managersPlayers = dataStore.getManagersPlayers()
         
     }
     
@@ -47,8 +43,11 @@ class ShareTableViewController: UITableViewController  {
         
     }
     
-//    @IBAction func btnShareClicked(_ sender: Any) {
-//        
+    @IBAction func btnShareClicked(_ sender: Any) {
+        
+        print("My managers players folks (take 2): \(managersPlayers)");
+        
+        
 //        if (messageComposeViewController.canSendText()) {
 //            let controller = messageComposeViewController()
 //            controller.body = "Hey, \n\nCome join my team at TNF using: \n\nTeam ID: \(teamId) \n\nTeam PIN: \(teamPIN) \n\nDownload on the app store here"
@@ -56,8 +55,8 @@ class ShareTableViewController: UITableViewController  {
 //            controller.messageComposeDelegate = self
 //            self.present(controller, animated: true, completion: nil)
 //        }
-//        
-//    }
+        
+    }
     
 //    //SMS CODE
 //    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
@@ -102,7 +101,6 @@ class ShareTableViewController: UITableViewController  {
                 if let ManagerDictionary = snapshot.value as? [String:Any] {
                     if let teamID = ManagerDictionary["Team ID"] as? String {
                         self.lblTeamId.text = teamID
-//                        self.teamId = teamID
                         self.getTeam(teamId: teamID)
                     }
                 }
@@ -114,9 +112,8 @@ class ShareTableViewController: UITableViewController  {
         Database.database().reference().child("Teams").queryOrdered(byChild: "id").queryEqual(toValue: teamId).observe(.childAdded, with: { (snapshot) in
             
             if let TeamDictionary = snapshot.value as? [String:Any] {
-                if let teamName = TeamDictionary["Team Name"] as? String, let PIN = TeamDictionary["PIN"] as? Int {
+                if let PIN = TeamDictionary["PIN"] as? Int {
                     self.lblTeamPIN.text = String(PIN)
-//                    self.teamPIN = PIN
                 }
             }
         })
